@@ -1,6 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
+import db from './repository.js';
+
+db.authenticate().then(() => {
+    console.log('Database connected...');
+}).catch((err) => {
+    console.log(err);
+});
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -13,5 +20,6 @@ app.get('/', (req, res) => {
 });
 
 const httpServer = createServer(app);
-
-httpServer.listen(8001);
+db.sync().then(() => {
+    httpServer.listen(8001);
+}).catch((err) => console.log(`Error:${err}`));
