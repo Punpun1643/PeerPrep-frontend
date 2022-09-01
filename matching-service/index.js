@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
 // log to console when there is a connection from the client
 io.on('connection', (socket) => {
     console.log('a user connected');
+
+    socket.on('disconnect', () => {
+        console.log('a user disconnected');
+    });
 });
 
 httpServer.listen(8001, () => {
