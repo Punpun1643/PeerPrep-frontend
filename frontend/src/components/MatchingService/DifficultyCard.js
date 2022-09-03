@@ -28,7 +28,7 @@ export default function DifficultyCard(props) {
                               }
 
   return (
-    <Card fullwidth sx={{minWidth: 200, maxWidth: 320, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
+    <Card sx={{minWidth: 200, maxWidth: 320, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
       <Typography variant="h5" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
         {props.difficulty} 
       </Typography>
