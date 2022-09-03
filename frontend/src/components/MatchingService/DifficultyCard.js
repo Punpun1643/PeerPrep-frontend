@@ -13,6 +13,11 @@ import tree from '../../images/tree.png';
 
 export default function DifficultyCard(props) {
 
+  const handleFindMatchClick = (e) => {
+    e.preventDefault();
+    console.log(`${props.difficulty} button was clicked`);
+  }
+
   const difficultyImageMap = { "Easy" : sapling, "Medium" : youngtree, "Hard" : tree}
   const difficultyTextMap = { "Easy" : "Beginner-friendly",
                               "Medium" : "Intermediate Questions", 
@@ -23,7 +28,7 @@ export default function DifficultyCard(props) {
                               }
 
   return (
-    <Card sx={{ width: 345, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
+    <Card fullwidth sx={{minWidth: 200, maxWidth: 320, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
       <Typography variant="h5" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
         {props.difficulty} 
       </Typography>
@@ -43,7 +48,8 @@ export default function DifficultyCard(props) {
 
         </CardContent>
         <CardActions>
-        <Button size="medium" variant="outlined"  sx={{margin: 'auto', textTransform:'none', color: "#424242", borderColor: "#424242"}}>
+        <Button size="medium" variant="outlined"  sx={{margin: 'auto', textTransform:'none', color: "#424242", borderColor: "#424242"}}
+          onClick={handleFindMatchClick}>
           Find Match</Button>
       </CardActions>
     </Card>

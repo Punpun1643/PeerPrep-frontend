@@ -8,10 +8,10 @@ export default function SelectionView() {
     const difficultyLevels = ["Easy", "Medium", "Hard"];
 
     return (
-    <Box sx={{ flexGrow: 1, margin: 'auto'}}>
-        <Grid container spacing={10}>
+    <Box sx={{ flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
+        <Grid container spacing={2}>
         {difficultyLevels.map(difficultyLevel =>
-                 <Grid key={difficultyLevel} item xs={4}>
+                 <Grid key={difficultyLevel} item xs={'auto'}>
                      <DifficultyCard difficulty={difficultyLevel}/>
                 </Grid>)}
           </Grid>
