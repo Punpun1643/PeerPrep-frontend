@@ -37,9 +37,9 @@ export default function RoomPage() {
                 <Grid item xs={4} md={3}>
                     <Stack spacing={1}>
                         {/* chat box */}
-                        <Item sx={{height: "85vh"}}>Placeholder chat box</Item>
+                        <Item sx={{height: "80vh"}}>Placeholder chat box</Item>
                         {/* leave box */}
-                        <Item sx={{height: "5vh"}}>
+                        <Item sx={{height: "10vh"}}>
                             <Button variant="outlined" endIcon={<LogoutIcon />}>
                               Leave Room 
                             </Button>                           
