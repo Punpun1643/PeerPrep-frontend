@@ -24,7 +24,7 @@ export default function RoomPage() {
         <Box>
             <Grid container spacing={1}>
                 {/* left panel */}
-                <Grid item xs={6} md={9}>
+                <Grid item xs={8} md={9}>
                     <Stack spacing={1}>
                         {/* question box */}
                         <Item sx={{height: "35vh"}}>Placeholder question box</Item>
@@ -34,7 +34,7 @@ export default function RoomPage() {
                 </Grid>
                 
                 {/* right panel */}
-                <Grid item xs={6} md={3}>
+                <Grid item xs={4} md={3}>
                     <Stack spacing={1}>
                         {/* chat box */}
                         <Item sx={{height: "85vh"}}>Placeholder chat box</Item>
