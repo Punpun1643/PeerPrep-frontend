@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
 /* PLACEHOLDER ITEM BOX */
 const Item = styled(Paper)(({ theme }) => ({
-    display: "flex",
+    display: 'flex',
     backgroundColor: '#f4eeed',
     padding: theme.spacing(1),
     textAlign: 'center',
-    alignItems: "center",
+    alignItems: 'center',
     justifyContent: "center"
   }));
 
@@ -37,7 +39,11 @@ export default function RoomPage() {
                         {/* chat box */}
                         <Item sx={{height: "85vh"}}>Placeholder chat box</Item>
                         {/* leave box */}
-                        <Item sx={{height: "5vh"}}>Placeholder leave box</Item>
+                        <Item sx={{height: "5vh"}}>
+                            <Button variant="outlined" endIcon={<LogoutIcon />}>
+                              Leave Room 
+                            </Button>                           
+                        </Item>
                     </Stack>
                 </Grid>
 
