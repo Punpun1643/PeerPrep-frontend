@@ -3,6 +3,7 @@ import pendingMatchOrm from './orm.js';
 const pendingMatchController = {
     addPendingMatch: addPendingMatch,
     deleteByUsername: deleteByUsername,
+    findAllPendingMatches: findAllPendingMatches,
 };
 
 function addPendingMatch(req, res) {
@@ -23,6 +24,16 @@ function deleteByUsername(req, res) {
                 message: 'Pending match updated successfuly',
                 pendingMatch: data,
             });
+        },
+    ).catch((err) => {
+        console.log(err);
+    });
+}
+
+function findAllPendingMatches(req, res) {
+    pendingMatchOrm.findAllPendingMatches().then(
+        (data) => {
+            res.send(data);
         },
     ).catch((err) => {
         console.log(err);
