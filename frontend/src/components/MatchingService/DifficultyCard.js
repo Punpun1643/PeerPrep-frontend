@@ -1,3 +1,4 @@
+import {useNavigate} from 'react-router-dom';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -13,6 +14,8 @@ import { io } from "socket.io-client";
 
 export default function DifficultyCard(props) {
 
+  const navigate = useNavigate();
+
   const handleFindMatchClick = (e) => {
     e.preventDefault();
     console.log(`${props.difficulty} button was clicked`);
@@ -23,6 +26,7 @@ export default function DifficultyCard(props) {
     });
 
     socket.emit(`${props.difficulty} match`);
+    navigate('/findingmatch');
 
   }
   const difficultyImageMap = { "Easy" : sapling, "Medium" : youngtree, "Hard" : tree}
