@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import sapling from '../../images/sapling.png';
 import youngtree from '../../images/youngtree.png'
 import tree from '../../images/tree.png';
-
+import { io } from "socket.io-client";
 
 
 export default function DifficultyCard(props) {
@@ -16,8 +16,15 @@ export default function DifficultyCard(props) {
   const handleFindMatchClick = (e) => {
     e.preventDefault();
     console.log(`${props.difficulty} button was clicked`);
-  }
 
+    const socket = io("http://localhost:8001");
+    socket.on("connect", () => {
+      console.log(socket.connected); // true
+    });
+
+    socket.emit("finding a match");
+
+  }
   const difficultyImageMap = { "Easy" : sapling, "Medium" : youngtree, "Hard" : tree}
   const difficultyTextMap = { "Easy" : "Beginner-friendly",
                               "Medium" : "Intermediate Questions", 
