@@ -22,7 +22,7 @@ export default function DifficultyCard(props) {
       console.log(socket.connected); // true
     });
 
-    socket.emit("finding a match");
+    socket.emit(`${props.difficulty} match`);
 
   }
   const difficultyImageMap = { "Easy" : sapling, "Medium" : youngtree, "Hard" : tree}
