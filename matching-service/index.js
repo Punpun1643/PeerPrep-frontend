@@ -5,8 +5,7 @@ import { Server } from 'socket.io';
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-    cors: true});
+const io = new Server(httpServer, { cors: true });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,7 +21,7 @@ io.on('connection', (socket) => {
     console.log('a user connected');
 
     socket.on('finding a match', () => {
-        console.log("finding match received by server");
+        console.log('finding match received by server');
     });
 
     socket.on('disconnect', () => {
