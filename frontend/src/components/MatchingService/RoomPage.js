@@ -7,22 +7,10 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
-import HouseIcon from '@mui/icons-material/House';
 
-
-
-/* PLACEHOLDER ITEM BOX */
-const Item = styled(Paper)(({ theme }) => ({
-    display: 'flex',
-    backgroundColor: '#f4eeed',
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: "center"
-  }));
 
 export default function RoomPage() {
     return (
-        //<Box sx={{backgroundColor: 'blue'}}
             <Grid container spacing={0.5} sx={{backgroundColor:'white', width:'100vw', height:'100vh', margin: '0px'}}>
                 {/* left panel */}
                 <Grid item xs={5} md={5}>
@@ -51,7 +39,6 @@ export default function RoomPage() {
                 <Grid item xs={6.98} md={6.98} sx={{height: "100vh"}}>
                     <Stack spacing={0}>
                         {/* code box */}
-                        {/* <Item sx={{height: "100vh"}}>Placeholder code box</Item> */}
                         <Box sx={{height: "99vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'grey', borderRadius: 4}}>
                             <Typography variant="h6" sx={{margin: 2}}> Placeholder code box </Typography> 
@@ -60,6 +47,5 @@ export default function RoomPage() {
                 </Grid>
 
             </Grid>
-       // </Box>
     )
 }
