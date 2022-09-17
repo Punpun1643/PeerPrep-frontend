@@ -7,7 +7,7 @@ import {Box} from "@mui/material";
 function App() {
     return (
         <div className="App">
-            <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
+            {/* <Box display={"flex"} flexDirection={"column"} padding={"4rem"}> */}
                 <Router>
                     <Routes>
                         <Route exact path="/" element={<Navigate replace to="/signup" />}></Route>
@@ -16,7 +16,7 @@ function App() {
                         <Route path="/roompage" element={<RoomPage/>}></Route>
                     </Routes>
                 </Router>
-            </Box>
+            {/* </Box> */}
         </div>
     );
 }
