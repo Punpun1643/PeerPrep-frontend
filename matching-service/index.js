@@ -5,7 +5,7 @@ import { Server } from 'socket.io';
 import db from './repository.js';
 import routes from './routes.js';
 import pendingMatchController from './controller/controller.js';
-// import axios from 'axios';
+import axios from 'axios';
 
 // database connection
 db.authenticate().then(() => {
