@@ -4,8 +4,10 @@ import PendingMatch from './pendingMatch.js';
 const pendingMatchOrm = {
     create: create,
     deleteByUsername: deleteByUsername,
+    deleteById: deleteById,
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
+    findPendingMatchById: findPendingMatchById,
     updatePendingMatch: updatePendingMatch,
     updatePendingMatchDifficulty: updatePendingMatchDifficulty,
 };
@@ -29,6 +31,15 @@ function deleteByUsername(username) {
     return PendingMatch.destroy({ where: { username: username } });
 }
 
+/**
+ * Deletes pending match by assigned id.
+ *
+ * @param {integer} id of the pending match to delete.
+ */
+function deleteById(id) {
+    return PendingMatch.destroy({ where: { id: id } });
+}
+
 /** Retrieves all pending matches in the database. */
 function findAllPendingMatches() {
     return PendingMatch.findAll();
@@ -40,7 +51,16 @@ function findAllPendingMatches() {
  * @param {string} username of the pending match.
  */
 function findPendingMatchByUsername(username) {
-    return PendingMatch.findByPk(username);
+    return PendingMatch.findOne({ where: { username: username } });
+}
+
+/**
+ * Finds pending match by the assigned id in the database.
+ *
+ * @param {integer} id of the pending match.
+ */
+function findPendingMatchById(id) {
+    return PendingMatch.findByPk(id);
 }
 
 /**

@@ -3,8 +3,10 @@ import pendingMatchOrm from '../model/orm.js';
 const pendingMatchController = {
     addPendingMatch: addPendingMatch,
     deleteByUsername: deleteByUsername,
+    deleteById: deleteById,
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
+    findPendingMatchById: findPendingMatchById,
     updatePendingMatch: updatePendingMatch,
     updatePendingMatchDifficulty: updatePendingMatchDifficulty,
 };
@@ -17,6 +19,10 @@ function addPendingMatch(req, res) {
         (data) => {
             res.send('pending match added');
             res.send(data); // bug: seems like got undefined type here or sth because there is no res body
+            // res.json({
+            //     message: 'Pending match created',
+            //     pendingMatch: data,
+            // });
         },
     ).catch((err) => {
         console.log(err);
@@ -28,7 +34,21 @@ function deleteByUsername(req, res) {
     pendingMatchOrm.deleteByUsername(req.params.username).then(
         (data) => {
             res.status(200).json({
-                message: 'Pending match updated successfuly',
+                message: 'Pending match deleted successfuly',
+                pendingMatch: data,
+            });
+        },
+    ).catch((err) => {
+        console.log(err);
+    });
+}
+
+/** Deletes pending match from the database by id. */
+function deleteById(req, res) {
+    pendingMatchOrm.deleteById(req.params.id).then(
+        (data) => {
+            res.status(200).json({
+                message: 'Pending match deleted successfully',
                 pendingMatch: data,
             });
         },
@@ -51,6 +71,17 @@ function findAllPendingMatches(req, res) {
 /** Finds pending match by username. */
 function findPendingMatchByUsername(req, res) {
     pendingMatchOrm.findPendingMatchByUsername(req.params.username).then(
+        (data) => {
+            res.send(data);
+        },
+    ).catch((err) => {
+        console.log(err);
+    });
+}
+
+/** Finds pending match by id. */
+function findPendingMatchById(req, res) {
+    pendingMatchOrm.findPendingMatchById(req.params.id).then(
         (data) => {
             res.send(data);
         },

@@ -5,6 +5,7 @@ import { Server } from 'socket.io';
 import db from './repository.js';
 import routes from './routes.js';
 import pendingMatchController from './controller/controller.js';
+// import axios from 'axios';
 
 // database connection
 db.authenticate().then(() => {
@@ -55,11 +56,15 @@ addUserIo.on('connection', (socket) => {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
             },
-            body: data,
+            body: data, // bug: id
         };
+
         pendingMatchController.addPendingMatch(newPendingMatch);
-        console.log(newPendingMatch);
-        console.log('added user');
+        // const anotherPendingMatch = pendingMatchController.
+        // console.log(newPendingMatch);
+        // console.log('added user');
+
+        // addUserIo.emit('matchSuccess', )
     });
 });
 
