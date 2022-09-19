@@ -4,6 +4,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import db from './repository.js';
 import routes from './routes.js';
+import pendingMatchController from './controller/controller.js';
 
 // database connection
 db.authenticate().then(() => {
@@ -44,15 +45,23 @@ io.on('connection', (socket) => {
 addUserIo.on('connection', (socket) => {
     console.log('yayyy connected to the correct path, goood to go!!!');
 
-    socket.on('match', () => {
-        console.log('yayyyy i can finally listen to match event good job!');
-        
+    // socket.on('match', () => {
+    //     console.log('yayyyy i can finally listen to match event good job!');
+    // });
+    socket.on('match', (data) => {
+        const newPendingMatch = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: data,
+        };
+        pendingMatchController.addPendingMatch(newPendingMatch);
+        console.log(newPendingMatch);
+        console.log('added user');
     });
 });
-
-// addUserIo.on('match', () => {
-//     console.log('yayyyy i can finally listen to match event good job!');
-// });
 
 httpServer.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

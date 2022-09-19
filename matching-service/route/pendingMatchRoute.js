@@ -1,5 +1,5 @@
 import express from 'express';
-import pendingMatchController from '../controller/controller.js'; // yes, route should import controller
+import pendingMatchController from '../controller/controller.js';
 
 const router = express.Router();
 

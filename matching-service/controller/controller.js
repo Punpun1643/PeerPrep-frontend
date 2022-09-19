@@ -15,7 +15,8 @@ function addPendingMatch(req, res) {
 
     pendingMatchOrm.create(pendingMatch).then(
         (data) => {
-            res.send(data);
+            res.send('pending match added');
+            res.send(data); // bug: seems like got undefined type here or sth because there is no res body
         },
     ).catch((err) => {
         console.log(err);
