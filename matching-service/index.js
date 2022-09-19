@@ -15,6 +15,7 @@ db.authenticate().then(() => {
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
+const addUserIo = io.of('/pendingMatches');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,6 +40,19 @@ io.on('connection', (socket) => {
         console.log('a user disconnected');
     });
 });
+
+addUserIo.on('connection', (socket) => {
+    console.log('yayyy connected to the correct path, goood to go!!!');
+
+    socket.on('match', () => {
+        console.log('yayyyy i can finally listen to match event good job!');
+        
+    });
+});
+
+// addUserIo.on('match', () => {
+//     console.log('yayyyy i can finally listen to match event good job!');
+// });
 
 httpServer.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

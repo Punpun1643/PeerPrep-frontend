@@ -1,5 +1,4 @@
 // orm layer
-import pendingMatchController from './controller.js';
 import PendingMatch from './pendingMatch.js';
 
 const pendingMatchOrm = {
@@ -8,7 +7,7 @@ const pendingMatchOrm = {
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
-    updatePendingMatchDifficulty: updatePendingMatchDifficulty
+    updatePendingMatchDifficulty: updatePendingMatchDifficulty,
 };
 
 /**

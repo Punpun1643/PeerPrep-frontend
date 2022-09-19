@@ -1,4 +1,4 @@
-import pendingMatchOrm from './orm.js';
+import pendingMatchOrm from '../model/orm.js';
 
 const pendingMatchController = {
     addPendingMatch: addPendingMatch,
@@ -6,12 +6,13 @@ const pendingMatchController = {
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
-    updatePendingMatchDifficulty: updatePendingMatchDifficulty
+    updatePendingMatchDifficulty: updatePendingMatchDifficulty,
 };
 
 /** Adds pending match to the database. */
 function addPendingMatch(req, res) {
     const pendingMatch = req.body;
+
     pendingMatchOrm.create(pendingMatch).then(
         (data) => {
             res.send(data);

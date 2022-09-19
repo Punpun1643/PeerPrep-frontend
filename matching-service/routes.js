@@ -1,6 +1,8 @@
-// main route
+// global route for matching-service
+// yes, global routes don't need controller
+
 import express from 'express';
-import pendingMatchRoutes from './pendingMatchRoute.js';
+import pendingMatchRoutes from './route/pendingMatchRoute.js';
 
 const router = express.Router();
 
