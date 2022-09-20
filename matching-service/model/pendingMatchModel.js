@@ -3,11 +3,16 @@ import db from '../repository.js';
 
 const PendingMatch = db.define('pendingMatches', {
     // define match model attributes
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
+    },
     username: { // we can let username be a primary key
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        primaryKey: true,
     },
     difficulty: {
         type: DataTypes.STRING,
