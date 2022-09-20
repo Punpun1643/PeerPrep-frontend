@@ -1,14 +1,13 @@
 // orm layer
-import pendingMatchController from './controller.js';
-import PendingMatch from './pendingMatch.js';
+import PendingMatch from './pendingMatchModel.js';
 
-const pendingMatchOrm = {
+const orm = {
     create: create,
     deleteByUsername: deleteByUsername,
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
-    updatePendingMatchDifficulty: updatePendingMatchDifficulty
+    updatePendingMatchDifficulty: updatePendingMatchDifficulty,
 };
 
 /**
@@ -76,4 +75,4 @@ function updatePendingMatchDifficulty(pendingMatch, username) {
 }
 
 // export functions to be called by controller
-export default pendingMatchOrm;
+export default orm;

@@ -1,6 +1,6 @@
 // main route
 import express from 'express';
-import pendingMatchRoutes from './pendingMatchRoute.js';
+import pendingMatchRoutes from './route/pendingMatchRoute.js';
 
 const router = express.Router();
 
