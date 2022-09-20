@@ -25,7 +25,7 @@ export default function DifficultyCard(props) {
       console.log(socket.connected); // true
     });
 
-    socket.emit(`${props.difficulty}-match`);
+    socket.emit(`match-${props.difficulty}`);
     props.handleOpenModal(socket);
 
     // navigate('/findingmatch');
