@@ -20,15 +20,15 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('a user connected');
 
-    socket.on('Easy match', () => {
+    socket.on('easy-match', () => {
         console.log('Easy match request received');
     });
 
-    socket.on('Medium match', () => {
+    socket.on('medium-match', () => {
         console.log('Medium match request received');
     });
 
-    socket.on('Hard match', () => {
+    socket.on('hard-match', () => {
         console.log('Hard match request received');
     });
 

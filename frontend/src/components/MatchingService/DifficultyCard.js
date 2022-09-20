@@ -25,23 +25,23 @@ export default function DifficultyCard(props) {
       console.log(socket.connected); // true
     });
 
-    socket.emit(`${props.difficulty} match`);
+    socket.emit(`${props.difficulty}-match`);
     navigate('/findingmatch');
 
   }
-  const difficultyImageMap = { "Easy" : sapling, "Medium" : youngtree, "Hard" : tree}
-  const difficultyTextMap = { "Easy" : "Beginner-friendly",
-                              "Medium" : "Intermediate Questions", 
-                              "Hard" : "Tests advanced concepts"}
-  const difficultyColorMap = { "Easy": "#4caf50",
-                               "Medium": "#ffca28",
-                               "Hard": "#d32f2f"
+  const difficultyImageMap = { "easy" : sapling, "medium" : youngtree, "hard" : tree}
+  const difficultyTextMap = { "easy" : "Beginner-friendly",
+                              "medium" : "Intermediate Questions", 
+                              "hard" : "Tests advanced concepts"}
+  const difficultyColorMap = { "easy": "#4caf50",
+                               "medium": "#ffca28",
+                               "hard": "#d32f2f"
                               }
 
   return (
     <Card sx={{minWidth: 200, maxWidth: 320, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
       <Typography variant="h5" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
-        {props.difficulty} 
+        {(props.difficulty)[0].toUpperCase() + (props.difficulty.slice(1))} 
       </Typography>
         <CardMedia
           component="img"

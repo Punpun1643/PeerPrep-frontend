@@ -12,7 +12,7 @@ export default function SelectionView() {
         <Grid container spacing={2}>
         {difficultyLevels.map(difficultyLevel =>
                  <Grid key={difficultyLevel} item xs={'auto'}>
-                     <DifficultyCard difficulty={difficultyLevel}/>
+                     <DifficultyCard difficulty={difficultyLevel.toLowerCase()}/>
                 </Grid>)}
           </Grid>
         </Box>
