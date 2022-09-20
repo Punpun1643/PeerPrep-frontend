@@ -4,8 +4,9 @@ const pendingMatchOrm = {
     addPendingMatchEasy: addPendingMatchEasy,
     addPendingMatchMedium: addPendingMatchMedium,
     addPendingMatchHard: addPendingMatchHard,
-    deletePendingMatchEasy: deletePendingMatchEasy,
+    deleteMatchByDifficulty: deleteMatchByDifficulty,
     deletePendingMatchById: deletePendingMatchById,
+    getAvailableMatch: getAvailableMatch,
 };
 
 function addPendingMatchEasy(username) {
@@ -39,13 +40,12 @@ function deletePendingMatchById(params) {
     return orm.deleteById(params.id);
 }
 
-function deletePendingMatchEasy() {
-    const pendingMatchToDelete = orm.findPendingMatchByDifficulty('easy');
+function deleteMatchByDifficulty(difficulty) {
+    return orm.deleteMatchByDifficulty(difficulty);
+}
 
-    if (pendingMatchToDelete === null) {
-        return null;
-    }
-    return orm.deleteById(pendingMatchToDelete.id);
+function getAvailableMatch(difficulty) {
+    return orm.getAvailableMatch(difficulty);
 }
 
 export default pendingMatchOrm;

@@ -1,6 +1,4 @@
-import { or } from 'sequelize';
 import orm from '../model/orm.js';
-import pendingMatchOrm from '../model/pendingMatchOrm.js';
 
 const httpMatchController = {
     addPendingMatch: addPendingMatch,

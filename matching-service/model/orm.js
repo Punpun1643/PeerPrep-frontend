@@ -10,6 +10,7 @@ const orm = {
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
     updatePendingMatchDifficulty: updatePendingMatchDifficulty,
+    getAvailableMatch: getAvailableMatch,
 };
 
 /**
@@ -38,6 +39,10 @@ function deleteById(id) {
 async function deleteMatchByDifficulty(difficulty) {
     const matchToDelete = await PendingMatch.findOne({ where: { difficulty: difficulty }});
     return PendingMatch.destroy({ where: { id: matchToDelete.id }});
+}
+
+async function getAvailableMatch(difficulty) {
+    return await PendingMatch.findOne({ where: { difficulty: difficulty } });
 }
 
 /** Retrieves all pending matches in the database. */
