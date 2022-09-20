@@ -4,6 +4,7 @@ const pendingMatchController = {
     addPendingMatchEasy: addPendingMatchEasy,
     addPendingMatchMedium: addPendingMatchMedium,
     addPendingMatchHard: addPendingMatchHard,
+    deletePendingMatchById: deletePendingMatchById,
 };
 
 function addPendingMatchEasy(username) {
@@ -16,6 +17,10 @@ function addPendingMatchMedium(username) {
 
 function addPendingMatchHard(username) {
     pendingMatchOrm.addPendingMatchHard(username);
+}
+
+function deletePendingMatchById(params) {
+    pendingMatchOrm.deletePendingMatchById(params);
 }
 
 export default pendingMatchController;

@@ -1,3 +1,4 @@
+import { or } from 'sequelize';
 import orm from '../model/orm.js';
 import pendingMatchOrm from '../model/pendingMatchOrm.js';
 
@@ -28,6 +29,19 @@ function deleteByUsername(req, res) {
         (data) => {
             res.status(200).json({
                 message: 'Pending match updated successfuly',
+                pendingMatch: data,
+            });
+        },
+    ).catch((err) => {
+        console.log(err);
+    });
+}
+
+function deleteById(req, res) {
+    orm.deleteById(req.params.id).then(
+        (data) => {
+            res.status(200).json({
+                message: 'Pending match deleted successfully',
                 pendingMatch: data,
             });
         },

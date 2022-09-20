@@ -6,10 +6,11 @@ const PendingMatch = db.define('pendingMatches', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false,
         unique: true,
         autoIncrement: true,
     },
-    username: { // we can let username be a primary key
+    username: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,

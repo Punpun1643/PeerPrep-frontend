@@ -4,6 +4,8 @@ const pendingMatchOrm = {
     addPendingMatchEasy: addPendingMatchEasy,
     addPendingMatchMedium: addPendingMatchMedium,
     addPendingMatchHard: addPendingMatchHard,
+    deletePendingMatchEasy: deletePendingMatchEasy,
+    deletePendingMatchById: deletePendingMatchById,
 };
 
 function addPendingMatchEasy(username) {
@@ -31,6 +33,19 @@ function addPendingMatchHard(username) {
     };
 
     return orm.create(details);
+}
+
+function deletePendingMatchById(params) {
+    return orm.deleteById(params.id);
+}
+
+function deletePendingMatchEasy() {
+    const pendingMatchToDelete = orm.findPendingMatchByDifficulty('easy');
+
+    if (pendingMatchToDelete === null) {
+        return null;
+    }
+    return orm.deleteById(pendingMatchToDelete.id);
 }
 
 export default pendingMatchOrm;

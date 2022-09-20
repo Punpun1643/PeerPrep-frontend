@@ -1,3 +1,5 @@
+// import orm from '../../model/orm.js';
+// import PendingMatch from '../../model/pendingMatchModel.js';
 import pendingMatchController from '../pendingMatchController.js';
 
 const pendingMatchHandler = (io) => {
@@ -15,6 +17,15 @@ const pendingMatchHandler = (io) => {
         socket.on('match-hard', (data) => {
             pendingMatchController.addPendingMatchHard(data);
         });
+
+        socket.on('no-match-found', (data) => {
+            pendingMatchController.deletePendingMatchById(data);
+        });
+
+        // socket.on('delete-match', () => {
+        //     orm.deleteMatchByDifficulty('easy');
+        // });
+        socket.on('delete', () => {});
     });
 };
 

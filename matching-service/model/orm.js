@@ -4,6 +4,8 @@ import PendingMatch from './pendingMatchModel.js';
 const orm = {
     create: create,
     deleteByUsername: deleteByUsername,
+    deleteById: deleteById,
+    deleteMatchByDifficulty: deleteMatchByDifficulty,
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
@@ -27,6 +29,15 @@ function create(pendingMatch) {
  */
 function deleteByUsername(username) {
     return PendingMatch.destroy({ where: { username: username } });
+}
+
+function deleteById(id) {
+    return PendingMatch.destroy({ where: { id: id } });
+}
+
+async function deleteMatchByDifficulty(difficulty) {
+    const matchToDelete = await PendingMatch.findOne({ where: { difficulty: difficulty }});
+    return PendingMatch.destroy({ where: { id: matchToDelete.id }});
 }
 
 /** Retrieves all pending matches in the database. */
