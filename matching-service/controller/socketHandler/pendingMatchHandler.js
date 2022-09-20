@@ -8,19 +8,32 @@ const pendingMatchHandler = (io) => {
             const user = await pendingMatchController.getAvailableMatch('easy');
             // if no match --> add to db
             if (user === null) {
-                pendingMatchController.addPendingMatchEasy(data);
+                pendingMatchController.addPendingMatchEasy(data, socket.id);
             } else {
                 // if there is a match --> match
                 pendingMatchController.deleteMatchByDifficulty('easy');
+                io.emit('match-success', socket.id);
             }
         });
 
-        socket.on('match-medium', (data) => {
-            pendingMatchController.addPendingMatchMedium(data);
+        socket.on('match-medium', async (data) => {
+            const user = await pendingMatchController.getAvailableMatch('medium');
+            if (user === null) {
+                pendingMatchController.addPendingMatchMedium(data, socket.id);
+            } else {
+                pendingMatchController.deleteMatchByDifficulty('medium');
+                io.emit('match-success', socket.id);
+            }
         });
 
-        socket.on('match-hard', (data) => {
-            pendingMatchController.addPendingMatchHard(data);
+        socket.on('match-hard', async (data) => {
+            const user = await pendingMatchController.getAvailableMatch('hard');
+            if (user === null) {
+                pendingMatchController.addPendingMatchMedium(data, socket.id);
+            } else {
+                pendingMatchController.deleteMatchByDifficulty('hard');
+                io.emit('match-success', socket.id);
+            }
         });
 
         socket.on('no-match-found', (data) => {

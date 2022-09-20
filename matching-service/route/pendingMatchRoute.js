@@ -1,6 +1,5 @@
 import express from 'express';
 import httpMatchController from '../controller/controller.js';
-import pendingMatchOrm from '../model/pendingMatchOrm.js';
 
 const router = express.Router();
 

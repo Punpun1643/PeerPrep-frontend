@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import db from './repository.js';
 import routes from './routes.js';
 import pendingMatchHandler from './controller/socketHandler/pendingMatchHandler.js';
 import globalHandler from './controller/socketHandler/globalHandler.js';
@@ -29,15 +28,6 @@ app.options('*', cors());
 app.get('/', (req, res) => {
     res.send('Hello World from matching-service');
 });
-
-// database connection
-db.authenticate().then(() => {
-    console.log('Database connected...');
-}).catch((err) => {
-    console.log(err);
-});
-// update database with changes related to database structure
-db.sync().then(() => {}).catch((err) => console.log(`Error:${err}`));
 
 // log to console when there is a connection from the client
 globalHandler(io);
