@@ -46,8 +46,8 @@ function CountdownView(props) {
     console.log(socket);
 
     // const navigate = useNavigate();
-    socket.on("match-success", () => setMatchingStatus('match-success'));
-    socket.on("match-fail", () => setMatchingStatus('match-fail'));
+    socket.on("matchSuccess", () => setMatchingStatus('match-success'));
+    socket.on("matchFailure", () => setMatchingStatus('match-fail'));
 
     const insideCircle = ({remainingTime}) => {
         if (remainingTime === 0) {
