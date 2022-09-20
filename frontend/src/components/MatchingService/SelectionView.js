@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import DifficultyCard from './DifficultyCard';
 
-    
+
 export default function SelectionView() {
     const difficultyLevels = ["Easy", "Medium", "Hard"];
 
