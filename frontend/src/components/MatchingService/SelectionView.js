@@ -19,6 +19,7 @@ export default function SelectionView() {
 
     const handleCloseModal = (e) => {
       setShowModal(false);
+      socket.emit('cancel-match');
       console.log('Countdown timer modal close');
     }
 

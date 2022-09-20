@@ -51,6 +51,7 @@ function CountdownView(props) {
 
     const insideCircle = ({remainingTime}) => {
         if (remainingTime === 0) {
+            socket.emit('cancel-match');
             return "Sorry, no match found";
         } else {
              return `${remainingTime}`;
