@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import db from '../repository.js';
+import db from './repository.js';
 
 const PendingMatch = db.define('pendingMatches', {
     // define match model attributes
