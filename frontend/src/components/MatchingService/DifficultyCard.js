@@ -26,7 +26,9 @@ export default function DifficultyCard(props) {
     });
 
     socket.emit(`${props.difficulty}-match`);
-    navigate('/findingmatch');
+    props.handleOpenModal(socket);
+
+    // navigate('/findingmatch');
 
   }
   const difficultyImageMap = { "easy" : sapling, "medium" : youngtree, "hard" : tree}
