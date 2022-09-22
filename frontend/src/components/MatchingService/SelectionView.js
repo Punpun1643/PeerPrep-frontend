@@ -19,7 +19,6 @@ export default function SelectionView() {
 
     const handleCloseModal = (e) => {
       setShowModal(false);
-      socket.emit('match-cancel');
       console.log('Countdown timer modal close');
     }
 
@@ -29,8 +28,8 @@ export default function SelectionView() {
         {difficultyLevels.map(difficultyLevel =>
                  <Grid key={difficultyLevel} item xs={'auto'}>
                      <DifficultyCard difficulty={difficultyLevel} handleOpenModal={handleOpenModal}/>
-                     <CountdownView show={showModal} handleCloseModal={handleCloseModal} socket={socket} />
                 </Grid>)}
+                <CountdownView show={showModal} handleCloseModal={handleCloseModal} socket={socket} />
           </Grid>
         </Box>
       );
