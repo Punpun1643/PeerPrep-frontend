@@ -43,10 +43,9 @@ const pendingMatchHandler = (io) => {
         //     pendingMatchController.deletePendingMatchById(id);
         // });
 
-        // socket.on('no-match-found', () => {
-        //     // pendingMatchController.deleteOutstandingMatch(socket.id);
-        //     PendingMatch.destroy({ where: { socketId: socket.id } });
-        // });
+        socket.on('no-match-found', (id) => {
+            pendingMatchController.deleteMatchByDifficulty(id);
+        });
 
         // pending match is cancelled before 30s ends
         // alternative idea: a particular-room receive cancel-match event
