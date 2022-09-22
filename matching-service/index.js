@@ -14,7 +14,7 @@ db.authenticate().then(() => {
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+const io = new Server(httpServer, { cors: true });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -34,6 +34,26 @@ db.sync().then(() => {}).catch((err) => console.log(`Error:${err}`));
 // log to console when there is a connection from the client
 io.on('connection', (socket) => {
     console.log('a user connected');
+
+    socket.on('match-easy', () => {
+        console.log('Easy match request received');
+    });
+
+    socket.on('match-medium', () => {
+        console.log('Medium match request received');
+    });
+
+    socket.on('match-hard', () => {
+        console.log('Hard match request received');
+    });
+
+    socket.on('match-cancel', () => {
+        console.log('Cancel match request received');
+    });
+
+    socket.on('no-match-found', () => {
+        console.log('No match found');
+    })
 
     socket.on('disconnect', () => {
         console.log('a user disconnected');

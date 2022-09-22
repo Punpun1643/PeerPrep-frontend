@@ -1,3 +1,4 @@
+import {useNavigate} from 'react-router-dom';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -8,29 +9,41 @@ import CardActions from '@mui/material/CardActions';
 import sapling from '../../images/sapling.png';
 import youngtree from '../../images/youngtree.png'
 import tree from '../../images/tree.png';
-
+import { io } from "socket.io-client";
 
 
 export default function DifficultyCard(props) {
 
+  const navigate = useNavigate();
+
   const handleFindMatchClick = (e) => {
     e.preventDefault();
     console.log(`${props.difficulty} button was clicked`);
-  }
 
-  const difficultyImageMap = { "Easy" : sapling, "Medium" : youngtree, "Hard" : tree}
-  const difficultyTextMap = { "Easy" : "Beginner-friendly",
-                              "Medium" : "Intermediate Questions", 
-                              "Hard" : "Tests advanced concepts"}
-  const difficultyColorMap = { "Easy": "#4caf50",
-                               "Medium": "#ffca28",
-                               "Hard": "#d32f2f"
+    const socket = io("http://localhost:8001");
+    socket.on("connect", () => {
+      console.log(socket.connected); // true
+    });
+
+    socket.emit(`match-${props.difficulty}`);
+    props.handleOpenModal(socket);
+
+    // navigate('/findingmatch');
+
+  }
+  const difficultyImageMap = { "easy" : sapling, "medium" : youngtree, "hard" : tree}
+  const difficultyTextMap = { "easy" : "Beginner-friendly",
+                              "medium" : "Intermediate Questions", 
+                              "hard" : "Tests advanced concepts"}
+  const difficultyColorMap = { "easy": "#4caf50",
+                               "medium": "#ffca28",
+                               "hard": "#d32f2f"
                               }
 
   return (
     <Card sx={{minWidth: 200, maxWidth: 320, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
       <Typography variant="h5" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
-        {props.difficulty} 
+        {(props.difficulty)[0].toUpperCase() + (props.difficulty.slice(1))} 
       </Typography>
         <CardMedia
           component="img"
