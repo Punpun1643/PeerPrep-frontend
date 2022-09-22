@@ -6,6 +6,7 @@ const pendingMatchOrm = {
     addPendingMatchHard: addPendingMatchHard,
     deleteMatchByDifficulty: deleteMatchByDifficulty,
     deletePendingMatchById: deletePendingMatchById,
+    deletePendingMatchByUsername: deletePendingMatchByUsername,
     getAvailableMatch: getAvailableMatch,
 };
 
@@ -38,6 +39,10 @@ function addPendingMatchHard(username) {
 
 function deletePendingMatchById(params) {
     return orm.deleteById(params.id);
+}
+// testing only
+function deletePendingMatchByUsername(params) {
+    return orm.deleteByUsername(params.username);
 }
 
 function deleteMatchByDifficulty(difficulty) {

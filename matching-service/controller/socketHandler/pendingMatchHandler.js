@@ -3,7 +3,6 @@ import pendingMatchController from '../pendingMatchController.js';
 const pendingMatchHandler = (io) => {
     io.on('connection', (socket) => {
         socket.on('match-easy', async (data) => {
-            // note: maybe need to join from client side?
             socket.join('easy-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('easy');
             // if no match --> add to db
@@ -38,11 +37,7 @@ const pendingMatchHandler = (io) => {
             }
         });
 
-        // no match found before 30s
-        // socket.on('no-match-found', (id) => {
-        //     pendingMatchController.deletePendingMatchById(id);
-        // });
-
+        // no match found after 30s end
         socket.on('no-match-found', (id) => {
             pendingMatchController.deleteMatchByDifficulty(id);
         });
@@ -50,8 +45,11 @@ const pendingMatchHandler = (io) => {
         // pending match is cancelled before 30s ends
         // alternative idea: a particular-room receive cancel-match event
         // then destroy all pending match in that room
-        socket.on('cancel-match', (id) => {
-            pendingMatchController.deletePendingMatchById(id);
+        // socket.on('match-cancel', (id) => {
+        //     pendingMatchController.deletePendingMatchById(id);
+        // });
+        socket.on('match-cancel', (username) => {
+            pendingMatchController.deletePendingMatchByUsername(username);
         });
 
         // leaves room after matched

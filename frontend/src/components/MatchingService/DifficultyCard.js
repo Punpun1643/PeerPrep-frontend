@@ -1,4 +1,3 @@
-import {useNavigate} from 'react-router-dom';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -14,23 +13,23 @@ import { io } from "socket.io-client";
 
 export default function DifficultyCard(props) {
 
-  const navigate = useNavigate();
-
   const handleFindMatchClick = (e) => {
     e.preventDefault();
     console.log(`${props.difficulty} button was clicked`);
 
     const socket = io("http://localhost:8001");
+    // const socket = io.of('/pendingMatches');
+    // const socket = io("http://localhost:8001/pendingMatches")
+
     socket.on("connect", () => {
       console.log(socket.connected); // true
     });
 
-    socket.emit(`match-${props.difficulty}`);
+    // testing 22/09/2022: hard-coded username
+    socket.emit(`match-${props.difficulty}`, { username: "John" });
     props.handleOpenModal(socket);
-
-    // navigate('/findingmatch');
-
   }
+
   const difficultyImageMap = { "easy" : sapling, "medium" : youngtree, "hard" : tree}
   const difficultyTextMap = { "easy" : "Beginner-friendly",
                               "medium" : "Intermediate Questions", 
