@@ -20,6 +20,8 @@ const io = new Server(httpServer, {
 });
 const addUserIo = io.of('/pendingMatches');
 
+// const io = new Server(httpServer, { cors: true });
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors()); // config cors so that front-end can use
