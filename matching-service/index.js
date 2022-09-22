@@ -18,7 +18,8 @@ const io = new Server(httpServer, {
         },
     },
 });
-const addUserIo = io.of('/pendingMatches');
+
+// const addUserIo = io.of('/pendingMatches');
 
 // const io = new Server(httpServer, { cors: true });
 
@@ -34,7 +35,8 @@ app.get('/', (req, res) => {
 // log to console when there is a connection from the client
 globalHandler(io);
 // handle pending match events
-pendingMatchHandler(addUserIo);
+// pendingMatchHandler(addUserIo);
+pendingMatchHandler(io);
 
 httpServer.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);

@@ -6,6 +6,7 @@ const pendingMatchController = {
     addPendingMatchHard: addPendingMatchHard,
     deletePendingMatchById: deletePendingMatchById,
     deleteMatchByDifficulty: deleteMatchByDifficulty,
+    deletePendingMatchByUsername: deletePendingMatchByUsername,
     getAvailableMatch: getAvailableMatch,
 };
 
@@ -26,6 +27,11 @@ function addPendingMatchHard(username, id) {
 
 function deletePendingMatchById(params) {
     pendingMatchOrm.deletePendingMatchById(params);
+}
+
+// testing 22/09/2022
+function deletePendingMatchByUsername(params) {
+    pendingMatchOrm.deletePendingMatchByUsername(params);
 }
 
 function deleteMatchByDifficulty(difficulty) {

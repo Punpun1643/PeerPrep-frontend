@@ -37,8 +37,8 @@ function deleteById(id) {
 }
 
 async function deleteMatchByDifficulty(difficulty) {
-    const matchToDelete = await PendingMatch.findOne({ where: { difficulty: difficulty }});
-    return PendingMatch.destroy({ where: { id: matchToDelete.id }});
+    const matchToDelete = await PendingMatch.findOne({ where: { difficulty: difficulty } });
+    return PendingMatch.destroy({ where: { id: matchToDelete.id } });
 }
 
 async function getAvailableMatch(difficulty) {
