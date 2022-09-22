@@ -13,6 +13,7 @@ function ChangePasswordPage() {
         setIsSuccess(false)
         const res = await axios.post(URL_USER_SVC + '/changePassword', { username, oldPassword, newPassword })
             .catch((err) => {
+                console.log(err)
                 // TODO: handle ERROR
                 // if (err.response.status === STATUS_CODE_CONFLICT) {
                 //     setErrorDialog('This username already exists')
@@ -21,8 +22,8 @@ function ChangePasswordPage() {
                 // }
             })
         if (res && res.status === STATUS_CODE_OK) {
-            setSuccessDialog('Account successfully created')
             setIsSuccess(true)
+            console.log("Password successfully changed")
         }
     }
 
