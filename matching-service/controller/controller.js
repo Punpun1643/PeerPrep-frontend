@@ -1,18 +1,18 @@
-import pendingMatchOrm from './orm.js';
+import orm from '../model/orm.js';
 
-const pendingMatchController = {
+const httpMatchController = {
     addPendingMatch: addPendingMatch,
     deleteByUsername: deleteByUsername,
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
-    updatePendingMatchDifficulty: updatePendingMatchDifficulty
+    updatePendingMatchDifficulty: updatePendingMatchDifficulty,
 };
 
 /** Adds pending match to the database. */
 function addPendingMatch(req, res) {
     const pendingMatch = req.body;
-    pendingMatchOrm.create(pendingMatch).then(
+    orm.create(pendingMatch).then(
         (data) => {
             res.send(data);
         },
@@ -23,7 +23,7 @@ function addPendingMatch(req, res) {
 
 /** Deletes pending match from the database by username. */
 function deleteByUsername(req, res) {
-    pendingMatchOrm.deleteByUsername(req.params.username).then(
+    orm.deleteByUsername(req.params.username).then(
         (data) => {
             res.status(200).json({
                 message: 'Pending match updated successfuly',
@@ -35,9 +35,22 @@ function deleteByUsername(req, res) {
     });
 }
 
+function deleteById(req, res) {
+    orm.deleteById(req.params.id).then(
+        (data) => {
+            res.status(200).json({
+                message: 'Pending match deleted successfully',
+                pendingMatch: data,
+            });
+        },
+    ).catch((err) => {
+        console.log(err);
+    });
+}
+
 /** Retrieves all pending matches in the current database. */
 function findAllPendingMatches(req, res) {
-    pendingMatchOrm.findAllPendingMatches().then(
+    orm.findAllPendingMatches().then(
         (data) => {
             res.send(data);
         },
@@ -48,7 +61,7 @@ function findAllPendingMatches(req, res) {
 
 /** Finds pending match by username. */
 function findPendingMatchByUsername(req, res) {
-    pendingMatchOrm.findPendingMatchByUsername(req.params.username).then(
+    orm.findPendingMatchByUsername(req.params.username).then(
         (data) => {
             res.send(data);
         },
@@ -59,7 +72,7 @@ function findPendingMatchByUsername(req, res) {
 
 /** Updates an existing pending match by information. */
 function updatePendingMatch(req, res) {
-    pendingMatchOrm.updatePendingMatch(req.body, req.params.username).then(
+    orm.updatePendingMatch(req.body, req.params.username).then(
         (data) => {
             res.status(200).json({
                 message: 'Pending match updated successfully!',
@@ -73,7 +86,7 @@ function updatePendingMatch(req, res) {
 
 /** Updates an existing pending match difficulty level. */
 function updatePendingMatchDifficulty(req, res) {
-    pendingMatchOrm.updatePendingMatchDifficulty(req.body, req.params.username).then(
+    orm.updatePendingMatchDifficulty(req.body, req.params.username).then(
         (data) => {
             res.status(200).json({
                 message: 'Pending match updated successfully!',
@@ -85,4 +98,4 @@ function updatePendingMatchDifficulty(req, res) {
     });
 }
 
-export default pendingMatchController;
+export default httpMatchController;

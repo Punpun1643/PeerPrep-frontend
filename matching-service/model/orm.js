@@ -1,14 +1,16 @@
 // orm layer
-import pendingMatchController from './controller.js';
-import PendingMatch from './pendingMatch.js';
+import PendingMatch from './pendingMatchModel.js';
 
-const pendingMatchOrm = {
+const orm = {
     create: create,
     deleteByUsername: deleteByUsername,
+    deleteById: deleteById,
+    deleteMatchByDifficulty: deleteMatchByDifficulty,
     findAllPendingMatches: findAllPendingMatches,
     findPendingMatchByUsername: findPendingMatchByUsername,
     updatePendingMatch: updatePendingMatch,
-    updatePendingMatchDifficulty: updatePendingMatchDifficulty
+    updatePendingMatchDifficulty: updatePendingMatchDifficulty,
+    getAvailableMatch: getAvailableMatch,
 };
 
 /**
@@ -28,6 +30,19 @@ function create(pendingMatch) {
  */
 function deleteByUsername(username) {
     return PendingMatch.destroy({ where: { username: username } });
+}
+
+function deleteById(id) {
+    return PendingMatch.destroy({ where: { id: id } });
+}
+
+async function deleteMatchByDifficulty(difficulty) {
+    const matchToDelete = await PendingMatch.findOne({ where: { difficulty: difficulty }});
+    return PendingMatch.destroy({ where: { id: matchToDelete.id }});
+}
+
+async function getAvailableMatch(difficulty) {
+    return await PendingMatch.findOne({ where: { difficulty: difficulty } });
 }
 
 /** Retrieves all pending matches in the database. */
@@ -76,4 +91,4 @@ function updatePendingMatchDifficulty(pendingMatch, username) {
 }
 
 // export functions to be called by controller
-export default pendingMatchOrm;
+export default orm;
