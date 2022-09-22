@@ -34,16 +34,25 @@ const pendingMatchHandler = (io) => {
                 pendingMatchController.addPendingMatchHard(data, socket.id);
             } else {
                 pendingMatchController.deleteMatchByDifficulty('hard');
-                io.to('hard-waiting-room').emit('match-success-hard', socket.id);
+                io.to('hard-waiting-room').emit('match-success', socket.id);
             }
         });
 
-        socket.on('no-match-found', (data) => {
-            // pendingMatchController.deletePendingMatchById(data);
-            // send to a particular socket only
-        });
+        // no match found before 30s
+        // socket.on('no-match-found', (id) => {
+        //     pendingMatchController.deletePendingMatchById(id);
+        // });
 
-        // socket.on('cancel-match', )
+        // socket.on('no-match-found', () => {
+        //     // pendingMatchController.deleteOutstandingMatch(socket.id);
+        //     PendingMatch.destroy({ where: { socketId: socket.id } });
+        // });
+
+        // pending match is cancelled before 30s ends
+        socket.on('cancel-match', () => {});
+
+        // leaves room after matched
+        socket.on('leave-room', () => {});
     });
 };
 
