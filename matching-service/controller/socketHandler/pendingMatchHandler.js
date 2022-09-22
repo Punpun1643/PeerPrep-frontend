@@ -8,9 +8,9 @@ const pendingMatchHandler = (io) => {
             const user = await pendingMatchController.getAvailableMatch('easy');
             // if no match --> add to db
             if (user === null) {
-                pendingMatchController.addPendingMatchEasy(data, socket.id);
+                pendingMatchController.addPendingMatchEasy(data, socket.rooms);
             } else {
-                io.to('easy-waiting-room').emit('match-success', socket.id);
+                io.to('easy-waiting-room').emit('match-success', socket.rooms);
                 // else --> match and delete
                 pendingMatchController.deleteMatchByDifficulty('easy');
             }
@@ -20,9 +20,9 @@ const pendingMatchHandler = (io) => {
             socket.join('medium-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('medium');
             if (user === null) {
-                pendingMatchController.addPendingMatchMedium(data, socket.id);
+                pendingMatchController.addPendingMatchMedium(data, socket.rooms);
             } else {
-                io.to('medium-waiting-room').emit('match-success', socket.id);
+                io.to('medium-waiting-room').emit('match-success', socket.rooms);
                 pendingMatchController.deleteMatchByDifficulty('medium');
             }
         });
@@ -49,9 +49,15 @@ const pendingMatchHandler = (io) => {
         // });
 
         // pending match is cancelled before 30s ends
-        socket.on('cancel-match', () => {});
+        // alternative idea: a particular-room receive cancel-match event
+        // then destroy all pending match in that room
+        socket.on('cancel-match', (id) => {
+            pendingMatchController.deletePendingMatchById(id);
+        });
 
         // leaves room after matched
+        // takes room id
+        // emit event to that room and destroy all matches in that room
         socket.on('leave-room', () => {});
     });
 };

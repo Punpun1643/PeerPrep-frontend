@@ -9,15 +9,18 @@ const pendingMatchController = {
     getAvailableMatch: getAvailableMatch,
 };
 
-function addPendingMatchEasy(username) {
+function addPendingMatchEasy(username, id) {
+    console.log(id);
     pendingMatchOrm.addPendingMatchEasy(username);
 }
 
-function addPendingMatchMedium(username) {
+function addPendingMatchMedium(username, id) {
+    console.log(id);
     pendingMatchOrm.addPendingMatchMedium(username);
 }
 
-function addPendingMatchHard(username) {
+function addPendingMatchHard(username, id) {
+    console.log(id);
     pendingMatchOrm.addPendingMatchHard(username);
 }
 
