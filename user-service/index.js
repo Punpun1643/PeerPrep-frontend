@@ -1,6 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import { changePassword, createUser } from './controller/user-controller.js';
+import {
+    createUser,
+    loginUser,
+    authenticateToken,
+    refreshOldToken,
+    logout,
+    changePassword
+} from './controller/user-controller.js';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -11,9 +18,13 @@ app.options('*', cors());
 const router = express.Router();
 
 // Controller will contain all the User-defined Routes
-router.get('/', (_, res) => res.send('Hello World from user-service'));
+// router.get('/', (_, res) => res.send('Hello World from user-service'));
+router.get('/', authenticateToken);
 router.post('/', createUser);
 router.post('/changePassword', changePassword);
+router.post('/login', loginUser);
+router.post('/refreshToken', refreshOldToken);
+router.post('/logout', logout);
 
 app.use('/api/user', router).all((_, res) => {
     res.setHeader('content-type', 'application/json');
