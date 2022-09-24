@@ -12,8 +12,6 @@ function App() {
                     <Routes>
                         <Route exact path="/" element={<Navigate replace to="/signup" />}></Route>
                         <Route path="/signup" element={<SignupPage/>}/>
-                        <Route path="/chgPassword" element={<ChangePasswordButton/>}/>
-                        <Route path="/changePassword" element={<ChangePasswordPage/>}/>
                     </Routes>
                 </Router>
             </Box>
