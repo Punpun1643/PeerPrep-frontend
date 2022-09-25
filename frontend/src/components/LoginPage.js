@@ -17,7 +17,9 @@ function LoginPage() {
 
     const handleLogin = async () => {
         console.log(`Login Triggered for ${username}`)
-        const res = await axios.post(URL_USER_SVC + '/login', { username, password })
+        const res = await axios.post(URL_USER_SVC + '/login',
+            { username, password },
+            { withCredentials: true, credentials: 'include' })
             .catch((err) => {
                 console.log(err)
                 setOpen(true)
@@ -44,17 +46,17 @@ function LoginPage() {
 
     const action = (
         <Fragment>
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={handleCloseSnackbar}
-          >
-            <CloseIcon fontSize="small" />
-          </IconButton>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleCloseSnackbar}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
         </Fragment>
-      );
-    
+    );
+
 
     return (
         <Box display={"flex"} flexDirection={"column"} width={"30%"}>
@@ -65,7 +67,7 @@ function LoginPage() {
                 variant="standard"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                sx={{marginBottom: "1rem"}}
+                sx={{ marginBottom: "1rem" }}
                 autoFocus
             />
             <TextField
@@ -75,15 +77,15 @@ function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                sx={{marginBottom: "1rem"}}
+                sx={{ marginBottom: "1rem" }}
                 autoFocus
             />
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
                 <Button variant={"outlined"} onClick={handleLogin}>Login</Button>
             </Box>
-            
-            <Snackbar 
-                anchorOrigin={ {vertical: 'top', horizontal: 'center'}}
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
                 autoHideDuration={6000}
                 onClose={handleCloseSnackbar}
