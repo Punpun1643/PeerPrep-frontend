@@ -1,6 +1,6 @@
 import {
-    ormCreateUser as _createUser,
     getUser,
+    ormCreateUser as _createUser,
     ormCheckUserExists as _checkUserExists,
 } from '../model/user-orm.js';
 import {
@@ -59,7 +59,7 @@ export async function loginUser(req, res) {
     // Store new refresh token in db
     allowedRefreshTokens.push(refreshToken);
     return res.status(200).json({
-        message: 'Login Success!',
+        message: `${user.username} has been authenticated`,
         token,
         refreshToken,
     });
