@@ -7,6 +7,7 @@ import {
     authenticateToken,
     refreshOldToken,
     logout,
+    changePassword
 } from './controller/user-controller.js';
 
 const app = express();
@@ -23,6 +24,7 @@ const router = express.Router();
 // router.get('/', (_, res) => res.send('Hello World from user-service'));
 router.get('/', authenticateToken);
 router.post('/', createUser);
+router.post('/changePassword', changePassword);
 router.post('/login', loginUser);
 router.post('/refreshToken', refreshOldToken);
 router.post('/logout', logout);
