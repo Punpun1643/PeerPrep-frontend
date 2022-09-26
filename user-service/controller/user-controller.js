@@ -3,6 +3,7 @@ import {
     ormCheckUserExists as _checkUserExists,
     ormFindUser as _findUser,
     ormUpdateUser as _updateUser,
+    ormDeleteUser as _deleteUser,
 } from '../model/user-orm.js';
 import {
     hashSaltPassword,
@@ -14,6 +15,7 @@ import {
 } from '../services.js';
 
 const allowedRefreshTokens = []; // TODO: store allowedRefreshTokens in cache/db
+const blacklistedTokens = [];
 
 export async function createUser(req, res) {
     try {
@@ -40,6 +42,37 @@ export async function createUser(req, res) {
     }
 }
 
+export async function deleteUser(req, res, next) {
+    try {
+        // delete the user by using username (alt: _id)
+        const { username } = req.body;
+        const { loggedInUser } = req;
+
+        if (loggedInUser !== username) {
+            return res.status(403).json({ message: 'Forbidden to delete a user that is not yourself!' });
+        }
+
+        // verify if user exists in database
+        const user = await _findUser(username);
+        if (!user) {
+            return res.status(404).json({ message: 'Account deletion failed. User does not exist.' });
+        }
+
+        // TODO: blacklist the token so that user cannot log in with the same token again
+        // Done in next() callback to logout
+
+        const resp = await _deleteUser(username);
+        if (resp.err) {
+            return res.status(400).json({ message: 'Could not delete the user!' });
+        }
+        console.log(`Successfully deleted user - ${username}`);
+        // res.status(200).json({ message: 'User account has been deleted!' });
+
+        return next();
+    } catch (err) {
+        return res.status(500).json({ message: 'Database failure when deleting user!' });
+    }
+}
 export async function changePassword(req, res) {
     try {
         const { username, oldPassword, newPassword } = req.body;
@@ -123,6 +156,14 @@ export async function authenticateCookieToken(req, res, next) {
     const verifiedUser = await verifyAccessToken(token);
     if (!verifiedUser) return res.status(401).json({ message: 'Authentication failed.' });
 
+    // Token blacklisted
+    const index = blacklistedTokens.indexOf(token);
+    if (index > -1) { // Token is blacklisted
+        return res.status(403).json({ message: 'Token blacklisted' });
+    }
+
+    req.loggedInUser = verifiedUser.username;
+
     return next();
 }
 
@@ -139,7 +180,8 @@ export async function refreshOldToken(req, res) {
 }
 
 export async function logout(req, res) {
-    // TODO: Add to token blacklist
+    // Add to token blacklist
+    blacklistedTokens.push(req.cookies.token);
     // Delete refreshToken from cache
     const index = allowedRefreshTokens.indexOf(req.cookies.refreshToken);
     if (index > -1) { // only splice array when item is found

@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import {
     createUser,
+    deleteUser,
     loginUser,
     refreshOldToken,
     logout,
@@ -23,6 +24,7 @@ const router = express.Router();
 // Controller will contain all the User-defined Routes
 // router.get('/', (_, res) => res.send('Hello World from user-service'));
 router.post('/', createUser);
+router.delete('/', authenticateCookieToken, deleteUser, logout);
 router.post('/changePassword', changePassword);
 router.post('/login', loginUser);
 router.post('/refreshToken', refreshOldToken);

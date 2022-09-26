@@ -15,6 +15,10 @@ export async function createUser(params) {
     return new UserModel(params);
 }
 
+export async function deleteUser(params) {
+    return UserModel.findOneAndDelete({ username: params });
+}
+
 export async function findUser(param) {
     return UserModel.findOne({ username: param });
 }
