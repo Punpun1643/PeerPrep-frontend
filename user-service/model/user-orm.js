@@ -14,10 +14,11 @@ export async function ormCreateUser(username, password) {
 
 export async function ormUpdateUser(user, changes) {
     try {
-        const {username, password} = changes;
-        user.username = username;
-        user.password = password;
-        user.save();
+        const { username, password } = changes;
+        const updatedUser = user;
+        updatedUser.username = username;
+        updatedUser.password = password;
+        updatedUser.save();
         return true;
     } catch (err) {
         console.log('ERROR: Could not update user');
