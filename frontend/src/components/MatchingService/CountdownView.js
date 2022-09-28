@@ -72,7 +72,9 @@ function CountdownView(props) {
                     strokeWidth={12}
                     onComplete= {() => {
                         setMatchingStatus('match-fail')
-                        socket.emit('no-match-found');
+
+                        //hard-coded difficulty level temporarily
+                        socket.emit('no-match-found', "easy" );
                         console.log('failed');
                     }}
                 >
