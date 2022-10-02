@@ -5,10 +5,12 @@ import axios from "axios";
 import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
 import { useNavigate } from "react-router-dom";
+import { useSessionStorage } from "../customHooks";
 
 
 function LoginPage() {
-    const [username, setUsername] = useState("")
+    const [username, setUsername] = useState('')
+    const [sessionUsername, setSessionUsername] = useSessionStorage('username', "")
     const [password, setPassword] = useState("")
     const [errorMsg, setErrorMsg] = useState("")
     const [open, setOpen] = useState(false)
@@ -33,6 +35,8 @@ function LoginPage() {
         // when successful -> set up jwt tokens?
         if (res && res.status === STATUS_CODE_OK) {
             console.log(`${username} login success`)
+            // set session storage username
+            setSessionUsername(username)
             navigate("/home", { state: { username: username } }) // placeholder until merge with matching
         }
     }

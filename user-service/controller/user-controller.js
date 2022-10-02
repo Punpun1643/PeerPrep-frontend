@@ -81,11 +81,11 @@ export async function changePassword(req, res) {
             // verify user old password is correct
             const user = await _findUser(username);
             if (!user) {
-                return res.status(400).json({ message: 'Authentication failed. User does not exist.' });
+                return res.status(401).json({ message: 'Authentication failed. User does not exist.' });
             }
             const isPasswordCorrect = await verifyPassword(oldPassword, user.password);
             if (!isPasswordCorrect) {
-                return res.status(400).json({ message: 'Authentication failed. Incorrect user or password provided.' });
+                return res.status(401).json({ message: 'Authentication failed. Incorrect user or password provided.' });
             }
             console.log(`User ${username} has been authenticated.`);
             // store new password
@@ -154,6 +154,9 @@ export async function authenticateCookieToken(req, res, next) {
     if (!token) return res.status(403).json({ message: 'You must be logged in first!' });
 
     const verifiedUser = await verifyAccessToken(token);
+
+    console.log(verifiedUser)
+
     // If Token expired
     if (!verifiedUser) {
         console.log('token expired', token);
