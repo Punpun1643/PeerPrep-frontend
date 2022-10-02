@@ -22,7 +22,7 @@ function LogoutPage(props) {
 
 
     return (
-        <Box style={{ margin: 'auto' }}>
+        <Box display={"flex"} flexDirection={"column"} padding={"4rem"} margin={"auto"}>
             <Typography variant={"h1"}>{logoutMessage}</Typography>
         </Box>
     )

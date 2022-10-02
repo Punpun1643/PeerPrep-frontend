@@ -31,7 +31,8 @@ function Home(props) {
     }
 
     return (
-        <Box style={{ margin: "auto" }} display={"flex"} flexDirection={"column"} justify-content={"center"}>
+        <Box style={{ margin: "auto" }} display={"flex"} flexDirection={"column"} justify-content={"center"} 
+            padding={"4rem"}>
             <Typography variant={"h3"}>HOME PAGE PLACEHOLDER, Welcome back {username}!</Typography>
             <Button variant="outlined" component={Link} to="/changePassword">Change Password</Button>
             <Button variant="outlined" onClick={handleLogout}>Logout</Button>

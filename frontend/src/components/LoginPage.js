@@ -63,7 +63,7 @@ function LoginPage() {
 
 
     return (
-        <Box display={"flex"} flexDirection={"column"} width={"30%"}>
+        <Box display={"flex"} flexDirection={"column"} width={"30%"} padding={"4rem"}>
             <Typography variant={"h4"} marginBottom={"2rem"}>Login</Typography>
             <TextField
                 required
