@@ -2,14 +2,19 @@ import pendingMatchController from '../pendingMatchController.js';
 
 const pendingMatchHandler = (io) => {
     io.on('connection', (socket) => {
+        console.log(socket.id);
         socket.on('match-easy', async (data) => {
             socket.join('easy-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('easy');
             // if no match --> add to db
             if (user === null) {
-                pendingMatchController.addPendingMatchEasy(data, socket.rooms);
+                // pendingMatchController.addPendingMatchEasy(data, socket.rooms);
+                pendingMatchController.addPendingMatchEasy(socket.id, data);
             } else {
                 io.to('easy-waiting-room').emit('match-success', socket.rooms);
+                /**
+                 * make all socket instances
+                 */
                 // else --> match and delete
                 pendingMatchController.deleteMatchByDifficulty('easy');
             }
@@ -19,7 +24,7 @@ const pendingMatchHandler = (io) => {
             socket.join('medium-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('medium');
             if (user === null) {
-                pendingMatchController.addPendingMatchMedium(data, socket.rooms);
+                pendingMatchController.addPendingMatchMedium(socket.id, data);
             } else {
                 io.to('medium-waiting-room').emit('match-success', socket.rooms);
                 pendingMatchController.deleteMatchByDifficulty('medium');
@@ -30,10 +35,10 @@ const pendingMatchHandler = (io) => {
             socket.join('hard-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('hard');
             if (user === null) {
-                pendingMatchController.addPendingMatchHard(data, socket.id);
+                pendingMatchController.addPendingMatchHard(socket.id, data);
             } else {
                 pendingMatchController.deleteMatchByDifficulty('hard');
-                io.to('hard-waiting-room').emit('match-success', socket.id);
+                io.to('hard-waiting-room').emit('match-success', socket.rooms);
             }
         });
 
