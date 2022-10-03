@@ -10,11 +10,11 @@ import { useSessionStorage } from "../customHooks";
 
 function LoginPage() {
     const [username, setUsername] = useState('')
-    const [sessionUsername, setSessionUsername] = useSessionStorage('username', "")
+    const [sessionUsername, setSessionUsername] = useSessionStorage('username', '')
     const [password, setPassword] = useState("")
     const [errorMsg, setErrorMsg] = useState("")
     const [open, setOpen] = useState(false)
-
+    
     let navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -37,7 +37,7 @@ function LoginPage() {
             console.log(`${username} login success`)
             // set session storage username
             setSessionUsername(username)
-            navigate("/home", { state: { username: username } }) // placeholder until merge with matching
+            navigate("/home") //, { state: { username: username } }) // placeholder until merge with matching
         }
     }
 

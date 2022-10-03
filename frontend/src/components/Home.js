@@ -9,7 +9,7 @@ function Home(props) {
     let navigate = useNavigate();
 
     //const { state } = useLocation();
-    const [ username ] = useSessionStorage('username', 'NOT LOGGED IN USER') //|| 'NOT LOGGED IN USER'; // Read values passed on state
+    const [ username, setUsername ] = useSessionStorage('username', 'NOT LOGGED IN USER') //|| 'NOT LOGGED IN USER'; // Read values passed on state
 
     const handleLogout = async () => {
         const res = await axios.post(URL_USER_SVC + '/logout',

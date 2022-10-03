@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
 export const useSessionStorage = (storageKey, fallbackState) => {
+    const existingValue = JSON.parse(sessionStorage.getItem(storageKey))
+
     const [value, setValue] = useState(
-        JSON.parse(sessionStorage.getItem(storageKey)) ?? fallbackState
+        existingValue ? existingValue : fallbackState
       );
     
       useEffect(() => {
