@@ -77,10 +77,13 @@ const pendingMatchHandler = (io) => {
             pendingMatchController.deletePendingMatchById(socket.id);
         });
 
-        // leaves room after matched
-        // takes room id
-        // emit event to that room and destroy all matches in that room
-        socket.on('leave-room', () => {});
+        // leaves room after matched and already in the same room
+        // note: once someone leave the room, the event should be emitted to both users in the room
+        socket.on('leave-room', async (socketRoomId) => {
+            socket.leave(socketRoomId);
+            // const roomUsers = await io.in(socketRoomId).fetchSockets();
+            // console.log(roomUsers);
+        });
     });
 };
 
