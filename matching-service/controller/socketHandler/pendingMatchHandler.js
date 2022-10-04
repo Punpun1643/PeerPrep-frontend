@@ -33,9 +33,9 @@ const pendingMatchHandler = (io) => {
 
             // console.log(roomUsers);
 
-            // // for (const roomUser in roomUsers) {
-            // //     console.log(roomUser);
-            // // }
+            // for (const roomUser in roomUsers) {
+            //     console.log(roomUser);
+            // }
         });
 
         socket.on('match-medium', async (data) => {
@@ -68,8 +68,8 @@ const pendingMatchHandler = (io) => {
         });
 
         // no match found after 30s end
-        socket.on('no-match-found', (id) => {
-            pendingMatchController.deleteMatchByDifficulty(id);
+        socket.on('no-match-found', () => {
+            pendingMatchController.deletePendingMatchById(socket.id);
         });
 
         // pending match is cancelled before 30s ends

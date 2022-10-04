@@ -25,8 +25,8 @@ function addPendingMatchHard(socketid, username) {
     pendingMatchOrm.addPendingMatchHard(socketid, username);
 }
 
-function deletePendingMatchById(params) {
-    pendingMatchOrm.deletePendingMatchById(params);
+function deletePendingMatchById(socketid) {
+    pendingMatchOrm.deletePendingMatchById(socketid);
 }
 
 // testing 22/09/2022

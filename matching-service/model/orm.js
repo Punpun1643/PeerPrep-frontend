@@ -32,8 +32,8 @@ function deleteByUsername(username) {
     return PendingMatch.destroy({ where: { username: username } });
 }
 
-function deleteById(id) {
-    return PendingMatch.destroy({ where: { id: id } });
+function deleteById(socketid) {
+    return PendingMatch.destroy({ where: { socketid: socketid } });
 }
 
 async function deleteMatchByDifficulty(difficulty) {

@@ -40,8 +40,8 @@ function addPendingMatchHard(socketid, username) {
     return orm.create(details);
 }
 
-function deletePendingMatchById(params) {
-    return orm.deleteById(params.id);
+function deletePendingMatchById(socketid) {
+    return orm.deleteById(socketid);
 }
 // testing only
 function deletePendingMatchByUsername(params) {
