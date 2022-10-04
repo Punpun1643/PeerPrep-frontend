@@ -67,19 +67,14 @@ const pendingMatchHandler = (io) => {
             }
         });
 
-        // no match found after 30s end
+        // no match found after 30s ends
         socket.on('no-match-found', () => {
             pendingMatchController.deletePendingMatchById(socket.id);
         });
 
         // pending match is cancelled before 30s ends
-        // alternative idea: a particular-room receive cancel-match event
-        // then destroy all pending match in that room
-        // socket.on('match-cancel', (id) => {
-        //     pendingMatchController.deletePendingMatchById(id);
-        // });
-        socket.on('match-cancel', (username) => {
-            pendingMatchController.deletePendingMatchByUsername(username);
+        socket.on('match-cancel', () => {
+            pendingMatchController.deletePendingMatchById(socket.id);
         });
 
         // leaves room after matched
