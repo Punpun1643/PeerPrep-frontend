@@ -7,7 +7,6 @@ import { URL_USER_SVC } from "../configs";
 import { useNavigate } from "react-router-dom";
 import { useSessionStorage } from "../customHooks";
 
-
 function LoginPage() {
     const [username, setUsername] = useState('')
     const [sessionUsername, setSessionUsername] = useSessionStorage('username', '')
@@ -30,14 +29,14 @@ function LoginPage() {
                 } else {
                     setErrorMsg('Please try again later.')
                 }
-            })
+            });
         // show error when login fails
         // when successful -> set up jwt tokens?
         if (res && res.status === STATUS_CODE_OK) {
             console.log(`${username} login success`)
             // set session storage username
-            setSessionUsername(username)
-            navigate("/home") //, { state: { username: username } }) // placeholder until merge with matching
+            setSessionUsername(`${username}`) // ISSUE: setSessionUsername not working here since it's sync function
+            navigate("/home", { state: { username: username } }) // placeholder until merge with matching
         }
     }
 

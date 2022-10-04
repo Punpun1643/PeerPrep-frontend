@@ -8,8 +8,8 @@ import { useSessionStorage } from "../customHooks";
 function Home(props) {
     let navigate = useNavigate();
 
-    //const { state } = useLocation();
-    const [ username, setUsername ] = useSessionStorage('username', 'NOT LOGGED IN USER') //|| 'NOT LOGGED IN USER'; // Read values passed on state
+    const { state } = useLocation();
+    const [ username, setUsername ] = useSessionStorage('username', state.username) //|| 'NOT LOGGED IN USER'; // Read values passed on state
 
     const handleLogout = async () => {
         const res = await axios.post(URL_USER_SVC + '/logout',

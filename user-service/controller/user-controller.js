@@ -97,7 +97,7 @@ export async function changePassword(req, res) {
             console.log(`Updated password for user - ${username}`);
             return res.status(200).json({ message: 'Password has successfully been changed.' });
         }
-        return res.status(400).json({ message: 'Username and/or Passwords are missing!' });
+        return res.status(400).json({ message: 'Username and/or Password(s) are missing!' });
     } catch (err) {
         return res.status(500).json({ message: 'Database failure when updating user password!' });
     }
