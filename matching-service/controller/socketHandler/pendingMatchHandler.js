@@ -24,9 +24,18 @@ const pendingMatchHandler = (io) => {
         });
 
         // join room based on socketid
-        socket.on('join-room', (socketid) => {
+        socket.on('join-room', async (socketid) => {
             socket.join(socketid);
             console.log('joined');
+
+            // Date: 4/10/2022 - This is just for demonstration later
+            // const roomUsers = await io.in(socketid).fetchSockets();
+
+            // console.log(roomUsers);
+
+            // // for (const roomUser in roomUsers) {
+            // //     console.log(roomUser);
+            // // }
         });
 
         socket.on('match-medium', async (data) => {
