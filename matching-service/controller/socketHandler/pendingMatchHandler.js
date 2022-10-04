@@ -2,31 +2,43 @@ import pendingMatchController from '../pendingMatchController.js';
 
 const pendingMatchHandler = (io) => {
     io.on('connection', (socket) => {
-        console.log(socket.id);
+        console.log(`socket id is ${socket.id}`);
+        console.log(socket.rooms);
+
         socket.on('match-easy', async (data) => {
-            socket.join('easy-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('easy');
+
             // if no match --> add to db
             if (user === null) {
-                // pendingMatchController.addPendingMatchEasy(data, socket.rooms);
                 pendingMatchController.addPendingMatchEasy(socket.id, data);
             } else {
-                io.to('easy-waiting-room').emit('match-success', socket.rooms);
-                /**
-                 * make all socket instances
-                 */
+                const currentSocketId = user.dataValues.socketid;
+
+                // emit succcess event to the matched users
+                io.to(socket.id).emit('match-success', currentSocketId, socket.id);
+                io.to(currentSocketId).emit('match-success', currentSocketId, socket.id);
+
                 // else --> match and delete
                 pendingMatchController.deleteMatchByDifficulty('easy');
             }
         });
 
+        // join room based on socketid
+        socket.on('join-room', (socketid) => {
+            socket.join(socketid);
+            console.log('joined');
+        });
+
         socket.on('match-medium', async (data) => {
-            socket.join('medium-waiting-room');
             const user = await pendingMatchController.getAvailableMatch('medium');
             if (user === null) {
                 pendingMatchController.addPendingMatchMedium(socket.id, data);
             } else {
-                io.to('medium-waiting-room').emit('match-success', socket.rooms);
+                const currentSocketId = user.dataValues.socketid;
+
+                io.to(socket.id).emit('match-success', currentSocketId, socket.id);
+                io.to(currentSocketId).emit('match-success', currentSocketId, socket.id);
+
                 pendingMatchController.deleteMatchByDifficulty('medium');
             }
         });
@@ -37,8 +49,12 @@ const pendingMatchHandler = (io) => {
             if (user === null) {
                 pendingMatchController.addPendingMatchHard(socket.id, data);
             } else {
+                const currentSocketId = user.dataValues.socketid;
+
+                io.to(socket.id).emit('match-success', currentSocketId, socket.id);
+                io.to(currentSocketId).emit('match-success', currentSocketId, socket.id);
+
                 pendingMatchController.deleteMatchByDifficulty('hard');
-                io.to('hard-waiting-room').emit('match-success', socket.rooms);
             }
         });
 
