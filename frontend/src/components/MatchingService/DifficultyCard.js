@@ -25,8 +25,8 @@ export default function DifficultyCard(props) {
       console.log(socket.connected); // true
     });
 
-    // testing 22/09/2022: hard-coded username
-    socket.emit(`match-${props.difficulty}`, { username: "John" });
+    //null value to be passed in for username for now 
+    socket.emit(`match-${props.difficulty}`, null);
     props.handleOpenModal(socket);
   }
 
