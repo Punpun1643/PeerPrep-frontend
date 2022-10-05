@@ -72,10 +72,7 @@ function CountdownView(props) {
                     strokeWidth={12}
                     onComplete= {() => {
                         setMatchingStatus('match-fail')
-
-                        //hard-coded difficulty level temporarily
-                        socket.emit('no-match-found', "easy");
-        
+                        socket.emit('no-match-found');
                         console.log('failed');
                     }}
                 >
@@ -88,7 +85,7 @@ function CountdownView(props) {
                     onClick={() => {
                         setMatchingStatus('match-finding');
                         console.log('psst');
-                        socket.emit('match-cancel', { username: "John" });
+                        socket.emit('match-cancel');
                         props.handleCloseModal();
                      }}> Cancel </Button>
             </div>
