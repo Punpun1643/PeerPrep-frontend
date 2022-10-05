@@ -35,6 +35,8 @@ function CountdownView(props) {
         notFound: "Sorry, no match found"
     }
 
+
+    //three possible states for matching status: match-finding, match-success, and match-fail
     const[matchingStatus, setMatchingStatus] = useState('match-finding');
     const navigate = useNavigate();
 
@@ -46,7 +48,14 @@ function CountdownView(props) {
     const socket = props.socket;
     console.log(socket);
 
-    socket.on("match-success", () => setMatchingStatus('match-success'));
+    socket.on("match-success", (firstClientSocketId, secondClientSocketId) => {
+            setMatchingStatus('match-success');
+            socket.emit("join-room", firstClientSocketId);
+            navigate('/roompage', { state: { roomId: firstClientSocketId, secondClientSocketId: secondClientSocketId}} );
+        }
+    );
+        
+
     socket.on("match-failure", () => setMatchingStatus('match-fail'));
 
     const insideCircle = ({remainingTime}) => {
@@ -55,10 +64,6 @@ function CountdownView(props) {
         } else {
              return `${remainingTime}`;
     }}
-
-    if (matchingStatus === 'match-success') {
-        navigate('/roompage');
-    }
 
     return (
         <div style={modal}>
@@ -84,7 +89,6 @@ function CountdownView(props) {
                 <Button variant="outlined" sx={{margin: 1}} 
                     onClick={() => {
                         setMatchingStatus('match-finding');
-                        console.log('psst');
                         socket.emit('match-cancel');
                         props.handleCloseModal();
                      }}> Cancel </Button>
