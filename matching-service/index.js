@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
 globalHandler(io);
 // handle pending match events
 // pendingMatchHandler(addUserIo);
+// server is at localhost:8001
 pendingMatchHandler(io);
 
 httpServer.listen(PORT, () => {
