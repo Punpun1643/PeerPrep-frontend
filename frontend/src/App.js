@@ -9,11 +9,9 @@ import {Box} from "@mui/material";
 
 function App() {
 
-    const [socket, setSocket] = useState();
-
     return (
         <div className="App">
-            <SocketContext.Provider value={[socket, setSocket]}>
+            {/* <SocketContext.Provider value={[socket, setSocket]}> */}
                 {/* <Box display={"flex"} flexDirection={"column"} padding={"4rem"}> */}
                 <Router>
                     <Routes>
@@ -25,7 +23,7 @@ function App() {
                     </Routes>
                 </Router>
             {/* </Box> */}
-            </SocketContext.Provider>
+            {/* </SocketContext.Provider> */}
         </div>
     );
 }

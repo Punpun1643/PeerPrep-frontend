@@ -14,14 +14,14 @@ import { io } from "socket.io-client";
 
 export default function DifficultyCard(props) {
 
-  const[socket, setSocket] = useContext(SocketContext);
+  const { getSocket } = useContext(SocketContext);
 
   const handleFindMatchClick = (e) => {
     e.preventDefault();
     console.log(`${props.difficulty} button was clicked`);
 
-    const socket = io("http://localhost:8001");
-    setSocket(socket);
+    const socket = getSocket();
+    
     socket.on("connect", () => {
       console.log(socket.connected); // true
     });

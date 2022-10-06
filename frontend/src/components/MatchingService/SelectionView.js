@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SocketContext } from './SocketContext'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -7,19 +7,18 @@ import CountdownView from './CountdownView';
 
 
 export default function SelectionView() {
+
     const difficultyLevels = ["easy", "medium", "hard"];
     const [showModal, setShowModal] = useState(false);
-    const[socket, setSocket] = useContext(SocketContext);
+
 
     const handleOpenModal = () => {
       setShowModal(true);
-      console.log('Countdown timer modal opened');
   
     }
 
     const handleCloseModal = (e) => {
       setShowModal(false);
-      console.log('Countdown timer modal close');
     }
 
     return (

@@ -1,4 +1,4 @@
-import React,{ useContext } from 'react';
+import React,{ useContext, useEffect, useRef } from 'react';
 import { SocketContext } from './SocketContext'
 import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -7,11 +7,23 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { io } from "socket.io-client";
+
 
 
 export default function RoomPage() {
 
-    const[socket, setSocket] = useContext(SocketContext);
+    const { getSocket } = useContext(SocketContext);
+    let socket = getSocket();
+    
+
+    // useEffect( () => {
+    //     if (! socket) {
+    //     console.log("hi");
+    //     const reconnectedSocket = io("http://localhost:8001");
+    //     setSocket(reconnectedSocket);
+    //     console.log(reconnectedSocket);
+    //     }}, []);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -19,12 +31,27 @@ export default function RoomPage() {
     console.log(location);
     const roomId = location.state.roomId;
     console.log("roomId" + roomId);
+    console.log("socketID " + socket.id);
+
     const secondClientSocketId = location.state.secondClientSocketId;
+
+    useEffect( () => {
+        socket.on("connect", () => {
+            console.log(socket.connected); // true
+          });
+        socket.emit("join-room", roomId);
+
+        return () => {
+            socket.disconnect();
+            socket.connect();
+        } 
+
+    }, []);
     
     function onLeaveHandler() {
+        console.log("leaving " + socket.id);
         socket.emit("leave-room", roomId);
         navigate('/selectquestiondifficulty');
-        socket.disconnect();
     }
 
     return (
