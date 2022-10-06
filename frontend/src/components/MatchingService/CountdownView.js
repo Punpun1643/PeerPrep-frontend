@@ -59,8 +59,6 @@ function CountdownView(props) {
     );
         
 
-    socket.on("match-failure", () => setMatchingStatus('match-fail'));
-
     const insideCircle = ({remainingTime}) => {
         if (remainingTime === 0) {
             return "Sorry, no match found";
