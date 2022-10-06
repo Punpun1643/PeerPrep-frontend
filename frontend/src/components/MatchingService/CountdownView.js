@@ -51,7 +51,10 @@ function CountdownView(props) {
     socket.on("match-success", (firstClientSocketId, secondClientSocketId) => {
             setMatchingStatus('match-success');
             socket.emit("join-room", firstClientSocketId);
-            navigate('/roompage', { state: { roomId: firstClientSocketId, secondClientSocketId: secondClientSocketId}} );
+            navigate('/roompage',
+                { state: { roomId: firstClientSocketId,
+                    secondClientSocketId: secondClientSocketId,
+                    socket: socket }} );
         }
     );
         

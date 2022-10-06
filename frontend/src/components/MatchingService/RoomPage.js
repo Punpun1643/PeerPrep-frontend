@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useNavigate, useLocation, Navigate} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -8,13 +8,14 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-export default function RoomPage({ socket }) {
+export default function RoomPage() {
 
     const location = useLocation();
     const navigate = useNavigate();
 
     const roomId = location.state.roomId;
     const secondClientSocketId = location.state.secondClientSocketId;
+    const socket = location.state.socket;
 
     function onLeaveHandler() {
         socket.emit("leave-room", roomId);
