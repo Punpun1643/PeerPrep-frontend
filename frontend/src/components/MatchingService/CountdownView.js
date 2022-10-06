@@ -89,8 +89,10 @@ function CountdownView(props) {
 
                 <Button variant="outlined" sx={{margin: 1}} 
                     onClick={() => {
+                        if (matchingStatus === 'match-finding') {
+                            socket.emit('match-cancel');
+                        }
                         setMatchingStatus('match-finding');
-                        socket.emit('match-cancel');
                         socket.disconnect();
                         props.handleCloseModal();
                      }}> Cancel </Button>
