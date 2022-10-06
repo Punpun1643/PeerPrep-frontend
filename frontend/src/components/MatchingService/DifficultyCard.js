@@ -1,5 +1,5 @@
 import React,{ useContext } from 'react';
-import {SocketContext} from './SocketContext'
+import { SocketContext } from './SocketContext'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

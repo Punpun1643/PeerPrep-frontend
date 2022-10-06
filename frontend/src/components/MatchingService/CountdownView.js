@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { SocketContext } from './SocketContext'
 import {useNavigate} from 'react-router-dom';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Button from '@mui/material/Button';
 
 
 function CountdownView(props) {
+
+    const[socket, setSocket] = useContext(SocketContext);
 
     const modal = {
         position: 'fixed',
@@ -45,7 +48,6 @@ function CountdownView(props) {
         return null;
     }
 
-    const socket = props.socket;
     console.log(socket);
 
     socket.on("match-success", (firstClientSocketId, secondClientSocketId) => {
