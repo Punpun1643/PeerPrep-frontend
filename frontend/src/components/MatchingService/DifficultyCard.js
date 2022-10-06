@@ -26,7 +26,7 @@ export default function DifficultyCard(props) {
     });
 
     //null value to be passed in for username for now 
-    socket.emit(`match-${props.difficulty}`, null);
+    socket.emit(`match-${props.difficulty}`, {});
     props.handleOpenModal(socket);
   }
 

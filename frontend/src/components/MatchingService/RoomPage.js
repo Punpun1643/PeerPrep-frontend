@@ -13,6 +13,7 @@ export default function RoomPage() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    console.log(location);
     const roomId = location.state.roomId;
     const secondClientSocketId = location.state.secondClientSocketId;
     const socket = location.state.socket;
