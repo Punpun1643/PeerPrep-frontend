@@ -1,13 +1,59 @@
-import * as React from 'react';
+import React,{ useContext, useEffect, useRef } from 'react';
+import { SocketContext } from './SocketContext'
+import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { io } from "socket.io-client";
+
 
 
 export default function RoomPage() {
+
+    const { getSocket } = useContext(SocketContext);
+    let socket = getSocket();
+    
+
+    // useEffect( () => {
+    //     if (! socket) {
+    //     console.log("hi");
+    //     const reconnectedSocket = io("http://localhost:8001");
+    //     setSocket(reconnectedSocket);
+    //     console.log(reconnectedSocket);
+    //     }}, []);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    console.log(location);
+    const roomId = location.state.roomId;
+    console.log("roomId" + roomId);
+    console.log("socketID " + socket.id);
+
+    const secondClientSocketId = location.state.secondClientSocketId;
+
+    useEffect( () => {
+        socket.on("connect", () => {
+            console.log(socket.connected); // true
+          });
+        socket.emit("join-room", roomId);
+
+        return () => {
+            socket.disconnect();
+            socket.connect();
+        } 
+
+    }, []);
+    
+    function onLeaveHandler() {
+        console.log("leaving " + socket.id);
+        socket.emit("leave-room", roomId);
+        navigate('/selectquestiondifficulty');
+    }
+
     return (
             <Grid container spacing={0.5} sx={{backgroundColor:'white', width:'100vw', height:'100vh', margin: '0px'}}>
                 {/* left panel */}
@@ -15,8 +61,8 @@ export default function RoomPage() {
                     <Stack spacing={0.5}>
                         {/* room number and leave room button */}
                         <Box sx={{height: "9.5vh", display:'flex', justifyContent:'flex-start', alignItems:'center', backgroundColor: 'white'}}>
-                            <Typography variant="h6" sx={{margin: 2}}> Room {110} </Typography> 
-                            <Button variant="outlined" endIcon={<LogoutIcon />}>
+                            <Typography variant="h6" sx={{margin: 2}}> Room {roomId} </Typography> 
+                            <Button variant="outlined" endIcon={<LogoutIcon />} onClick={onLeaveHandler}>
                               Leave Room 
                             </Button>    
                         </Box>
