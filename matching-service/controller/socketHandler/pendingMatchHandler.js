@@ -27,15 +27,6 @@ const pendingMatchHandler = (io) => {
         socket.on('join-room', async (socketid) => {
             socket.join(socketid);
             console.log('joined');
-
-            // Date: 4/10/2022 - This is just for demonstration later
-            // const roomUsers = await io.in(socketid).fetchSockets();
-
-            // console.log(roomUsers);
-
-            // for (const roomUser in roomUsers) {
-            //     console.log(roomUser);
-            // }
         });
 
         socket.on('match-medium', async (data) => {
@@ -78,11 +69,8 @@ const pendingMatchHandler = (io) => {
         });
 
         // leaves room after matched and already in the same room
-        // note: once someone leave the room, the event should be emitted to both users in the room
         socket.on('leave-room', async (socketRoomId) => {
             socket.leave(socketRoomId);
-            // const roomUsers = await io.in(socketRoomId).fetchSockets();
-            // console.log(roomUsers);
         });
     });
 };

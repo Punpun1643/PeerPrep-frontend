@@ -42,7 +42,7 @@ async function deleteMatchByDifficulty(difficulty) {
 }
 
 async function getAvailableMatch(difficulty) {
-    return await PendingMatch.findOne({ where: { difficulty: difficulty } });
+    return PendingMatch.findOne({ where: { difficulty: difficulty } });
 }
 
 /** Retrieves all pending matches in the database. */

@@ -43,7 +43,7 @@ function addPendingMatchHard(socketid, username) {
 function deletePendingMatchById(socketid) {
     return orm.deleteById(socketid);
 }
-// testing only
+
 function deletePendingMatchByUsername(params) {
     return orm.deleteByUsername(params.username);
 }
