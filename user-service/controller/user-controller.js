@@ -153,10 +153,7 @@ export async function authenticateCookieToken(req, res, next) {
     // If Cookie expired
     if (!token) return res.status(403).json({ message: 'You must be logged in first!' });
 
-    const verifiedUser = await verifyAccessToken(token);
-
-    console.log(verifiedUser)
-
+    let verifiedUser = await verifyAccessToken(token);
     // If Token expired
     if (!verifiedUser) {
         console.log('token expired', token);
@@ -168,6 +165,9 @@ export async function authenticateCookieToken(req, res, next) {
 
         res.cookie('token', newAccessToken, { expires: new Date(Date.now() + (30 * 60 * 1000)), httpOnly: true });
         console.log('issued new token', newAccessToken);
+
+        // Refresh verifiedUser since it was undefined
+        verifiedUser = await verifyAccessToken(newAccessToken);
     }
 
     // If Token blacklisted
