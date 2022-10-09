@@ -27,7 +27,9 @@ function ChangePasswordPage() {
             console.log('no password')
             setErrorMsg('Please check that inputs are valid')
         } else {
-            const res = await axios.post(URL_USER_SVC + '/changePassword', { username, oldPassword, newPassword })
+            const res = await axios.post(URL_USER_SVC + '/changePassword', 
+                { username, oldPassword, newPassword },
+                { withCredentials: true, credentials: 'include' })
                 .catch((err) => {
                     console.log(err)
                     setOpen(true)
