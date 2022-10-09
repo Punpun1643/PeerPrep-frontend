@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { SocketContext } from './SocketContext'
 import {useNavigate} from 'react-router-dom';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Button from '@mui/material/Button';
 
 
 function CountdownView(props) {
+
+    const { getSocket } = useContext(SocketContext);
+
+    let socket = getSocket();
+    
 
     const modal = {
         position: 'fixed',
@@ -35,19 +41,32 @@ function CountdownView(props) {
         notFound: "Sorry, no match found"
     }
 
+
+    //three possible states for matching status: match-finding, match-success, and match-fail
     const[matchingStatus, setMatchingStatus] = useState('match-finding');
     const navigate = useNavigate();
+
+    useEffect( () => {
+        socket.on("connect", () => {
+            console.log(socket.connected); // true
+          });
+        
+        socket.on("match-success", (firstClientSocketId, secondClientSocketId) => {
+            setMatchingStatus('match-success');
+            console.log(firstClientSocketId);
+            navigate('/roompage', {state: { roomId: firstClientSocketId,
+                secondClientSocketId: secondClientSocketId }} );
+            }
+        );
+
+    }, []);
 
 
     if (!props.show) {
         return null;
     }
 
-    const socket = props.socket;
-    console.log(socket);
-
-    socket.on("match-success", () => setMatchingStatus('match-success'));
-    socket.on("match-failure", () => setMatchingStatus('match-fail'));
+        
 
     const insideCircle = ({remainingTime}) => {
         if (remainingTime === 0) {
@@ -55,10 +74,6 @@ function CountdownView(props) {
         } else {
              return `${remainingTime}`;
     }}
-
-    if (matchingStatus === 'match-success') {
-        navigate('/roompage');
-    }
 
     return (
         <div style={modal}>
@@ -83,9 +98,10 @@ function CountdownView(props) {
 
                 <Button variant="outlined" sx={{margin: 1}} 
                     onClick={() => {
+                        if (matchingStatus === 'match-finding') {
+                            socket.emit('match-cancel');
+                        }
                         setMatchingStatus('match-finding');
-                        console.log('psst');
-                        socket.emit('match-cancel', { username: "John" });
                         props.handleCloseModal();
                      }}> Cancel </Button>
             </div>

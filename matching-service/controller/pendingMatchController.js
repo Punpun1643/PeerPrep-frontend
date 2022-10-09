@@ -10,26 +10,22 @@ const pendingMatchController = {
     getAvailableMatch: getAvailableMatch,
 };
 
-function addPendingMatchEasy(username, id) {
-    console.log(id);
-    pendingMatchOrm.addPendingMatchEasy(username);
+function addPendingMatchEasy(socketid, username) {
+    pendingMatchOrm.addPendingMatchEasy(socketid, username);
 }
 
-function addPendingMatchMedium(username, id) {
-    console.log(id);
-    pendingMatchOrm.addPendingMatchMedium(username);
+function addPendingMatchMedium(socketid, username) {
+    pendingMatchOrm.addPendingMatchMedium(socketid, username);
 }
 
-function addPendingMatchHard(username, id) {
-    console.log(id);
-    pendingMatchOrm.addPendingMatchHard(username);
+function addPendingMatchHard(socketid, username) {
+    pendingMatchOrm.addPendingMatchHard(socketid, username);
 }
 
-function deletePendingMatchById(params) {
-    pendingMatchOrm.deletePendingMatchById(params);
+function deletePendingMatchById(socketid) {
+    pendingMatchOrm.deletePendingMatchById(socketid);
 }
 
-// testing 22/09/2022
 function deletePendingMatchByUsername(params) {
     pendingMatchOrm.deletePendingMatchByUsername(params);
 }

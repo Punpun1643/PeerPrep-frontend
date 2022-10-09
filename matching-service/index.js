@@ -19,10 +19,6 @@ const io = new Server(httpServer, {
     },
 });
 
-// const addUserIo = io.of('/pendingMatches');
-
-// const io = new Server(httpServer, { cors: true });
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors()); // config cors so that front-end can use
@@ -35,7 +31,6 @@ app.get('/', (req, res) => {
 // log to console when there is a connection from the client
 globalHandler(io);
 // handle pending match events
-// pendingMatchHandler(addUserIo);
 pendingMatchHandler(io);
 
 httpServer.listen(PORT, () => {

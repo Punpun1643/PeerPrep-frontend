@@ -10,8 +10,9 @@ const pendingMatchOrm = {
     getAvailableMatch: getAvailableMatch,
 };
 
-function addPendingMatchEasy(username) {
+function addPendingMatchEasy(socketid, username) {
     const details = {
+        socketid: socketid,
         username: username.username,
         difficulty: 'easy',
     };
@@ -19,8 +20,9 @@ function addPendingMatchEasy(username) {
     return orm.create(details);
 }
 
-function addPendingMatchMedium(username) {
+function addPendingMatchMedium(socketid, username) {
     const details = {
+        socketid: socketid,
         username: username.username,
         difficulty: 'medium',
     };
@@ -28,8 +30,9 @@ function addPendingMatchMedium(username) {
     return orm.create(details);
 }
 
-function addPendingMatchHard(username) {
+function addPendingMatchHard(socketid, username) {
     const details = {
+        socketid: socketid,
         username: username.username,
         difficulty: 'hard',
     };
@@ -37,10 +40,10 @@ function addPendingMatchHard(username) {
     return orm.create(details);
 }
 
-function deletePendingMatchById(params) {
-    return orm.deleteById(params.id);
+function deletePendingMatchById(socketid) {
+    return orm.deleteById(socketid);
 }
-// testing only
+
 function deletePendingMatchByUsername(params) {
     return orm.deleteByUsername(params.username);
 }
