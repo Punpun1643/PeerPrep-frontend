@@ -76,6 +76,14 @@ function ChangePasswordPage() {
         }
     }
 
+    const checkOldPwNotMatchNewPw = (e) => {
+        setPasswordStrengthMsg('')
+
+        if (newPassword === oldPassword) {
+            setPasswordStrengthMsg('New password should not be the same as your current password')
+        }
+    }
+
     /* Snackbar related functions */
 
     const handleCloseSnackbar = (event, reason) => {
@@ -120,7 +128,7 @@ function ChangePasswordPage() {
                     placeholder="Type your current password"
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
-                    onBlur={checkNewPasswordsMatch}
+                    onBlur={checkOldPwNotMatchNewPw}
                 />
                 <TextField 
                     required
