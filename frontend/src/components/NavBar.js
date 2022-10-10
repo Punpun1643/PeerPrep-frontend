@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from "react";
@@ -50,9 +50,12 @@ function NavBar() {
                         PeerPrep
                     </Typography>
                     <Box sx={{ flexGrow: 0}}>
-                        <IconButton onClick={handleOpenUserSettings}>
-                            <SettingsIcon />
-                        </IconButton>
+                        <Tooltip title="Open User Settings">
+                            <IconButton onClick={handleOpenUserSettings}>
+                                <SettingsIcon />
+                            </IconButton>
+                        </Tooltip>
+                        
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
@@ -77,9 +80,12 @@ function NavBar() {
                             {/* <MenuItem>Delete Account</MenuItem> */}
 
                         </Menu>
-                        <IconButton onClick={handleLogout}>
-                            <LogoutIcon />
-                        </IconButton>
+                        <Tooltip title="Logout">
+                            <IconButton onClick={handleLogout}>
+                                <LogoutIcon />
+                            </IconButton>
+                        </Tooltip>
+                        
                     </Box>
                 </Toolbar>
             </AppBar>
