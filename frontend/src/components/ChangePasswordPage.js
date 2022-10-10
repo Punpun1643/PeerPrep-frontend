@@ -22,10 +22,9 @@ function ChangePasswordPage() {
         setIsSuccess(false)
         if (username === '' || passwordErrMsg !== '' || passwordStrengthMsg !== '') {
             // prevent from sending password
-            // error snackbar]
+            // error snackbar
             setOpen(true)
-            console.log('no password')
-            setErrorMsg('Please check that inputs are valid')
+            setErrorMsg('Please check that inputs are non-empty and valid')
         } else {
             const res = await axios.post(URL_USER_SVC + '/changePassword', 
                 { username, oldPassword, newPassword },
@@ -57,6 +56,7 @@ function ChangePasswordPage() {
 
     const pwRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/
     const validatePasswordStrength = (e) => {
+        console.log('validating pw...')
         setPasswordStrengthMsg('')
         // client side password validation
         if (!e.target.value) {
@@ -70,15 +70,9 @@ function ChangePasswordPage() {
 
     const checkNewPasswordsMatch = (e) => {
         setPasswordErrMsg('')
-        setPasswordStrengthMsg('')
 
         if (newPassword !== newPasswordTwo) {
-            console.log('pw does not match')
             setPasswordErrMsg('Password does not match new password')
-        }
-        
-        if (newPassword === oldPassword) {
-            setPasswordStrengthMsg('New password should not be the same as your current password')
         }
     }
 
@@ -138,7 +132,7 @@ function ChangePasswordPage() {
                     onChange={(e) => setNewPassword(e.target.value)}
                     onBlur={(e) => {validatePasswordStrength(e); checkNewPasswordsMatch(e);}}
                     error={passwordStrengthMsg !== ''}
-                    helperText={passwordStrengthMsg === '' ? '' : passwordStrengthMsg}
+                    helperText={passwordStrengthMsg}
                 />
                 <TextField 
                     required
@@ -150,7 +144,7 @@ function ChangePasswordPage() {
                     onChange={(e) => setNewPasswordTwo(e.target.value)}
                     onBlur={checkNewPasswordsMatch}
                     error={passwordErrMsg !== ''}
-                    helperText={passwordErrMsg === '' ? '' : passwordErrMsg}
+                    helperText={passwordErrMsg}
                 />
                 <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
                     <Button variant={"outlined"} onClick={handleChangePassword}>Submit</Button>
