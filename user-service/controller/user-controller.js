@@ -12,6 +12,7 @@ import {
     generateRefreshAccessToken,
     verifyAccessToken,
     verifyRefreshToken,
+    verifyPasswordStrength,
 } from '../services.js';
 
 const allowedRefreshTokens = []; // TODO: store allowedRefreshTokens in cache/db
@@ -25,6 +26,11 @@ export async function createUser(req, res) {
             if (isUserExist) {
                 console.log(`Account Creation Failed due to duplicate username - ${username}`);
                 return res.status(409).json({ message: 'Duplicate username. Could not create a new user.' });
+            }
+
+            if (!verifyPasswordStrength(password)) {
+                return res.status(400).json({ message: 'New password does not meet password strength requirement. ' +
+                    'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.'});
             }
 
             const hashedPassword = await hashSaltPassword(password);
@@ -88,6 +94,16 @@ export async function changePassword(req, res) {
                 return res.status(401).json({ message: 'Authentication failed. Incorrect user or password provided.' });
             }
             console.log(`User ${username} has been authenticated.`);
+            // verify password strength
+            if (oldPassword === newPassword) {
+                return res.status(400).json({ message: 'New password should not be the same as old password'});
+            }
+
+            if (!verifyPasswordStrength(newPassword)) {
+                return res.status(400).json({ message: 'New password does not meet password strength requirement. ' +
+                    'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.'});
+            }
+            
             // store new password
             const hashedNewPassword = await hashSaltPassword(newPassword);
             const resp = await _updateUser(user, { username: username, password: hashedNewPassword });

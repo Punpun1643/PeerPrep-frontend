@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Snackbar, Stack, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, IconButton, Snackbar, Stack, TextField, Typography } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { Fragment, useState } from "react";
@@ -56,7 +56,6 @@ function ChangePasswordPage() {
 
     const pwRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/
     const validatePasswordStrength = (e) => {
-        console.log('validating pw...')
         setPasswordStrengthMsg('')
         // client side password validation
         if (!e.target.value) {
@@ -162,9 +161,12 @@ function ChangePasswordPage() {
                         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                         open={isSuccess}
                         autoHideDuration={3000}
-                        message={successMsg}
                         onClose={handleCloseSnackbar}
-                    />
+                    >
+                        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+                            {successMsg}
+                        </Alert>
+                    </Snackbar>
                 }
             </Stack>
             <Snackbar
@@ -173,8 +175,11 @@ function ChangePasswordPage() {
                 autoHideDuration={6000}
                 onClose={handleCloseSnackbar}
                 action={action}
-                message={errorMsg}
-            />
+            >
+                <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+                    {errorMsg}
+                </Alert>
+            </Snackbar>
         </Box>
     ); 
 }

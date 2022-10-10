@@ -21,6 +21,11 @@ export async function verifyPassword(password, hashed) {
     return bcrypt.compare(password, hashed);
 }
 
+export function verifyPasswordStrength(password) {
+    const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    return password.match(pwRegex) !== null;
+}
+
 export async function generateAccessToken(user) {
     return jwt.sign(
         { username: user.username },
