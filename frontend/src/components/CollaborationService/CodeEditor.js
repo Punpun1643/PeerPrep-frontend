@@ -68,6 +68,7 @@ const CodeEditor = (props) => {
                     cpp()
                 ]}
                 onChange={(value, viewUpdate) => {
+                    console.log('value:', value);
                     socket.emit("on-keypress", value, roomId);
                 }}
             />
