@@ -86,7 +86,7 @@ export default function RoomPage() {
                 <Grid item xs={6.98} md={6.98} sx={{height: "100vh"}}>
                     <Stack spacing={0}>
                         {/* code box */}
-                        <CodeEditor />
+                        <CodeEditor roomId={roomId} />
                     </Stack>
                 </Grid>
             </Grid>
