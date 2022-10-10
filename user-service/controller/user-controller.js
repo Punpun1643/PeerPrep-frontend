@@ -73,6 +73,7 @@ export async function deleteUser(req, res, next) {
         return res.status(500).json({ message: 'Database failure when deleting user!' });
     }
 }
+
 export async function changePassword(req, res) {
     try {
         const { username, oldPassword, newPassword } = req.body;
@@ -80,11 +81,11 @@ export async function changePassword(req, res) {
             // verify user old password is correct
             const user = await _findUser(username);
             if (!user) {
-                return res.status(400).json({ message: 'Authentication failed. User does not exist.' });
+                return res.status(401).json({ message: 'Authentication failed. User does not exist.' });
             }
             const isPasswordCorrect = await verifyPassword(oldPassword, user.password);
             if (!isPasswordCorrect) {
-                return res.status(400).json({ message: 'Authentication failed. Incorrect user or password provided.' });
+                return res.status(401).json({ message: 'Authentication failed. Incorrect user or password provided.' });
             }
             console.log(`User ${username} has been authenticated.`);
             // store new password
@@ -96,7 +97,7 @@ export async function changePassword(req, res) {
             console.log(`Updated password for user - ${username}`);
             return res.status(200).json({ message: 'Password has successfully been changed.' });
         }
-        return res.status(400).json({ message: 'Username and/or Passwords are missing!' });
+        return res.status(400).json({ message: 'Username and/or Password(s) are missing!' });
     } catch (err) {
         return res.status(500).json({ message: 'Database failure when updating user password!' });
     }
