@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSessionStorage } from "../customHooks";
 
 function Home(props) {

@@ -1,14 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import SignupPage from './components/SignupPage';
 import ChangePasswordPage from "./components/ChangePasswordPage";
-import ChangePasswordButton from "./components/ChangePasswordButton";
 import LoginPage from "./components/LoginPage";
 import LogoutPage from "./components/LogoutPage";
 import Home from "./components/Home";
 import SelectionView from './components/MatchingService/SelectionView';
 import CountdownView from './components/MatchingService/CountdownView';
 import RoomPage from './components/MatchingService/RoomPage'
-import { useState } from "react";
 import NavBar from "./components/NavBar";
 
 function WithNavBar() {
@@ -23,7 +21,6 @@ function WithNavBar() {
 
 
 function App() {
-    const [username, setUsername] = useState('default user');
 
     return (
         <div className="App">
@@ -37,7 +34,6 @@ function App() {
                     {/* Placeholder home for matching-service */}
                     <Route path="/" element={<WithNavBar />}>
                         <Route path="home" element={<Home />} />
-                        <Route path="chgPassword" element={<ChangePasswordButton/>}/>
                         <Route path="changePassword" element={<ChangePasswordPage/>}/>
                         <Route path="selectquestiondifficulty" element={<SelectionView/>}></Route>
                         <Route path="findingmatch" element={<CountdownView/>}></Route>
