@@ -7,6 +7,8 @@ import axios from "axios";
 import { useSessionStorage } from "../customHooks";
 import { STATUS_CODE_FORBIDDEN, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
+import DeleteAccountAlert from "./DeleteAccountAlert";
+import Button from '@mui/material/Button';
 
 function NavBar() {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -42,25 +44,6 @@ function NavBar() {
         }
     }
 
-    const handleDeleteAccount = async () => {
-        const res = await axios.post(URL_USER_SVC + '/deleteAccount',
-            { username },
-            { withCredentials: true, credentials: 'include' })
-            .catch((err) => {
-                console.log(err)
-                // Either cookie or token expired
-                if (err.response.status === STATUS_CODE_UNAUTHORIZED ||
-                    err.response.status === STATUS_CODE_FORBIDDEN) {
-                    navigate("/login");
-                }
-            })
-
-        if (res && res.status === STATUS_CODE_OK) {
-            console.log(`${username} delete success`)
-            navigate("/deleteAccount", { state: { success: true } }) // placeholder until merge with matching
-        }
-    }
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="sticky">
@@ -92,14 +75,15 @@ function NavBar() {
                             onClose={handleCloseUserSettings}
                         >
                             <MenuItem onClick={handleCloseUserSettings}>
-                                <Typography variant="text" textAlign="center" color="primary">
+                                <Button variant="text" textAlign="center" color="primary">
                                     <Link to="/changePassword" style={{ textDecoration: "none" }}>Change Password</Link>
-                                </Typography>
+                                </Button>
                             </MenuItem>
-                            <MenuItem onClick={handleDeleteAccount}>
-                                <Typography variant="text" textAlign="center" color="primary">
+                            <MenuItem onClick={handleCloseUserSettings}>
+                                {/* <Typography variant="text" textAlign="center" color="primary">
                                     Delete Account
-                                </Typography>
+                                </Typography> */}
+                                <DeleteAccountAlert />
                             </MenuItem>
 
                         </Menu>
