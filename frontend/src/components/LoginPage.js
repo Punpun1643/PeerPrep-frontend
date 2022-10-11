@@ -36,7 +36,7 @@ function LoginPage() {
             console.log(`${username} login success`)
             // set session storage username
             setSessionUsername(`${username}`) // ISSUE: setSessionUsername not working here since it's sync function
-            navigate("/home", { state: { username: username } }) // placeholder until merge with matching
+            navigate("/home") // placeholder until merge with matching
         }
     }
 

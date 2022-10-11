@@ -3,10 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useSessionStorage } from "../customHooks";
 
 function Home(props) {
-    let navigate = useNavigate();
-
-    const { state } = useLocation();
-    const [ username, setUsername ] = useSessionStorage('username', state.username) //|| 'NOT LOGGED IN USER'; // Read values passed on state
+    const [ username, setUsername ] = useSessionStorage('username', 'NOT LOGGED IN USER') //|| 'NOT LOGGED IN USER'; // Read values passed on state
 
     return (
         <Box style={{ margin: "auto" }} display={"flex"} flexDirection={"column"} justify-content={"center"} 
