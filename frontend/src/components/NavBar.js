@@ -41,7 +41,26 @@ function NavBar() {
             navigate("/logout", { state: { success: true } }) // placeholder until merge with matching
         }
     }
-    
+
+    const handleDeleteAccount = async () => {
+        const res = await axios.post(URL_USER_SVC + '/deleteAccount',
+            { username },
+            { withCredentials: true, credentials: 'include' })
+            .catch((err) => {
+                console.log(err)
+                // Either cookie or token expired
+                if (err.response.status === STATUS_CODE_UNAUTHORIZED ||
+                    err.response.status === STATUS_CODE_FORBIDDEN) {
+                    navigate("/login");
+                }
+            })
+
+        if (res && res.status === STATUS_CODE_OK) {
+            console.log(`${username} delete success`)
+            navigate("/deleteAccount", { state: { success: true } }) // placeholder until merge with matching
+        }
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="sticky">
@@ -49,25 +68,25 @@ function NavBar() {
                     <Typography variant="h6" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
                         PeerPrep
                     </Typography>
-                    <Box sx={{ flexGrow: 0}}>
+                    <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open User Settings">
                             <IconButton onClick={handleOpenUserSettings}>
                                 <SettingsIcon />
                             </IconButton>
                         </Tooltip>
-                        
+
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
-                              vertical: 'top',
-                              horizontal: 'right',
+                                vertical: 'top',
+                                horizontal: 'right',
                             }}
                             keepMounted
                             transformOrigin={{
-                              vertical: 'top',
-                              horizontal: 'right',
+                                vertical: 'top',
+                                horizontal: 'right',
                             }}
                             open={open}
                             onClose={handleCloseUserSettings}
@@ -77,7 +96,11 @@ function NavBar() {
                                     <Link to="/changePassword" style={{ textDecoration: "none" }}>Change Password</Link>
                                 </Typography>
                             </MenuItem>
-                            {/* <MenuItem>Delete Account</MenuItem> */}
+                            <MenuItem onClick={handleDeleteAccount}>
+                                <Typography variant="text" textAlign="center" color="primary">
+                                    Delete Account
+                                </Typography>
+                            </MenuItem>
 
                         </Menu>
                         <Tooltip title="Logout">
@@ -85,12 +108,12 @@ function NavBar() {
                                 <LogoutIcon />
                             </IconButton>
                         </Tooltip>
-                        
+
                     </Box>
                 </Toolbar>
             </AppBar>
         </Box>
-        
+
     )
 }
 
