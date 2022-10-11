@@ -29,8 +29,10 @@ export async function createUser(req, res) {
             }
 
             if (!verifyPasswordStrength(password)) {
-                return res.status(400).json({ message: 'New password does not meet password strength requirement. ' +
-                    'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.'});
+                return res.status(400).json({
+                    message: 'New password does not meet password strength requirement. '
+                    + 'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.',
+                });
             }
 
             const hashedPassword = await hashSaltPassword(password);
@@ -96,14 +98,16 @@ export async function changePassword(req, res) {
             console.log(`User ${username} has been authenticated.`);
             // verify password strength
             if (oldPassword === newPassword) {
-                return res.status(400).json({ message: 'New password should not be the same as old password'});
+                return res.status(400).json({ message: 'New password should not be the same as old password' });
             }
 
             if (!verifyPasswordStrength(newPassword)) {
-                return res.status(400).json({ message: 'New password does not meet password strength requirement. ' +
-                    'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.'});
+                return res.status(400).json({
+                    message: 'New password does not meet password strength requirement. '
+                    + 'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.',
+                });
             }
-            
+
             // store new password
             const hashedNewPassword = await hashSaltPassword(newPassword);
             const resp = await _updateUser(user, { username: username, password: hashedNewPassword });
