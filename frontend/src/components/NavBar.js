@@ -75,7 +75,7 @@ function NavBar() {
                             onClose={handleCloseUserSettings}
                         >
                             <MenuItem onClick={handleCloseUserSettings}>
-                                <Button variant="text" textAlign="center" color="primary">
+                                <Button variant="text" style={{ textAlign: "center" }} color="primary">
                                     <Link to="/changePassword" style={{ textDecoration: "none" }}>Change Password</Link>
                                 </Button>
                             </MenuItem>
