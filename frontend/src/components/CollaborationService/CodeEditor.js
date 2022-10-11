@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { SocketContext } from './SocketContext'
 import CodeMirror from '@uiw/react-codemirror';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { javascript } from '@codemirror/lang-javascript';
@@ -10,8 +11,42 @@ import { basicSetup, minimalSetup } from '@uiw/codemirror-extensions-basic-setup
 
 import Box from '@mui/material/Box';
 
-const CodeEditor = () => {
-    const code = '/*Type in your solution below*/';
+const CodeEditor = (props) => {
+
+    //getting roomId
+    const roomId = props.roomId;
+    console.log(roomId);
+
+    //getting socket
+    const { getSocket } = useContext(SocketContext);
+    let socket = getSocket();
+    console.log(socket);
+
+    const [code, setCode] = useState();
+
+    useEffect( () => {
+        socket.on("connect", () => {
+            console.log(socket.connected); // true
+          });
+        
+        socket.emit("join-collab-service", roomId);
+
+        setCode(! window.sessionStorage.getItem("code") ? "/*Type in your solution below*/"
+                                                        : window.sessionStorage.getItem("code"));
+
+        socket.on("sync-text", (text) => {
+            setCode(text);
+            window.sessionStorage.setItem("code", text);
+        });
+
+        return () => {
+            socket.disconnect();
+            window.sessionStorage.clear();
+            socket.connect();
+        } 
+
+    }, []);
+
     
     return (
         <div>
@@ -34,6 +69,7 @@ const CodeEditor = () => {
                 ]}
                 onChange={(value, viewUpdate) => {
                     console.log('value:', value);
+                    socket.emit("on-keypress", value, roomId);
                 }}
             />
         </div>
