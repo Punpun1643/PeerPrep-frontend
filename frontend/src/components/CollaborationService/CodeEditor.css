@@ -1,0 +1,14 @@
+.code-editor {
+    counter-reset: line;
+    padding-left: 0;
+  }
+  
+.code-editor p:before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    padding: 0.20em;
+    margin-right: 0.5em;
+    color: #888
+  }
