@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
 //to log onto console when client is connected 
 socketHandler(io);
 
-
 httpServer.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 });
