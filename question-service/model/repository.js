@@ -19,6 +19,6 @@ export async function deleteQuestion(params) {
     return QuestionModel.findOneAndDelete({ QuestionTitle: params });
 }
 
-export async function findQuestion(param) {
-    return QuestionModel.findOne({ QuestionTitle: param });
+export async function findQuestion(params) {
+    return QuestionModel.findOne(params);
 }

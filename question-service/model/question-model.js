@@ -11,8 +11,8 @@ const QuestionModelSchema = new Schema({
         type: String,
         required: true,
     },
-    QuestionDiffficulty: {
-        type: Number,
+    QuestionDifficulty: {
+        type: String,
         required: true,
     },
 });

@@ -1,9 +1,9 @@
 import { createQuestion, deleteQuestion, findQuestion } from './repository.js';
 
 // need to separate orm functions from repository to decouple business logic from persistence
-export async function ormCreateQuestion(QuestionTitle, QuestionBody, QuestionDiffficulty) {
+export async function ormCreateQuestion(QuestionTitle, QuestionBody, QuestionDifficulty) {
     try {
-        const newQuestion = await createQuestion({ QuestionTitle, QuestionBody, QuestionDiffficulty });
+        const newQuestion = await createQuestion({ QuestionTitle, QuestionBody, QuestionDifficulty });
         newQuestion.save();
         return true;
     } catch (err) {
@@ -28,11 +28,11 @@ export async function ormDeleteQuestion(QuestionTitle) {
 
 export async function ormUpdateQuestion(Question, changes) {
     try {
-        const { QuestionTitle, QuestionBody, QuestionDiffficulty } = changes;
+        const { QuestionTitle, QuestionBody, QuestionDifficulty } = changes;
         const updatedQuestion = Question;
         updatedQuestion.QuestionTitle = QuestionTitle;
         updatedQuestion.QuestionBody = QuestionBody;
-        updatedQuestion.QuestionDiffficulty = QuestionDiffficulty;
+        updatedQuestion.QuestionDifficulty = QuestionDifficulty;
         updatedQuestion.save();
         return true;
     } catch (err) {
@@ -41,9 +41,18 @@ export async function ormUpdateQuestion(Question, changes) {
     }
 }
 
-export async function ormFindQuestion(QuestionTitle) {
+export async function ormFindQuestion(difficulty, title=null) {
     try {
-        const Question = await findQuestion(QuestionTitle);
+        const params = {}
+        if (title) {
+            params['QuestionTitle'] = title
+        }
+
+        if (difficulty) {
+            params['QuestionDifficulty'] = difficulty
+        }
+        console.log(params)
+        const Question = await findQuestion(params);
         console.log(Question);
         return Question;
     } catch (err) {
