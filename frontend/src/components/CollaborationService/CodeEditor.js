@@ -10,6 +10,8 @@ import "./CodeEditor.css";
 const CodeEditor = (props) => {
 
   const roomId = props.roomId;
+  const firstClientSocketId = props.socketIds[0];
+  const secondClientSocketId = props.socketIds[1];
   
   const [EditorRef, setEditorRef] = useState(null);
   const [code, setCode] = useState("");
@@ -38,6 +40,7 @@ const CodeEditor = (props) => {
         const color = RandomColor(); 
         
         awareness.setLocalStateField("user", {
+          // using roomId now. possibly can change to something better.
           name: `${roomId}`,
           color: color,
         });

@@ -12,21 +12,10 @@ import { io } from "socket.io-client";
 // collaboration service
 import CodeEditor from '../CollaborationService/CodeEditor';
 
-
-
 export default function RoomPage() {
 
     const { getSocket } = useContext(SocketContext);
     let socket = getSocket();
-    
-
-    // useEffect( () => {
-    //     if (! socket) {
-    //     console.log("hi");
-    //     const reconnectedSocket = io("http://localhost:8001");
-    //     setSocket(reconnectedSocket);
-    //     console.log(reconnectedSocket);
-    //     }}, []);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -86,7 +75,7 @@ export default function RoomPage() {
                 <Grid item xs={6.98} md={6.98} sx={{height: "100vh"}}>
                     <Stack spacing={0}>
                         {/* code box */}
-                        <CodeEditor roomId={roomId} />
+                        <CodeEditor roomId={roomId} socketIds={[roomId, secondClientSocketId]}/>
                     </Stack>
                 </Grid>
             </Grid>
