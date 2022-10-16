@@ -53,20 +53,20 @@ export default function RoomPage() {
                     <Stack spacing={0.5}>
                         {/* room number and leave room button */}
                         <Box sx={{height: "9.5vh", display:'flex', justifyContent:'flex-start', alignItems:'center', backgroundColor: 'white'}}>
-                            <Typography variant="h6" sx={{margin: 2}}> Room {roomId} </Typography> 
-                            <Button variant="outlined" endIcon={<LogoutIcon />} onClick={onLeaveHandler}>
+                            <Typography variant="body2" sx={{margin: 2}}> Room {roomId.slice(0,8)}  </Typography> 
+                            <Button variant="outlined" endIcon={<LogoutIcon />} size="small" onClick={onLeaveHandler}>
                               Leave Room 
                             </Button>    
                         </Box>
                         {/* question box */}
                         <Box sx={{height: "58vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4}}>
-                            <Typography variant="h6" sx={{margin: 2}}> Placeholder question box </Typography> 
+                            <Typography variant="body2" sx={{margin: 2}}> Placeholder question box </Typography> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'orange', borderRadius: 4}}>
-                            <Typography variant="h6" sx={{margin: 2}}> Placeholder chat box </Typography> 
+                            <Typography variant="body2" sx={{margin: 2}}> Placeholder chat box </Typography> 
                         </Box>
                     </Stack>
                 </Grid>
