@@ -1,0 +1,12 @@
+[
+    {
+        "QuestionTitle":"Minimum Window Substring",
+        "QuestionBody":"Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string \"\".\n\nThe testcases will be generated such that the answer is unique.\n\nA substring is a contiguous sequence of characters within the string.\n\nExamples:\n\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\n\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\n\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\n\nConstraints:\n\n* m == s.length\n* n == t.length\n* 1 <= m, n <= 105\n* s and t consist of uppercase and lowercase English letters.",
+        "QuestionDifficulty":"hard"
+    },
+    {
+        "QuestionTitle":"",
+        "QuestionBody":"",
+        "QuestionDifficulty":"hard"
+    }
+]
