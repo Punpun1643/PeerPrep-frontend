@@ -48,5 +48,55 @@
         "QuestionTitle":"Implement Trie (Prefix Tree)",
         "QuestionBody":"A trie (pronounced as \"try\") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.\n\nImplement the Trie class:\n\n* Trie() Initializes the trie object.\n* void insert(String word) Inserts the string word into the trie.\n* boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.\n* boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.\n\nExamples:\n\nInput:\nOrder of Operation: [\"Trie\", \"insert\", \"search\", \"search\", \"startsWith\", \"insert\", \"search\"]\nInput for each operation: [[], [\"apple\"], [\"apple\"], [\"app\"], [\"app\"], [\"app\"], [\"app\"]]\n\nOutput:\nOutput for each operation: [null, null, true, false, true, null, true]\n\nConstraints:\n* 1 <= word.length, prefix.length <= 2000\n* word and prefix consist only of lowercase English letters.\n* At most 3 * 104 calls in total will be made to insert, search, and startsWith.",
         "QuestionDifficulty":"medium"
-    }
+    },
+    {
+		"QuestionTitle":"Add Two Numbers",
+		"QuestionBody":"You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.\n\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself.\n\nExamples:\n\nInput: l1 = [2,4,3], l2 = [5,6,4]\nOutput: [7,0,8]\n\nInput: l1 = [0], l2 = [0]\nOutput: [0]\n\nInput: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]\nOutput: [8,9,9,9,0,0,0,1]\n\nConstraints:\n* The number of nodes in each linked list is in the range [1, 100].\n* 0 <= Node.val <= 9\n* It is guaranteed that the list represents a number that does not have leading zeros.\n",
+		"QuestionDifficulty":"medium"
+	},
+	{
+		"QuestionTitle":"Longest Palindromic Substring",
+		"QuestionBody":"Given a string s, return the longest palindromic substring in s.\n\nA string is called a palindrome string if the reverse of that string is the same as the original string.\n\nExamples: \n\nInput: s = \"babad\"\nOutput: \"bab\"\nExplanation: \"aba\" is also a valid answer.\nExample 2:\n\nInput: s = \"cbbd\"\nOutput: \"bb\"\n \nConstraints:\n\n* 1 <= s.length <= 1000\n* s consist of only digits and English letters.",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Container With Most Water",
+		"QuestionBody":"You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).\n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\n\nReturn the maximum amount of water a container can store.\n\nNotice that you may not slant the container.\n\nExamples:\n\nInput: height = [1,8,6,2,5,4,8,3,7]\nOutput: 49\n\nInput: height = [1,1]\nOutput: 1\n \n\nConstraints:\n* n == height.length\n* 2 <= n <= 105\n* 0 <= height[i] <= 104",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Letter Combinations of a Phone Number",
+		"QuestionBody":"Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.\n\nA mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.\n\nExamples:\n\nInput: digits = \"23\"\nOutput: [\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]\n\nInput: digits = \"\"\nOutput: []\nExample 3:\n\nInput: digits = \"2\"\nOutput: [\"a\",\"b\",\"c\"]\n \nConstraints:\n* 0 <= digits.length <= 4\n* digits[i] is a digit in the range ['2', '9'].",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Remove Nth Node From End of List",
+		"QuestionBody":"Given the head of a linked list, remove the nth node from the end of the list and return its head.\n\nExamples:\n\nInput: head = [1,2,3,4,5], n = 2\nOutput: [1,2,3,5]\n\nInput: head = [1], n = 1\nOutput: []\n\nInput: head = [1,2], n = 1\nOutput: [1]\n \nConstraints:\n* The number of nodes in the list is sz.\n* 1 <= sz <= 30\n* 0 <= Node.val <= 100\n* 1 <= n <= sz",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Generate Parentheses",
+		"QuestionBody":"Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.\n\nExamples:\n\nInput: n = 3\nOutput: [\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]\n\nInput: n = 1\nOutput: [\"()\"]\n \nConstraints:\n* 1 <= n <= 8",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Next Permutation",
+		"QuestionBody":"A permutation of an array of integers is an arrangement of its members into a sequence or linear order.\n\nFor example, for arr = [1,2,3], the following are all the permutations of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].\nThe next permutation of an array of integers is the next lexicographically greater permutation of its integer. More formally, if all the permutations of the array are sorted in one container according to their lexicographical order, then the next permutation of that array is the permutation that follows it in the sorted container. If such arrangement is not possible, the array must be rearranged as the lowest possible order (i.e., sorted in ascending order).\n\nFor example, the next permutation of arr = [1,2,3] is [1,3,2].\nSimilarly, the next permutation of arr = [2,3,1] is [3,1,2].\nWhile the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical larger rearrangement.\nGiven an array of integers nums, find the next permutation of nums.\n\nThe replacement must be in place and use only constant extra memory.\n\nExamples:\n\nInput: nums = [1,2,3]\nOutput: [1,3,2]\n\nInput: nums = [3,2,1]\nOutput: [1,2,3]\n\nInput: nums = [1,1,5]\nOutput: [1,5,1]\n \nConstraints:\n* 1 <= nums.length <= 100\n* 0 <= nums[i] <= 100",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Search in Rotated Sorted Array",
+		"QuestionBody":"There is an integer array nums sorted in ascending order (with distinct values).\n\nPrior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].\n\nGiven the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.\n\nYou must write an algorithm with O(log n) runtime complexity.\n\nExamples:\n\nInput: nums = [4,5,6,7,0,1,2], target = 0\nOutput: 4\n\nInput: nums = [4,5,6,7,0,1,2], target = 3\nOutput: -1\n\nInput: nums = [1], target = 0\nOutput: -1\n \nConstraints:\n* 1 <= nums.length <= 5000\n* -104 <= nums[i] <= 104\n* All values of nums are unique.\n* nums is an ascending array that is possibly rotated.\n* -104 <= target <= 104",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Find First and Last Position of Element in Sorted Array",
+		"QuestionBody":"Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.\n\nIf target is not found in the array, return [-1, -1].\n\nYou must write an algorithm with O(log n) runtime complexity.\n\nExamples:\n\nInput: nums = [5,7,7,8,8,10], target = 8\nOutput: [3,4]\n\nInput: nums = [5,7,7,8,8,10], target = 6\nOutput: [-1,-1]\n\nInput: nums = [], target = 0\nOutput: [-1,-1]\n\nConstraints:\n* 0 <= nums.length <= 105\n* -109 <= nums[i] <= 109\n* nums is a non-decreasing array.\n* -109 <= target <= 109",
+		"QuestionDifficulty":"medium"
+	},
+    {
+		"QuestionTitle":"Combination Sum",
+		"QuestionBody":"Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.\n\nThe same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different.\n\nThe test cases are generated such that the number of unique combinations that sum up to target is less than 150 combinations for the given input.\n\nExamples:\n\nInput: candidates = [2,3,6,7], target = 7\nOutput: [[2,2,3],[7]]\n\nInput: candidates = [2,3,5], target = 8\nOutput: [[2,2,2,2],[2,3,3],[3,5]]\n\nInput: candidates = [2], target = 1\nOutput: []\n \nConstraints:\n* 1 <= candidates.length <= 30\n* 2 <= candidates[i] <= 40\n* All elements of candidates are distinct.\n* 1 <= target <= 40",
+		"QuestionDifficulty":"medium"
+	}
 ]
