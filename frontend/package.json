@@ -18,15 +18,21 @@
     "@uiw/codemirror-extensions-basic-setup": "^4.12.4",
     "@uiw/codemirror-theme-dracula": "^4.12.4",
     "@uiw/react-codemirror": "^4.12.4",
-    "codemirror": "^5.63.0",
     "axios": "^0.27.2",
+    "codemirror": "^5.65.9",
+    "randomcolor": "^0.6.2",
     "react": "^18.2.0",
+    "react-codemirror2": "^7.2.1",
     "react-countdown-circle-timer": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.5.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "y-codemirror": "^3.0.1",
+    "y-webrtc": "^10.2.3",
+    "y-websocket": "^1.4.5",
+    "yjs": "^13.5.41"
   },
   "scripts": {
     "start": "react-scripts start",

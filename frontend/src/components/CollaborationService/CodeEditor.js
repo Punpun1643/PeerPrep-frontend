@@ -1,79 +1,104 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { SocketContext } from './SocketContext'
-import CodeMirror from '@uiw/react-codemirror';
-import { dracula } from '@uiw/codemirror-theme-dracula';
-import { javascript } from '@codemirror/lang-javascript';
-import { java } from '@codemirror/lang-java';
-import { python } from '@codemirror/lang-python';
-import { sql } from  '@codemirror/lang-sql';
-import { cpp } from '@codemirror/lang-cpp';
-import { basicSetup, minimalSetup } from '@uiw/codemirror-extensions-basic-setup';
-
-import Box from '@mui/material/Box';
+import React, { useEffect, useState } from "react";
+import * as Y from "yjs";
+import { WebrtcProvider } from "y-webrtc";
+import { CodemirrorBinding } from "y-codemirror";
+import { UnControlled as CodeMirrorEditor } from "react-codemirror2";
+import RandomColor from "randomcolor";
+import "./CodeEditorAddons";
+import "./CodeEditor.css";
 
 const CodeEditor = (props) => {
 
-    //getting roomId
-    const roomId = props.roomId;
-    console.log(roomId);
+  const roomId = props.roomId;
+  const firstClientSocketId = props.socketIds[0];
+  const secondClientSocketId = props.socketIds[1];
+  
+  const [EditorRef, setEditorRef] = useState(null);
+  const [code, setCode] = useState("");
+  
+  const handleEditorDidMount = (editor) => {
+    setEditorRef(editor);
+  };
 
-    //getting socket
-    const { getSocket } = useContext(SocketContext);
-    let socket = getSocket();
-    console.log(socket);
+  useEffect(() => {
+    
+    if (EditorRef) {
+      const ydoc = new Y.Doc();
 
-    const [code, setCode] = useState();
+      let provider = null;
+      
+      try {
+        provider = new WebrtcProvider(roomId, ydoc, { signalling: ['ws://localhost:3000'] });
 
-    useEffect( () => {
-        socket.on("connect", () => {
-            console.log(socket.connected); // true
-          });
+        const yText = ydoc.getText("codemirror");
         
-        socket.emit("join-collab-service", roomId);
+        const yUndoManager = new Y.UndoManager(yText);
 
-        setCode(! window.sessionStorage.getItem("code") ? "/*Type in your solution below*/"
-                                                        : window.sessionStorage.getItem("code"));
-
-        socket.on("sync-text", (text) => {
-            setCode(text);
-            window.sessionStorage.setItem("code", text);
+        const awareness = provider.awareness;
+        
+        // random colour for the user cursor
+        const color = RandomColor(); 
+        
+        awareness.setLocalStateField("user", {
+          // using roomId now. possibly can change to something better.
+          name: `${roomId}`,
+          color: color,
+        });
+        
+        const getBinding = new CodemirrorBinding(yText, EditorRef, awareness, {
+          yUndoManager,
         });
 
-        return () => {
-            socket.disconnect();
-            window.sessionStorage.clear();
-            socket.connect();
-        } 
+      } catch (err) {
+        alert("There is an error in the collaborator, please refresh the page!");
+      }
+      return () => {
+        if (provider) {
+          provider.disconnect(); 
+          ydoc.destroy(); 
+        }
+      };
+    }
+  }, [EditorRef]);
 
-    }, []);
-
-    
-    return (
-        <div>
-            <CodeMirror
-                value={code}
-                height="99vh"
-                theme={dracula}
-                basicSetup={{
-                    foldGutter: false,
-                    dropCursor: false,
-                    allowMultipleSelections: false,
-                    indentOnInput: true
-                }}
-                extensions={[
-                    javascript({ jsx: true }), 
-                    java(),
-                    python(),
-                    sql(),
-                    cpp()
-                ]}
-                onChange={(value, viewUpdate) => {
-                    console.log('value:', value);
-                    socket.emit("on-keypress", value, roomId);
-                }}
-            />
-        </div>
-    );
+  return (
+    <div
+      style={{
+        display: "flex",
+        height: "99vh",
+        width: "100%",
+        fontSize: "16px",
+        overflowY: "auto",
+      }}
+    >
+      <CodeMirrorEditor
+        onChange={(editor, data, value) => {
+          setCode(value);
+        }}
+        autoScroll
+        options={{
+          mode: 'text/x-java',
+          theme: "dracula", 
+          lineWrapping: true,
+          smartIndent: true,
+          lineNumbers: true,
+          foldGutter: true,
+          tabSize: 2,
+          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+          autoCloseTags: true,
+          matchBrackets: true,
+          autoCloseBrackets: true,
+          extraKeys: {
+            "Ctrl-Space": "autocomplete",
+          },
+        }}
+        editorDidMount={(editor) => {
+          handleEditorDidMount(editor);
+          editor.setSize("99vw", "100%");
+        }}
+      />
+    </div>
+  );
 }
 
 export default CodeEditor;
