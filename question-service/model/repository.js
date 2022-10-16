@@ -19,6 +19,10 @@ export async function deleteQuestion(params) {
     return QuestionModel.findOneAndDelete({ QuestionTitle: params });
 }
 
-export async function findQuestion(params) {
-    return QuestionModel.findOne(params);
+export async function findQuestionRandomly(params) {
+    // find subset of data then return one randomly
+    const questions = await QuestionModel.where(params).limit(20);
+    const count = questions.length;
+    const random = Math.floor(Math.random() * count);
+    return questions[random];
 }

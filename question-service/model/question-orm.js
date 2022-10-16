@@ -1,4 +1,4 @@
-import { createQuestion, deleteQuestion, findQuestion } from './repository.js';
+import { createQuestion, deleteQuestion, findQuestionRandomly } from './repository.js';
 
 // need to separate orm functions from repository to decouple business logic from persistence
 export async function ormCreateQuestion(QuestionTitle, QuestionBody, QuestionDifficulty) {
@@ -41,20 +41,19 @@ export async function ormUpdateQuestion(Question, changes) {
     }
 }
 
-export async function ormFindQuestion(difficulty, title=null) {
+export async function ormFindQuestionRandomly(difficulty, title=null) {
     try {
-        const params = {}
+        const params = {};
         if (title) {
-            params['QuestionTitle'] = title
+            params['QuestionTitle'] = {$ne : title};
         }
 
         if (difficulty) {
-            params['QuestionDifficulty'] = difficulty
+            params['QuestionDifficulty'] = difficulty;
         }
-        console.log(params)
-        const Question = await findQuestion(params);
-        console.log(Question);
-        return Question;
+
+        const question = await findQuestionRandomly(params);
+        return question;
     } catch (err) {
         console.log('ERROR: Could not find Question');
         return { err };
@@ -63,9 +62,9 @@ export async function ormFindQuestion(difficulty, title=null) {
 
 export async function ormCheckQuestionExists(QuestionTitle) {
     try {
-        const Question = await ormFindQuestion(QuestionTitle);
-        console.log(Question);
-        if (Question) {
+        const question = await ormFindQuestion(QuestionTitle);
+        console.log(question);
+        if (question) {
             return true;
         }
         return false;

@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { retrieveQuestion } from './controller/question-controller.js';
+import { generateNewQuestion, retrieveQuestion } from './controller/question-controller.js';
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -9,7 +9,8 @@ app.options('*', cors());
 
 const router = express.Router();
 
-router.get('/', retrieveQuestion)
+router.get('/', retrieveQuestion);
+router.get('/generateNew', generateNewQuestion);
 
 app.use('/api/questions', router).all((_, res) => {
     res.setHeader('content-type', 'application/json');
