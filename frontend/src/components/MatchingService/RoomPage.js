@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { io } from "socket.io-client";
+import QuestionDisplay from '../QuestionService/QuestionDisplay';
 
 
 
@@ -66,8 +67,7 @@ export default function RoomPage() {
                         {/* question box */}
                         <Box sx={{height: "58vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4, overflow: "scroll"}}>
-                            <Typography variant="body1" sx={{margin: 2}}> {questionTitle} </Typography> 
-                            <Typography variant="caption" display="block" sx={{margin: 2}}> {questionBody} </Typography> 
+                            <QuestionDisplay title={questionTitle} body={questionBody}/> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
