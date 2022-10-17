@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
+import axios from "axios";
+import { URL_USER_SVC } from "../configs";
+import { useNavigate } from "react-router-dom";
 
 function LogoutPage(props) {
-    const { state } = useLocation();
     const [logoutMessage, setLogoutMessage] = useState("You have been signed out successfully!");
 
-    useEffect(() => {
-        // call api or anything
-        let success;
-        if (state !== null) {
-            success = state; // Read values passed on state
-        } else {
-            success = false; // Read values passed on state
-        }
+    let navigate = useNavigate();
 
-        if (!success) {
-            setLogoutMessage("You must be logged in first!");
-        }
-    }, [state]);
+    const ensureLoggedIn = async () => {
+        await axios.post(URL_USER_SVC + '/auth',
+            { withCredentials: true, credentials: 'include' })
+            .catch((err) => {
+                console.log(err)
+                navigate("/login")
+            });
+    }
+
+    useEffect(() => {
+        ensureLoggedIn();
+    })
 
 
     return (
