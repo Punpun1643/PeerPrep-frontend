@@ -51,11 +51,12 @@ function CountdownView(props) {
             console.log(socket.connected); // true
           });
         
-        socket.on("match-success", (firstClientSocketId, secondClientSocketId) => {
+        socket.on("match-success", (firstClientSocketId, secondClientSocketId, questionData) => {
             setMatchingStatus('match-success');
             console.log(firstClientSocketId);
             navigate('/roompage', {state: { roomId: firstClientSocketId,
-                secondClientSocketId: secondClientSocketId }} );
+                secondClientSocketId: secondClientSocketId,
+                questionData: questionData }} );
             }
         );
 
