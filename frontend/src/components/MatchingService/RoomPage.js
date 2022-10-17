@@ -17,23 +17,20 @@ export default function RoomPage() {
     let socket = getSocket();
     
 
-    // useEffect( () => {
-    //     if (! socket) {
-    //     console.log("hi");
-    //     const reconnectedSocket = io("http://localhost:8001");
-    //     setSocket(reconnectedSocket);
-    //     console.log(reconnectedSocket);
-    //     }}, []);
-
     const location = useLocation();
     const navigate = useNavigate();
 
-    console.log(location);
     const roomId = location.state.roomId;
+    const secondClientSocketId = location.state.secondClientSocketId;
+
+    //breaking question down
+    let questionData = location.state.questionData;
+    let questionDifficulty = questionData.question.QuestionDifficulty;
+    let questionTitle = questionData.question.QuestionTitle;
+    let questionBody = questionData.question.QuestionBody;
+
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
-
-    const secondClientSocketId = location.state.secondClientSocketId;
 
     useEffect( () => {
         socket.on("connect", () => {
@@ -67,9 +64,10 @@ export default function RoomPage() {
                             </Button>    
                         </Box>
                         {/* question box */}
-                        <Box sx={{height: "58vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
-                                  backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4}}>
-                            <Typography variant="h6" sx={{margin: 2}}> Placeholder question box </Typography> 
+                        <Box sx={{height: "58vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
+                                  backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4, overflow: "scroll"}}>
+                            <Typography variant="body1" sx={{margin: 2}}> {questionTitle} </Typography> 
+                            <Typography variant="caption" display="block" sx={{margin: 2}}> {questionBody} </Typography> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
