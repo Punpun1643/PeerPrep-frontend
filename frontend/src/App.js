@@ -32,11 +32,11 @@ function App() {
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/logout" element={<LogoutPage />} />
+                    <Route path="deleteAccount" element={<DeleteAccountPage />} />
                     {/* Placeholder home for matching-service */}
                     <Route path="/" element={<WithNavBar />}>
                         <Route path="home" element={<Home />} />
                         <Route path="changePassword" element={<ChangePasswordPage />} />
-                        <Route path="deleteAccount" element={<DeleteAccountPage />} />
                         <Route path="selectquestiondifficulty" element={<SelectionView />}></Route>
                         <Route path="findingmatch" element={<CountdownView />}></Route>
                         <Route path="roompage" element={<RoomPage />}></Route>
