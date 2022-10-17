@@ -1,13 +1,13 @@
+import React, { Fragment, useState } from 'react';
 import { Alert, Box, Button, IconButton, Snackbar, Stack, TextField, Typography } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
-import { Fragment, useState } from "react";
 import { URL_USER_SVC } from "../configs";
 import { STATUS_CODE_BADREQUEST, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
-import { useSessionStorage } from "../customHooks";
+import Cookies from 'js-cookie';
 
 function ChangePasswordPage() {
-    const [username, setUsername] = useSessionStorage('username' ,"")
+    const [username, setUsername] = useState(Cookies.get('username'));
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [newPasswordTwo, setNewPasswordTwo] = useState("")
@@ -26,7 +26,7 @@ function ChangePasswordPage() {
             setOpen(true)
             setErrorMsg('Please check that inputs are non-empty and valid')
         } else {
-            const res = await axios.post(URL_USER_SVC + '/changePassword', 
+            const res = await axios.post(URL_USER_SVC + '/changePassword',
                 { username, oldPassword, newPassword },
                 { withCredentials: true, credentials: 'include' })
                 .catch((err) => {
@@ -113,13 +113,13 @@ function ChangePasswordPage() {
                 <Typography variant={"subtitle1"}>
                     Your new password should be alphanumeric and be at least length 8
                 </Typography>
-                <TextField 
+                <TextField
                     disabled
-                    label="Username" 
+                    label="Username"
                     variant="standard"
                     value={username}
                 />
-                <TextField 
+                <TextField
                     required
                     label="Current Password"
                     variant="standard"
@@ -129,7 +129,7 @@ function ChangePasswordPage() {
                     onChange={(e) => setOldPassword(e.target.value)}
                     onBlur={checkOldPwNotMatchNewPw}
                 />
-                <TextField 
+                <TextField
                     required
                     label="New Password"
                     variant="standard"
@@ -137,11 +137,11 @@ function ChangePasswordPage() {
                     placeholder="Type your new password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    onBlur={(e) => {validatePasswordStrength(e); checkNewPasswordsMatch(e);}}
+                    onBlur={(e) => { validatePasswordStrength(e); checkNewPasswordsMatch(e); }}
                     error={passwordStrengthMsg !== ''}
                     helperText={passwordStrengthMsg}
                 />
-                <TextField 
+                <TextField
                     required
                     label="Confirm New Password"
                     variant="standard"
@@ -156,7 +156,7 @@ function ChangePasswordPage() {
                 <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
                     <Button variant={"outlined"} onClick={handleChangePassword}>Submit</Button>
                 </Box>
-                {isSuccess && 
+                {isSuccess &&
                     <Snackbar
                         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                         open={isSuccess}
@@ -181,7 +181,7 @@ function ChangePasswordPage() {
                 </Alert>
             </Snackbar>
         </Box>
-    ); 
+    );
 }
 
 export default ChangePasswordPage;
