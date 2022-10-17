@@ -12,7 +12,7 @@ import {
 import {useState} from "react";
 import axios from "axios";
 import {URL_USER_SVC} from "../configs";
-import {STATUS_CODE_CONFLICT, STATUS_CODE_CREATED} from "../constants";
+import {STATUS_CODE_BADREQUEST, STATUS_CODE_CONFLICT, STATUS_CODE_CREATED} from "../constants";
 import {Link} from "react-router-dom";
 
 function SignupPage() {
@@ -29,6 +29,8 @@ function SignupPage() {
             .catch((err) => {
                 if (err.response.status === STATUS_CODE_CONFLICT) {
                     setErrorDialog('This username already exists')
+                } else if (err.response.status === STATUS_CODE_BADREQUEST) {
+                    setErrorDialog(err.response.data.message)
                 } else {
                     setErrorDialog('Please try again later')
                 }
@@ -72,6 +74,7 @@ function SignupPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                helperText="Password should contain at least 8 characters and is alphanumeric"
                 sx={{marginBottom: "2rem"}}
             />
             <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
