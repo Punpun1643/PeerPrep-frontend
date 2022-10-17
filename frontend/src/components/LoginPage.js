@@ -5,11 +5,9 @@ import axios from "axios";
 import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
 import { useNavigate } from "react-router-dom";
-import { useSessionStorage } from "../customHooks";
 
 function LoginPage() {
     const [username, setUsername] = useState('')
-    const [sessionUsername, setSessionUsername] = useSessionStorage('username', '')
     const [password, setPassword] = useState("")
     const [errorMsg, setErrorMsg] = useState("")
     const [open, setOpen] = useState(false)
@@ -35,7 +33,6 @@ function LoginPage() {
         if (res && res.status === STATUS_CODE_OK) {
             console.log(`${username} login success`)
             // set session storage username
-            setSessionUsername(`${username}`) // ISSUE: setSessionUsername not working here since it's sync function
             navigate("/home") // placeholder until merge with matching
         }
     }
