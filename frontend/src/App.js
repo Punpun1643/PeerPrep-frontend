@@ -32,7 +32,7 @@ function App() {
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/logout" element={<LogoutPage />} />
-                    <Route path="deleteAccount" element={<DeleteAccountPage />} />
+                    <Route path="/deleteAccount" element={<DeleteAccountPage />} />
                     {/* Placeholder home for matching-service */}
                     <Route path="/" element={<WithNavBar />}>
                         <Route path="home" element={<Home />} />

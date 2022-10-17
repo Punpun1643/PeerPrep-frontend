@@ -7,9 +7,9 @@ import axios from "axios";
 import { useSessionStorage } from "../customHooks";
 import { STATUS_CODE_FORBIDDEN, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
-import Cookies from 'js-cookie';
 import DeleteAccountAlert from "./DeleteAccountAlert";
 import Button from '@mui/material/Button';
+import Cookies from 'js-cookie';
 
 function NavBar() {
     const [anchorEl, setAnchorEl] = useState(null)
