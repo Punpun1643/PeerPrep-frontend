@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Alert, Box, Button, IconButton, Snackbar, Stack, TextField, Typography } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
 import { URL_USER_SVC } from "../configs";
 import { STATUS_CODE_BADREQUEST, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+import { ensureLoggedIn } from '../Util';
 
 function ChangePasswordPage() {
     const [username, setUsername] = useState(Cookies.get('username'));
@@ -17,6 +19,12 @@ function ChangePasswordPage() {
     const [open, setOpen] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")
     const [successMsg, setSuccessMsg] = useState("")
+
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        ensureLoggedIn(navigate);
+    })
 
     const handleChangePassword = async () => {
         setIsSuccess(false)

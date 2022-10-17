@@ -4,7 +4,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useSessionStorage } from "../customHooks";
 import { STATUS_CODE_FORBIDDEN, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
 import DeleteAccountAlert from "./DeleteAccountAlert";
