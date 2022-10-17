@@ -143,6 +143,7 @@ export async function loginUser(req, res) {
     // Store token in cookie
     res.cookie('token', token, { expires: new Date(Date.now() + (30 * 60 * 1000)), httpOnly: true });
     res.cookie('refreshToken', refreshToken, { expires: new Date(Date.now() + (30 * 60 * 1000)), httpOnly: true });
+    res.cookie('username', req.body.username, { expires: new Date(Date.now() + (30 * 60 * 1000)) });
 
     return res.status(200).json({
         message: `${user.username} has been authenticated`,
