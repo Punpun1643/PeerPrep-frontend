@@ -3,56 +3,46 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import DifficultyCard from './DifficultyCard';
 import CountdownView from './CountdownView';
-import axios from "axios";
-import { URL_USER_SVC } from "../../configs";
 import { useNavigate } from "react-router-dom";
+import { ensureLoggedIn } from '../../Util';
 
 
 export default function SelectionView() {
-    const difficultyLevels = ["easy", "medium", "hard"];
-    const [showModal, setShowModal] = useState(false);
-    const [socket, setSocket] = useState(null);
+  const difficultyLevels = ["easy", "medium", "hard"];
+  const [showModal, setShowModal] = useState(false);
+  const [socket, setSocket] = useState(null);
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
-    const ensureLoggedIn = async () => {
-        await axios.post(URL_USER_SVC + '/auth',
-            { withCredentials: true, credentials: 'include' })
-            .catch((err) => {
-                console.log(err)
-                navigate("/login")
-            });
-    }
+  useEffect(() => {
+    ensureLoggedIn(navigate);
+  })
 
-    useEffect(() => {
-        ensureLoggedIn();
-    })
+  const handleOpenModal = (socket) => {
+    setShowModal(true);
+    console.log('Countdown timer modal opened');
+    setSocket(socket);
+    console.log(socket);
+  }
 
-    const handleOpenModal = (socket) => {
-      setShowModal(true);
-      console.log('Countdown timer modal opened');
-      setSocket(socket);
-      console.log(socket);
-    }
+  const handleCloseModal = (e) => {
+    setShowModal(false);
+    console.log('Countdown timer modal close');
+  }
 
-    const handleCloseModal = (e) => {
-      setShowModal(false);
-      console.log('Countdown timer modal close');
-    }
-
-    return (
-    <Box sx={{ flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
-        <Grid container spacing={2}>
+  return (
+    <Box sx={{ flexGrow: 1, margin: 'auto', maxWidth: '100%' }}>
+      <Grid container spacing={2}>
         {difficultyLevels.map(difficultyLevel =>
-                 <Grid key={difficultyLevel} item xs={'auto'}>
-                     <DifficultyCard difficulty={difficultyLevel} handleOpenModal={handleOpenModal}/>
-                </Grid>)}
-                <CountdownView show={showModal} handleCloseModal={handleCloseModal} socket={socket} />
-          </Grid>
-        </Box>
-      );
-    }
-    
+          <Grid key={difficultyLevel} item xs={'auto'}>
+            <DifficultyCard difficulty={difficultyLevel} handleOpenModal={handleOpenModal} />
+          </Grid>)}
+        <CountdownView show={showModal} handleCloseModal={handleCloseModal} socket={socket} />
+      </Grid>
+    </Box>
+  );
+}
+
 
 
 
