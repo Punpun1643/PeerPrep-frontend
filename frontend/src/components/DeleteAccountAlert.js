@@ -6,19 +6,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
 import axios from "axios";
 import { useSessionStorage } from "../customHooks";
 import { STATUS_CODE_FORBIDDEN, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
 import { useNavigate } from "react-router-dom";
 
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>,
-) {
+const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -50,6 +44,7 @@ export default function AlertDialogSlide() {
             })
 
         if (res && res.status === STATUS_CODE_OK) {
+            handleClose();
             console.log(`${username} delete success`)
             navigate("/deleteAccount", { state: { success: true } }) // placeholder until merge with matching
         }
@@ -70,7 +65,7 @@ export default function AlertDialogSlide() {
                 <DialogTitle>{"Delete Account?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                       Are you sure you want to delete your account?
+                        Are you sure you want to delete your account?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
