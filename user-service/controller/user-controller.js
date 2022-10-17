@@ -226,6 +226,7 @@ export async function logout(req, res) {
     // Delete cookies
     res.clearCookie('token');
     res.clearCookie('refreshToken');
+    res.clearCookie('username');
 
     return res.status(200).json({ message: 'Logout successful!' });
 }
