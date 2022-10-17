@@ -7,11 +7,12 @@ import axios from "axios";
 import { useSessionStorage } from "../customHooks";
 import { STATUS_CODE_FORBIDDEN, STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
+import Cookies from 'js-cookie';
 
 function NavBar() {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
-    const [username, setUsername] = useSessionStorage('username', '')
+    const [username, setUsername] = useState(Cookies.get('username'));
 
     const handleOpenUserSettings = (e) => {
         setAnchorEl(e.currentTarget)
