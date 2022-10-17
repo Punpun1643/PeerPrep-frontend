@@ -30,7 +30,7 @@ export async function createUser(req, res) {
 
             if (!verifyPasswordStrength(password)) {
                 return res.status(400).json({
-                    message: 'New password does not meet password strength requirement. '
+                    message: 'Password does not meet password strength requirement. '
                     + 'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.',
                 });
             }
