@@ -1,4 +1,4 @@
-import React,{ useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SocketContext } from './SocketContext'
 import { useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -10,13 +10,13 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { io } from "socket.io-client";
 import QuestionDisplay from '../QuestionService/QuestionDisplay';
 
-
+// collaboration service
+import CodeEditor from '../CollaborationService/CodeEditor';
 
 export default function RoomPage() {
 
     const { getSocket } = useContext(SocketContext);
     let socket = getSocket();
-    
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -81,13 +81,9 @@ export default function RoomPage() {
                 <Grid item xs={6.98} md={6.98} sx={{height: "100vh"}}>
                     <Stack spacing={0}>
                         {/* code box */}
-                        <Box sx={{height: "99vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
-                                  backgroundColor: 'white', border: 1.5, borderColor: 'grey', borderRadius: 4}}>
-                            <Typography variant="h6" sx={{margin: 2}}> Placeholder code box </Typography> 
-                        </Box>
+                        <CodeEditor roomId={roomId} socketIds={[roomId, secondClientSocketId]}/>
                     </Stack>
                 </Grid>
-
             </Grid>
     )
 }
