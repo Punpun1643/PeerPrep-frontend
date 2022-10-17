@@ -1,9 +1,9 @@
-import { createQuestion, deleteQuestion, findQuestion } from './repository.js';
+import { createQuestion, deleteQuestion, findQuestionRandomly } from './repository.js';
 
 // need to separate orm functions from repository to decouple business logic from persistence
-export async function ormCreateQuestion(QuestionTitle, QuestionBody, QuestionDiffficulty) {
+export async function ormCreateQuestion(QuestionTitle, QuestionBody, QuestionDifficulty) {
     try {
-        const newQuestion = await createQuestion({ QuestionTitle, QuestionBody, QuestionDiffficulty });
+        const newQuestion = await createQuestion({ QuestionTitle, QuestionBody, QuestionDifficulty });
         newQuestion.save();
         return true;
     } catch (err) {
@@ -28,11 +28,11 @@ export async function ormDeleteQuestion(QuestionTitle) {
 
 export async function ormUpdateQuestion(Question, changes) {
     try {
-        const { QuestionTitle, QuestionBody, QuestionDiffficulty } = changes;
+        const { QuestionTitle, QuestionBody, QuestionDifficulty } = changes;
         const updatedQuestion = Question;
         updatedQuestion.QuestionTitle = QuestionTitle;
         updatedQuestion.QuestionBody = QuestionBody;
-        updatedQuestion.QuestionDiffficulty = QuestionDiffficulty;
+        updatedQuestion.QuestionDifficulty = QuestionDifficulty;
         updatedQuestion.save();
         return true;
     } catch (err) {
@@ -41,11 +41,19 @@ export async function ormUpdateQuestion(Question, changes) {
     }
 }
 
-export async function ormFindQuestion(QuestionTitle) {
+export async function ormFindQuestionRandomly(difficulty, title=null) {
     try {
-        const Question = await findQuestion(QuestionTitle);
-        console.log(Question);
-        return Question;
+        const params = {};
+        if (title) {
+            params['QuestionTitle'] = {$ne : title};
+        }
+
+        if (difficulty) {
+            params['QuestionDifficulty'] = difficulty;
+        }
+
+        const question = await findQuestionRandomly(params);
+        return question;
     } catch (err) {
         console.log('ERROR: Could not find Question');
         return { err };
@@ -54,9 +62,9 @@ export async function ormFindQuestion(QuestionTitle) {
 
 export async function ormCheckQuestionExists(QuestionTitle) {
     try {
-        const Question = await ormFindQuestion(QuestionTitle);
-        console.log(Question);
-        if (Question) {
+        const question = await ormFindQuestion(QuestionTitle);
+        console.log(question);
+        if (question) {
             return true;
         }
         return false;
