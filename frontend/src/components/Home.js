@@ -1,15 +1,12 @@
+import React, { useState } from 'react';
 import { Box, Typography } from "@mui/material";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useSessionStorage } from "../customHooks";
+import Cookies from 'js-cookie';
 
 function Home(props) {
-    let navigate = useNavigate();
-
-    const { state } = useLocation();
-    const [ username, setUsername ] = useSessionStorage('username', state.username) //|| 'NOT LOGGED IN USER'; // Read values passed on state
+    const [username, setUsername] = useState(Cookies.get('username'));
 
     return (
-        <Box style={{ margin: "auto" }} display={"flex"} flexDirection={"column"} justify-content={"center"} 
+        <Box style={{ margin: "auto" }} display={"flex"} flexDirection={"column"} justify-content={"center"}
             padding={"4rem"}>
             <Typography variant={"h3"}>HOME PAGE PLACEHOLDER, Welcome back {username}!</Typography>
         </Box>)
