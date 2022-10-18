@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React,{ useContext } from 'react';
+import { SocketContext } from './SocketContext'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -13,20 +14,20 @@ import { io } from "socket.io-client";
 
 export default function DifficultyCard(props) {
 
+  const { getSocket } = useContext(SocketContext);
+
   const handleFindMatchClick = (e) => {
     e.preventDefault();
     console.log(`${props.difficulty} button was clicked`);
 
-    const socket = io("http://localhost:8001");
-    // const socket = io.of('/pendingMatches');
-    // const socket = io("http://localhost:8001/pendingMatches")
-
+    const socket = getSocket();
+    
     socket.on("connect", () => {
       console.log(socket.connected); // true
     });
 
-    // testing 22/09/2022: hard-coded username
-    socket.emit(`match-${props.difficulty}`, { username: "John" });
+    //null value to be passed in for username for now 
+    socket.emit(`match-${props.difficulty}`, {});
     props.handleOpenModal(socket);
   }
 
