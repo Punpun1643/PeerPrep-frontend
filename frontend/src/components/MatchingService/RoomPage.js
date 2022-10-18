@@ -22,14 +22,20 @@ export default function RoomPage() {
 
     useEffect( () => {
         ensureLoggedIn(navigate);
-    })
+    });
 
     console.log(location);
-    const roomId = location.state.roomId;
+  
+    const roomId = location.state  
+                   ? location.state.roomId 
+                   : "";
+
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
 
-    const secondClientSocketId = location.state.secondClientSocketId;
+    const secondClientSocketId = location.state
+                                  ? location.state.secondClientSocketId
+                                  : "";
 
     useEffect( () => {
 
