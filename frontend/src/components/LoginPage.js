@@ -6,13 +6,12 @@ import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
 import { useNavigate } from "react-router-dom";
 
-
 function LoginPage() {
-    const [username, setUsername] = useState("")
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState("")
     const [errorMsg, setErrorMsg] = useState("")
     const [open, setOpen] = useState(false)
-
+    
     let navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -28,12 +27,13 @@ function LoginPage() {
                 } else {
                     setErrorMsg('Please try again later.')
                 }
-            })
+            });
         // show error when login fails
         // when successful -> set up jwt tokens?
         if (res && res.status === STATUS_CODE_OK) {
             console.log(`${username} login success`)
-            navigate("/home", { state: { username: username } }) // placeholder until merge with matching
+            // set session storage username
+            navigate("/home") // placeholder until merge with matching
         }
     }
 
@@ -59,7 +59,7 @@ function LoginPage() {
 
 
     return (
-        <Box display={"flex"} flexDirection={"column"} width={"30%"}>
+        <Box display={"flex"} flexDirection={"column"} width={"30%"} padding={"4rem"}>
             <Typography variant={"h4"} marginBottom={"2rem"}>Login</Typography>
             <TextField
                 required

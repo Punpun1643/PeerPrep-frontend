@@ -1,4 +1,5 @@
 import pendingMatchController from '../pendingMatchController.js';
+import axios from 'axios';
 
 const pendingMatchHandler = (io) => {
     io.on('connection', (socket) => {
@@ -14,12 +15,23 @@ const pendingMatchHandler = (io) => {
             } else {
                 const currentSocketId = user.dataValues.socketid;
 
-                // emit succcess event to the matched users
-                io.to(socket.id).emit('match-success', currentSocketId, socket.id);
-                io.to(currentSocketId).emit('match-success', currentSocketId, socket.id);
+                let question; 
 
-                // else --> match and delete
-                pendingMatchController.deleteMatchByDifficulty('easy');
+                //retrive easy question by sending a GET API to question-service
+                axios.get('http://localhost:8002/api/questions/?level=easy')
+                    .then(response => {
+                        question = response.data;
+                        // emit succcess event to the matched users
+                        io.to(socket.id).emit('match-success', currentSocketId, socket.id, question);
+                        io.to(currentSocketId).emit('match-success', currentSocketId, socket.id, question);
+
+                        // else --> match and delete
+                        pendingMatchController.deleteMatchByDifficulty('easy');
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });                
             }
         });
 
@@ -36,10 +48,20 @@ const pendingMatchHandler = (io) => {
             } else {
                 const currentSocketId = user.dataValues.socketid;
 
-                io.to(socket.id).emit('match-success', currentSocketId, socket.id);
-                io.to(currentSocketId).emit('match-success', currentSocketId, socket.id);
+                let question;
 
-                pendingMatchController.deleteMatchByDifficulty('medium');
+                //retrive medium question by sending a GET API to question-service
+                axios.get('http://localhost:8002/api/questions/?level=medium')
+                    .then(response => {
+                        question = response.data;
+                        io.to(socket.id).emit('match-success', currentSocketId, socket.id, question);
+                        io.to(currentSocketId).emit('match-success', currentSocketId, socket.id, question);
+        
+                        pendingMatchController.deleteMatchByDifficulty('medium');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             }
         });
 
@@ -51,10 +73,19 @@ const pendingMatchHandler = (io) => {
             } else {
                 const currentSocketId = user.dataValues.socketid;
 
-                io.to(socket.id).emit('match-success', currentSocketId, socket.id);
-                io.to(currentSocketId).emit('match-success', currentSocketId, socket.id);
+                let question;
 
-                pendingMatchController.deleteMatchByDifficulty('hard');
+                //retrive hard question by sending a GET API to question-service
+                axios.get('http://localhost:8002/api/questions/?level=hard')
+                    .then(response => {
+                        question = response.data;
+                        io.to(socket.id).emit('match-success', currentSocketId, socket.id, question);
+                        io.to(currentSocketId).emit('match-success', currentSocketId, socket.id, question);
+                        pendingMatchController.deleteMatchByDifficulty('hard');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             }
         });
 
