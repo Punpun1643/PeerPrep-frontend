@@ -4,12 +4,20 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import DifficultyCard from './DifficultyCard';
 import CountdownView from './CountdownView';
+import { useNavigate } from "react-router-dom";
+import { ensureLoggedIn } from '../../Util';
 
 
 export default function SelectionView() {
 
     const difficultyLevels = ["easy", "medium", "hard"];
     const [showModal, setShowModal] = useState(false);
+
+    let navigate = useNavigate();
+
+    useEffect(() => {
+      ensureLoggedIn(navigate);
+    })
 
 
     const handleOpenModal = () => {
