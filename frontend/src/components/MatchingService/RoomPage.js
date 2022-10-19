@@ -7,11 +7,13 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { ensureLoggedIn } from '../../Util';
 import { io } from "socket.io-client";
 import QuestionDisplay from '../QuestionService/QuestionDisplay';
 
 // collaboration service
 import CodeEditor from '../CollaborationService/CodeEditor';
+
 
 export default function RoomPage() {
 
@@ -21,8 +23,19 @@ export default function RoomPage() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const roomId = location.state.roomId;
-    const secondClientSocketId = location.state.secondClientSocketId;
+    useEffect( () => {
+        ensureLoggedIn(navigate);
+    });
+
+    console.log(location);
+  
+    const roomId = location.state  
+                   ? location.state.roomId 
+                   : "";
+    
+    const secondClientSocketId = location.state
+                   ? location.state.secondClientSocketId
+                   : "";
 
     //breaking question down
     let questionData = location.state.questionData;
@@ -34,6 +47,7 @@ export default function RoomPage() {
     console.log("socketID " + socket.id);
 
     useEffect( () => {
+
         socket.on("connect", () => {
             console.log(socket.connected); // true
           });

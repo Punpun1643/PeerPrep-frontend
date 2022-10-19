@@ -12,6 +12,7 @@ import {
     generateRefreshAccessToken,
     verifyAccessToken,
     verifyRefreshToken,
+    verifyPasswordStrength,
 } from '../services.js';
 
 const allowedRefreshTokens = []; // TODO: store allowedRefreshTokens in cache/db
@@ -25,6 +26,13 @@ export async function createUser(req, res) {
             if (isUserExist) {
                 console.log(`Account Creation Failed due to duplicate username - ${username}`);
                 return res.status(409).json({ message: 'Duplicate username. Could not create a new user.' });
+            }
+
+            if (!verifyPasswordStrength(password)) {
+                return res.status(400).json({
+                    message: 'Password does not meet password strength requirement. '
+                    + 'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.',
+                });
             }
 
             const hashedPassword = await hashSaltPassword(password);
@@ -73,6 +81,7 @@ export async function deleteUser(req, res, next) {
         return res.status(500).json({ message: 'Database failure when deleting user!' });
     }
 }
+
 export async function changePassword(req, res) {
     try {
         const { username, oldPassword, newPassword } = req.body;
@@ -80,13 +89,25 @@ export async function changePassword(req, res) {
             // verify user old password is correct
             const user = await _findUser(username);
             if (!user) {
-                return res.status(400).json({ message: 'Authentication failed. User does not exist.' });
+                return res.status(401).json({ message: 'Authentication failed. User does not exist.' });
             }
             const isPasswordCorrect = await verifyPassword(oldPassword, user.password);
             if (!isPasswordCorrect) {
-                return res.status(400).json({ message: 'Authentication failed. Incorrect user or password provided.' });
+                return res.status(401).json({ message: 'Authentication failed. Incorrect user or password provided.' });
             }
             console.log(`User ${username} has been authenticated.`);
+            // verify password strength
+            if (oldPassword === newPassword) {
+                return res.status(400).json({ message: 'New password should not be the same as old password' });
+            }
+
+            if (!verifyPasswordStrength(newPassword)) {
+                return res.status(400).json({
+                    message: 'New password does not meet password strength requirement. '
+                    + 'Passwords should contain at least 8 characters and is a combination of numbers and alphabets.',
+                });
+            }
+
             // store new password
             const hashedNewPassword = await hashSaltPassword(newPassword);
             const resp = await _updateUser(user, { username: username, password: hashedNewPassword });
@@ -96,7 +117,7 @@ export async function changePassword(req, res) {
             console.log(`Updated password for user - ${username}`);
             return res.status(200).json({ message: 'Password has successfully been changed.' });
         }
-        return res.status(400).json({ message: 'Username and/or Passwords are missing!' });
+        return res.status(400).json({ message: 'Username and/or Password(s) are missing!' });
     } catch (err) {
         return res.status(500).json({ message: 'Database failure when updating user password!' });
     }
@@ -126,6 +147,7 @@ export async function loginUser(req, res) {
     // Store token in cookie
     res.cookie('token', token, { expires: new Date(Date.now() + (30 * 60 * 1000)), httpOnly: true });
     res.cookie('refreshToken', refreshToken, { expires: new Date(Date.now() + (30 * 60 * 1000)), httpOnly: true });
+    res.cookie('username', req.body.username, { expires: new Date(Date.now() + (30 * 60 * 1000)) });
 
     return res.status(200).json({
         message: `${user.username} has been authenticated`,
@@ -152,7 +174,7 @@ export async function authenticateCookieToken(req, res, next) {
     // If Cookie expired
     if (!token) return res.status(403).json({ message: 'You must be logged in first!' });
 
-    const verifiedUser = await verifyAccessToken(token);
+    let verifiedUser = await verifyAccessToken(token);
     // If Token expired
     if (!verifiedUser) {
         console.log('token expired', token);
@@ -164,6 +186,9 @@ export async function authenticateCookieToken(req, res, next) {
 
         res.cookie('token', newAccessToken, { expires: new Date(Date.now() + (30 * 60 * 1000)), httpOnly: true });
         console.log('issued new token', newAccessToken);
+
+        // Refresh verifiedUser since it was undefined
+        verifiedUser = await verifyAccessToken(newAccessToken);
     }
 
     // If Token blacklisted
@@ -205,6 +230,11 @@ export async function logout(req, res) {
     // Delete cookies
     res.clearCookie('token');
     res.clearCookie('refreshToken');
+    res.clearCookie('username');
 
     return res.status(200).json({ message: 'Logout successful!' });
+}
+
+export async function sendAuthSuccess(req, res) {
+    return res.status(200).json({ message: 'Authentication Successful!' });
 }
