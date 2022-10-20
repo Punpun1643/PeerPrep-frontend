@@ -9,7 +9,6 @@ import CardActions from '@mui/material/CardActions';
 import sapling from '../../images/sapling.png';
 import youngtree from '../../images/youngtree.png'
 import tree from '../../images/tree.png';
-import { io } from "socket.io-client";
 
 
 export default function DifficultyCard(props) {
@@ -33,29 +32,29 @@ export default function DifficultyCard(props) {
 
   const difficultyImageMap = { "easy" : sapling, "medium" : youngtree, "hard" : tree}
   const difficultyTextMap = { "easy" : "Beginner-friendly",
-                              "medium" : "Intermediate Questions", 
-                              "hard" : "Tests advanced concepts"}
+                              "medium" : "Intermediate level", 
+                              "hard" : "Advanced Concepts"}
   const difficultyColorMap = { "easy": "#4caf50",
                                "medium": "#ffca28",
                                "hard": "#d32f2f"
                               }
 
   return (
-    <Card sx={{minWidth: 200, maxWidth: 320, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
-      <Typography variant="h5" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
+    <Card sx={{minWidth: 160, maxWidth: 160, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
+      <Typography variant="h6" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
         {(props.difficulty)[0].toUpperCase() + (props.difficulty.slice(1))} 
       </Typography>
         <CardMedia
           component="img"
-          height="70"
-          width="70"
+          height="50"
+          width="50"
           image={difficultyImageMap[props.difficulty]}
           alt="plant"
           sx ={{objectFit: "contain"}}
     
         />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary"  sx={{textAlign: 'center'}} >
+        <CardContent sx={{textAlign: "center"}}>
+          <Typography variant="caption" color="text.secondary" sx={{textAlign: 'center'}}>
             {difficultyTextMap[props.difficulty]}
           </Typography>
 
