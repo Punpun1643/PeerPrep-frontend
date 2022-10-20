@@ -30,15 +30,17 @@ export default function SelectionView() {
     }
 
     return (
-    <Box sx={{ flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
-        <Grid container spacing={2}>
-        {difficultyLevels.map(difficultyLevel =>
-                 <Grid key={difficultyLevel} item xs={'auto'}>
-                     <DifficultyCard difficulty={difficultyLevel} handleOpenModal={handleOpenModal}/>
-                </Grid>)}
-                <CountdownView show={showModal} handleCloseModal={handleCloseModal} />
-          </Grid>
-        </Box>
+    <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
+      <Box sx={{flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
+          <Grid container spacing={2}>
+          {difficultyLevels.map(difficultyLevel =>
+                  <Grid key={difficultyLevel} item xs={'auto'}>
+                      <DifficultyCard difficulty={difficultyLevel} handleOpenModal={handleOpenModal}/>
+                  </Grid>)}
+                  <CountdownView show={showModal} handleCloseModal={handleCloseModal} />
+            </Grid>
+          </Box>
+    </Box>
       );
     }
     
