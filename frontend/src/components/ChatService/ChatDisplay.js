@@ -45,6 +45,7 @@ const ChatDisplay = (props) => {
         const message = {text: newMessage};
 
         socket.emit('message-from-client', {roomId: roomId, text: newMessage});
+        setNewMessage('');
     }
 
     return (
