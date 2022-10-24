@@ -7,12 +7,10 @@ import './ChatDisplay.css';
 const ChatDisplay = (props) => {
     // get roomId
     const roomId = props.roomId;
-    console.log(roomId);
     
     // get socket
     const { getSocket } = useContext(SocketContext);
     let socket = getSocket();
-    console.log(socket);
 
     const [newMessage, setNewMessage] = useState("");
     const [messages, setMessages] = useState([]);
@@ -29,12 +27,6 @@ const ChatDisplay = (props) => {
 
     useEffect(() => {
         socket.on('get-message', (data) => {
-            // socketid of message owner
-            console.log(data.socketid);
-            // socketid of the user
-            console.log(socket.id)
-
-            console.log(data.socketid === socket.id);
             setArrivalMessage({
                 text: data.text,
                 owner: data.socketid === socket.id
@@ -53,7 +45,6 @@ const ChatDisplay = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const message = {text: newMessage};
 
         socket.emit('message-from-client', { roomId: roomId, text: newMessage, socketid: socket.id });
         setNewMessage('');
@@ -61,7 +52,6 @@ const ChatDisplay = (props) => {
 
     const handleKeyPress = (event) => {
         if (event.keyCode === 13 && newMessage.trim().length !== 0) {
-            console.log('enter is pressed')
             handleSubmit(event);
         }
     }
@@ -73,7 +63,10 @@ const ChatDisplay = (props) => {
                     <div className="chatBoxTop">
                         {messages.map((m) => (
                             <div ref={scrollRef}>
-                                <Message message={m.text} own={m.owner} />
+                                <Message 
+                                    message={m.text} 
+                                    own={m.owner}    
+                                />
                             </div>
                         ))}
                     </div>
