@@ -29,9 +29,15 @@ const ChatDisplay = (props) => {
 
     useEffect(() => {
         socket.on('get-message', (data) => {
-            console.log(data);
+            // socketid of message owner
+            console.log(data.socketid);
+            // socketid of the user
+            console.log(socket.id)
+
+            console.log(data.socketid === socket.id);
             setArrivalMessage({
-                text: data.text
+                text: data.text,
+                owner: data.socketid === socket.id
             });
         });
     }, []);
@@ -49,7 +55,7 @@ const ChatDisplay = (props) => {
         event.preventDefault();
         const message = {text: newMessage};
 
-        socket.emit('message-from-client', {roomId: roomId, text: newMessage});
+        socket.emit('message-from-client', { roomId: roomId, text: newMessage, socketid: socket.id });
         setNewMessage('');
     }
 
@@ -60,7 +66,7 @@ const ChatDisplay = (props) => {
                     <div className="chatBoxTop">
                         {messages.map((m) => (
                             <div ref={scrollRef}>
-                                <Message message={m.text}/>
+                                <Message message={m.text} own={m.owner} />
                             </div>
                         ))}
                     </div>
