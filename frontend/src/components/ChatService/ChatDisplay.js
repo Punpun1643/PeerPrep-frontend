@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import Message from './components/Message';
 import { SocketContext } from './SocketContext'
 
@@ -17,6 +17,7 @@ const ChatDisplay = (props) => {
     const [newMessage, setNewMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [arrivalMessage, setArrivalMessage] = useState(null);
+    const scrollRef = useRef();
 
     useEffect(() => {
         socket.on('connect', () => {
@@ -40,6 +41,10 @@ const ChatDisplay = (props) => {
         setMessages((prev) => [...prev, arrivalMessage]);
     }, [arrivalMessage]);
 
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const message = {text: newMessage};
@@ -54,7 +59,9 @@ const ChatDisplay = (props) => {
                 <div className="chatBoxWrapper">
                     <div className="chatBoxTop">
                         {messages.map((m) => (
-                            <Message message={m.text}/>
+                            <div ref={scrollRef}>
+                                <Message message={m.text}/>
+                            </div>
                         ))}
                     </div>
                     <div className="chatBoxBottom">
