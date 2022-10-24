@@ -59,6 +59,13 @@ const ChatDisplay = (props) => {
         setNewMessage('');
     }
 
+    const handleKeyPress = (event) => {
+        if (event.keyCode === 13 && newMessage.trim().length !== 0) {
+            console.log('enter is pressed')
+            handleSubmit(event);
+        }
+    }
+
     return (
         <React.Fragment>
             <div className="chatBox">
@@ -74,7 +81,8 @@ const ChatDisplay = (props) => {
                         <textarea 
                             className="chatMessageInput" 
                             placeholder="Message" 
-                            onChange={(event) => setNewMessage(event.target.value)}                                 
+                            onChange={(event) => setNewMessage(event.target.value)}  
+                            onKeyDown={handleKeyPress}                           
                             value={newMessage}
                         ></textarea>
                         <button className="chatSubmitButton" onClick={handleSubmit}>Send</button>
