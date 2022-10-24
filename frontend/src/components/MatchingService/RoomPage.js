@@ -138,7 +138,7 @@ export default function RoomPage() {
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', flexDirection: 'column'}}>
                             {/* <Typography variant="body1" sx={{margin: 2}}> Placeholder chat box </Typography>  */}
-                            <ChatDisplay />
+                            <ChatDisplay roomId={roomId} />
                         </Box>
                     </Stack>
                 </Grid>

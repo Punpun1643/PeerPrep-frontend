@@ -2,12 +2,12 @@ import React from 'react';
 
 import './Message.css';
 
-const Message = ({own}) => {
+const Message = (props, {own}) => {
     return (
         <React.Fragment>
             <div className={own ? "message own" : "message"}>
                 <div className="messageWrapper">
-                    <p className="messageText">This is a message hahahahah erewnmf djwpfj wiopdfjwepfj</p>
+                    <p className="messageText">{props.message}</p>
                 </div>
             </div>
         </React.Fragment>
