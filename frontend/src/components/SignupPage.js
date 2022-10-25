@@ -6,6 +6,7 @@ import { init } from 'ityped';
 import './SignupPage.css';
 
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
 function SignupPage() {
 
@@ -21,15 +22,10 @@ function SignupPage() {
 
     return (
         <React.Fragment>
-            <Grid container className="signupPage">
-                <Grid item xs={6}>
-                    <div className="signUp">
-                        <div className="signUpWrapper">
-                            <Signup />
-                        </div>
-                    </div>
-                </Grid>
-                <Grid item xs={6}>
+            <Stack 
+                direction={{ xs: 'column', sm: 'row' }}
+                className="signupPage">
+                <Grid xs={6} className="taglineDivider">
                     <div className="tagline">
                         <div className="taglineWrapper">
                             <h1 className="header">PeerPrep</h1>
@@ -37,7 +33,14 @@ function SignupPage() {
                         </div>
                     </div>
                 </Grid>
-            </Grid>
+                <Grid xs={6} className="signUpDivier">
+                    <div className="signUp">
+                        <div className="signUpWrapper">
+                            <Signup />
+                        </div>
+                    </div>
+                </Grid>
+            </Stack>
         </React.Fragment>
     )
 }

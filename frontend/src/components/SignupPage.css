@@ -8,6 +8,11 @@
 
 .signupPage {
     background-image: linear-gradient(to left, #132439, #0e2b4d, #093162, #0e3776, #1c3c8a);
+    display: flex;
+}
+
+.signUpDivier {
+    flex: 6;
 }
 
 .tagline {
@@ -15,7 +20,10 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    
+}
+
+.taglineDivider {
+    flex:6;
 }
 
 .taglineWrapper {
@@ -37,3 +45,4 @@
     font-size: 24px;
     margin-top: -10px;
 }
+
