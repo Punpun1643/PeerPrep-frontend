@@ -88,7 +88,13 @@ function Signup() {
                     </div>
                     <div className="button">
                     <Box display={"flex"} flexDirection={"column"}>
-                        <Button variant={"contained"} onClick={handleSignup} size="large">Sign up</Button>
+                        <Button 
+                            style={{backgroundColor: "#3370FF"}}
+                            variant={"contained"} 
+                            onClick={handleSignup} 
+                            size="large">
+                            Sign up
+                        </Button>
                     </Box>
                     </div>
                     <Box className="loginLink">
