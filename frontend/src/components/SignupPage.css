@@ -1,5 +1,39 @@
-.signUpWrapper {
-    /* background-color: blue; */
-    width: 40%;
-    border-radius: 24px;
+.signUp {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: pink; */
+}
+
+.signupPage {
+    background-image: linear-gradient(to left, #132439, #0e2b4d, #093162, #0e3776, #1c3c8a);
+}
+
+.tagline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.taglineWrapper {
+    display: flex;
+    flex-direction: column;
+    /* background-color: blueviolet; */
+    justify-content: space-evenly;
+    width: 80%;
+    overflow-wrap: break-word;
+}
+
+.header {
+    font-size: 76px;
+    color: white;
+}
+
+.subHeader {
+    color: white;
+    font-size: 24px;
+    margin-top: -10px;
 }

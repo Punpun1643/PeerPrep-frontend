@@ -9,6 +9,8 @@ import axios from "axios";
 import {URL_USER_SVC} from "../../../configs";
 import {STATUS_CODE_BADREQUEST, STATUS_CODE_CONFLICT, STATUS_CODE_CREATED} from "../../../constants";
 import DialogBox from "./DialogBox";
+import Link from '@mui/material/Link';
+import './Signup.css';
 
 function Signup() {
     const [username, setUsername] = useState("")
@@ -52,40 +54,56 @@ function Signup() {
 
     return (
         <React.Fragment>
-            <Box display={"flex"} flexDirection={"column"} width={"100hw"} padding={"4rem"}>
-                <Typography variant={"h3"} marginBottom={"2rem"}>Sign Up</Typography>
-                <TextField
-                    required
-                    label="Username"
-                    variant="standard"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    sx={{marginBottom: "1rem"}}
-                    autoFocus
-                />
-                <TextField
-                    required
-                    label="Password"
-                    variant="standard"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    helperText="Password should contain at least 8 characters and is alphanumeric"
-                    sx={{marginBottom: "2rem"}}
-                />
-
-                <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                    <Button variant={"contained"} onClick={handleSignup}>Sign up</Button>
-                </Box>
-                {/* <Link href="#">Link</Link> */}
-                <DialogBox 
-                    isDialogOpen={isDialogOpen}
-                    closeDialog={closeDialog}
-                    dialogTitle={dialogTitle}
-                    dialogMsg={dialogMsg}
-                    isSignupSuccess={isSignupSuccess}
-                />
-            </Box>
+            {/* <Box className="signup" display={"flex"} flexDirection={"column"} width={"100hw"} padding={"4rem"}> */}
+            <div className="signup">
+                <div className="signupWrapper">
+                    <Typography className="signupHeader" variant={"h3"} marginBottom={"2rem"}>Sign Up</Typography>
+                    <div className="inputWrapper">
+                        <TextField
+                            className="userInput"
+                            required
+                            label="Username"
+                            variant="outlined"
+                            size="small"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            sx={{marginBottom: "1rem"}}
+                            autoFocus
+                        />
+                        <TextField
+                            className="userInput"
+                            error={!(password === '' || password.length >= 8)}
+                            required
+                            label="Password"
+                            variant="outlined"
+                            size="small"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            helperText={!(password === '' || password.length >= 8) 
+                                ? "Password should contain at least 8 characters and is alphanumeric" 
+                                : ''}
+                            sx={{marginBottom: "2rem"}}
+                        />
+                    </div>
+                    <div className="button">
+                    <Box display={"flex"} flexDirection={"column"}>
+                        <Button variant={"contained"} onClick={handleSignup} size="large">Sign up</Button>
+                    </Box>
+                    </div>
+                    <Box className="loginLink">
+                        <Link href="/login">Already have an account? Log in here</Link>
+                    </Box>
+                    <DialogBox 
+                        isDialogOpen={isDialogOpen}
+                        closeDialog={closeDialog}
+                        dialogTitle={dialogTitle}
+                        dialogMsg={dialogMsg}
+                        isSignupSuccess={isSignupSuccess}
+                    />
+            {/* </Box> */}
+                </div>
+            </div>
         </React.Fragment>
     )
 }
