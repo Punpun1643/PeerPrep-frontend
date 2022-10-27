@@ -69,6 +69,7 @@ export default function RoomPage() {
     let questionDifficulty = questionData.question.QuestionDifficulty;
     let questionTitle = questionData.question.QuestionTitle;
     let questionBody = questionData.question.QuestionBody;
+    let questionImage = questionData.question.QuestionImage;
 
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
@@ -133,7 +134,7 @@ export default function RoomPage() {
                         {/* question box */}
                         <Box sx={{height: "58vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4, overflow: "scroll"}}>
-                            <QuestionDisplay title={questionTitle} body={questionBody}/> 
+                            <QuestionDisplay title={questionTitle} body={questionBody} image={questionImage}/> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
