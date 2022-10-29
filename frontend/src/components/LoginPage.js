@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button, IconButton, Snackbar, TextField, Typography } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Fragment, useState } from "react";
@@ -5,6 +6,10 @@ import axios from "axios";
 import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
 import { URL_USER_SVC } from "../configs";
 import { useNavigate } from "react-router-dom";
+import Login from './UserService/components/Login';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import './LoginPage.css';
 
 function LoginPage() {
     const [username, setUsername] = useState('')
@@ -56,45 +61,13 @@ function LoginPage() {
             </IconButton>
         </Fragment>
     );
-
-
     return (
-        <Box display={"flex"} flexDirection={"column"} width={"30%"} padding={"4rem"}>
-            <Typography variant={"h4"} marginBottom={"2rem"}>Login</Typography>
-            <TextField
-                required
-                label="Username"
-                variant="standard"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                sx={{ marginBottom: "1rem" }}
-                autoFocus
-            />
-            <TextField
-                required
-                label="Password"
-                variant="standard"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                sx={{ marginBottom: "1rem" }}
-            />
-            <Box display={"flex"} flexDirection={"row"} justifyContent={"flex-end"}>
-                <Button variant={"outlined"} onClick={handleLogin}>Login</Button>
-            </Box>
-
-            <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={open}
-                autoHideDuration={6000}
-                onClose={handleCloseSnackbar}
-                action={action}
-                message={errorMsg}
-            />
-
-        </Box>
+        <React.Fragment>
+            <div className="loginPage">
+                <Login />
+            </div>
+        </React.Fragment>
     );
-
 }
 
 export default LoginPage;

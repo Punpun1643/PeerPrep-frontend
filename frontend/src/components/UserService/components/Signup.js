@@ -87,15 +87,15 @@ function Signup() {
                         />
                     </div>
                     <div className="button">
-                    <Box display={"flex"} flexDirection={"column"}>
-                        <Button 
-                            style={{backgroundColor: "#3370FF"}}
-                            variant={"contained"} 
-                            onClick={handleSignup} 
-                            size="large">
-                            Sign up
-                        </Button>
-                    </Box>
+                        <Box display={"flex"} flexDirection={"column"}>
+                            <Button 
+                                style={{backgroundColor: "#3370FF"}}
+                                variant={"contained"} 
+                                onClick={handleSignup} 
+                                size="large">
+                                Sign up
+                            </Button>
+                        </Box>
                     </div>
                     <Box className="loginLink">
                         <Link href="/login">Already have an account? Log in here</Link>
