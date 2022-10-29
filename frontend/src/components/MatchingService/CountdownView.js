@@ -3,6 +3,7 @@ import { SocketContext } from './SocketContext'
 import {useNavigate} from 'react-router-dom';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 
 function CountdownView(props) {
@@ -21,7 +22,7 @@ function CountdownView(props) {
         backgroundColor: 'rgba(0,0,0,0.5)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     }
 
     const center = {
@@ -32,7 +33,9 @@ function CountdownView(props) {
         height: '50vh',
         width: '50vw',
         fontSize: '20px',
-        backgroundColor: '#ffffff'
+        backgroundColor: 'RGBA(19,36,57,0.8)',
+        color: "#ffffff",
+        borderRadius: '25px'
       };
 
     const messages = {
@@ -93,11 +96,14 @@ function CountdownView(props) {
                     }}
                 >
                     {insideCircle}
-                </CountdownCircleTimer>  
-                {matchingStatus === 'match-fail' && "Try again later!"}
-                {matchingStatus !== 'match-fail' && messages.finding}
+                </CountdownCircleTimer> 
 
-                <Button variant="outlined" sx={{margin: 1}} 
+                <Typography sx={{margin: '1.2em'}}>
+                    {matchingStatus === 'match-fail' && "Try again later!"}
+                    {matchingStatus !== 'match-fail' && messages.finding}
+                </Typography> 
+              
+                <Button variant="contained" sx={{margin: '0.6em', borderRadius: '25px'}} 
                     onClick={() => {
                         if (matchingStatus === 'match-finding') {
                             socket.emit('match-cancel');
