@@ -133,12 +133,12 @@ export default function RoomPage() {
                         </Box>
                         {/* question box */}
                         <Box sx={{height: "50vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
-                                  border: 1.5, borderColor: 'green', borderRadius: 4, overflow: "scroll"}}>
+                                  border: 1.5, borderColor: 'white', borderRadius: 4, overflow: "scroll"}}>
                             <QuestionDisplay title={questionTitle} body={questionBody}/> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
-                                  border: 1.5, borderColor: 'orange', borderRadius: 4}}>
+                                  border: 1.5, borderColor: 'white', borderRadius: 4}}>
                             <Typography variant="body1" sx={{margin: 2}}> Placeholder chat box </Typography> 
                         </Box>
                     </Stack>
