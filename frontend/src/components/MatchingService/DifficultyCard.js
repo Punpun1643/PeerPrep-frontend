@@ -9,6 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import sapling from '../../images/sapling.png';
 import youngtree from '../../images/youngtree.png'
 import tree from '../../images/tree.png';
+import { CardActionArea } from '@mui/material';
 
 
 export default function DifficultyCard(props) {
@@ -43,13 +44,12 @@ export default function DifficultyCard(props) {
     <Card sx={{backgroundColor: "RGBA(51,112,255,0.6)",
               '&:hover': {
                 backgroundColor: '#F7CF1C !important', 
-               },
-               minHeight: 260, 
-               maxHeight: 260, 
+               }, 
                minWidth: 160,
                maxWidth: 160, 
                borderTop: '3px solid', 
                borderTopColor: difficultyColorMap[props.difficulty]}}>
+      <CardActionArea onClick={handleFindMatchClick}>
       <Typography variant="h6" color="#ffffff" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
         {(props.difficulty)[0].toUpperCase() + (props.difficulty.slice(1))} 
       </Typography>
@@ -68,11 +68,7 @@ export default function DifficultyCard(props) {
           </Typography>
 
         </CardContent>
-        <CardActions>
-        <Button size="medium" variant="contained"  sx={{margin: 'auto', textTransform:'none', color: "#ffffff", borderColor: "#ffffff", backgroundColor:"#132439" }}
-          onClick={handleFindMatchClick}>
-          Find Match</Button>
-      </CardActions>
+      </CardActionArea>
     </Card>
   );
 }
