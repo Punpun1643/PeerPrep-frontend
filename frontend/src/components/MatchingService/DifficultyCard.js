@@ -40,8 +40,17 @@ export default function DifficultyCard(props) {
                               }
 
   return (
-    <Card sx={{minWidth: 160, maxWidth: 160, borderTop: '3px solid', borderTopColor: difficultyColorMap[props.difficulty]}}>
-      <Typography variant="h6" color="424242" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
+    <Card sx={{backgroundColor: "RGBA(51,112,255,0.6)",
+              '&:hover': {
+                backgroundColor: '#F7CF1C !important', 
+               },
+               minHeight: 260, 
+               maxHeight: 260, 
+               minWidth: 160,
+               maxWidth: 160, 
+               borderTop: '3px solid', 
+               borderTopColor: difficultyColorMap[props.difficulty]}}>
+      <Typography variant="h6" color="#ffffff" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
         {(props.difficulty)[0].toUpperCase() + (props.difficulty.slice(1))} 
       </Typography>
         <CardMedia
@@ -54,13 +63,13 @@ export default function DifficultyCard(props) {
     
         />
         <CardContent sx={{textAlign: "center"}}>
-          <Typography variant="caption" color="text.secondary" sx={{textAlign: 'center'}}>
+          <Typography color="#ffffff" variant="caption" sx={{textAlign: 'center'}}>
             {difficultyTextMap[props.difficulty]}
           </Typography>
 
         </CardContent>
         <CardActions>
-        <Button size="medium" variant="outlined"  sx={{margin: 'auto', textTransform:'none', color: "#424242", borderColor: "#424242"}}
+        <Button size="medium" variant="contained"  sx={{margin: 'auto', textTransform:'none', color: "#ffffff", borderColor: "#ffffff", backgroundColor:"#132439" }}
           onClick={handleFindMatchClick}>
           Find Match</Button>
       </CardActions>

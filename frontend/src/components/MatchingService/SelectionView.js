@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { SocketContext } from './SocketContext'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import DifficultyCard from './DifficultyCard';
 import CountdownView from './CountdownView';
 import { useNavigate } from "react-router-dom";
@@ -30,8 +31,9 @@ export default function SelectionView() {
     }
 
     return (
-    <Box display={"flex"} flexDirection={"column"} padding={"4rem"}>
-      <Box sx={{flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
+    <Box backgroundColor={"#132439"} height={"100vh"} display={"flex"} flexDirection={"column"} padding={"4rem"}>
+      <Box display={"flex"} flexDirection={"column"} sx={{alignItems: 'center', flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
+          <Typography margin="16px" variant="h6" color={"#ffffff"}> Choose a difficulty level </Typography>
           <Grid container spacing={2}>
           {difficultyLevels.map(difficultyLevel =>
                   <Grid key={difficultyLevel} item xs={'auto'}>
