@@ -5,12 +5,12 @@ function QuestionDisplay({ title, body, image }) {
     return (
         <Grid2 sx={{ whiteSpace: 'pre-line' }}>
             <Typography variant="h6" sx={{ margin: 2 }}> {title} </Typography>
-            <Typography variant="body1" display="block" sx={{ margin: 2 }}> {body} </Typography>
             {image !== "" &&
                 <Grid2 xs={12}>
                     <img src={image} alt={title} style={{ width: "100%", height: "100%", objectFit: 'contain' }} />
                 </Grid2>
             }
+            <Typography variant="body1" display="block" sx={{ margin: 2 }}> {body} </Typography>
         </Grid2>
     )
 }
