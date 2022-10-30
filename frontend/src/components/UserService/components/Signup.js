@@ -76,7 +76,7 @@ function Signup() {
                         />
                         <TextField
                             className="userInput"
-                            error={!verifyPassword(password)}
+                            error={!(verifyPassword(password) || password === '')} 
                             required
                             label="Password"
                             variant="outlined"
@@ -84,7 +84,7 @@ function Signup() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            helperText={ !verifyPassword(password)
+                            helperText={ !(verifyPassword(password) || password === '')
                                 ? "Password should contain at least one number and one alphabet, and must be at least 8 characters" 
                                 : ""}
                             sx={{marginBottom: "2rem"}}
