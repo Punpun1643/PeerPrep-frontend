@@ -126,7 +126,7 @@ function Login() {
                     >
                         <Alert 
                             onClose={handleCloseSnackbar} 
-                            severity="success" 
+                            severity="error" 
                             sx={{ width: '100%' }} 
                             style={
                                 { backgroundColor: "#FED7D8", 

@@ -15,6 +15,8 @@ const DialogBox = (props) => {
         <Dialog
             open={props.isDialogOpen}
             onClose={props.closeDialog}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
         >
             <DialogTitle>{props.dialogTitle}</DialogTitle>
             <DialogContent>
