@@ -105,7 +105,7 @@ function CountdownView(props) {
                     {remainingTime <= 20 && matchingStatus !== 'match-fail' && messages.stillFinding}
                 </Typography> 
               
-                <Button variant="contained" sx={{margin: '0.6em', borderRadius: '25px'}} 
+                <Button variant="contained" sx={{margin: '0.6em', borderRadius: '25px'}}  style={{ backgroundColor: "#FF3152", color: "white"}}
                     onClick={() => {
                         if (matchingStatus === 'match-finding') {
                             socket.emit('match-cancel');

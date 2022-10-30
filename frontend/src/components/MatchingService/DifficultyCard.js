@@ -48,7 +48,8 @@ export default function DifficultyCard(props) {
                minWidth: 160,
                maxWidth: 160, 
                borderTop: '3px solid', 
-               borderTopColor: difficultyColorMap[props.difficulty]}}>
+               borderTopColor: difficultyColorMap[props.difficulty]}}
+               style={{ borderRadius: "20px" }}>
       <CardActionArea onClick={handleFindMatchClick}>
       <Typography variant="h6" color="#ffffff" sx={{textAlign: 'center', paddingTop: '1em', paddingBottom: '1em'}}>
         {(props.difficulty)[0].toUpperCase() + (props.difficulty.slice(1))} 
