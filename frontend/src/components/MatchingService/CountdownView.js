@@ -40,6 +40,7 @@ function CountdownView(props) {
 
     const messages = {
         finding: "Finding a match...",
+        stillFinding: "Still finding a suitable match. Plese hold on for a while...",
         found: "Match found!",
         notFound: "Sorry, no match found"
     }
@@ -47,6 +48,7 @@ function CountdownView(props) {
 
     //three possible states for matching status: match-finding, match-success, and match-fail
     const[matchingStatus, setMatchingStatus] = useState('match-finding');
+    const [remainingTime, setRemainingTime] = useState();
     const navigate = useNavigate();
 
     useEffect( () => {
@@ -65,14 +67,13 @@ function CountdownView(props) {
 
     }, []);
 
-
     if (!props.show) {
         return null;
     }
 
-        
-
     const insideCircle = ({remainingTime}) => {
+        setRemainingTime(remainingTime);
+
         if (remainingTime === 0) {
             return "Sorry, no match found";
         } else {
@@ -100,7 +101,8 @@ function CountdownView(props) {
 
                 <Typography sx={{margin: '1.2em'}}>
                     {matchingStatus === 'match-fail' && "Try again later!"}
-                    {matchingStatus !== 'match-fail' && messages.finding}
+                    {matchingStatus !== 'match-fail' && remainingTime > 20 && messages.finding}
+                    {remainingTime <= 20 && matchingStatus !== 'match-fail' && messages.stillFinding}
                 </Typography> 
               
                 <Button variant="contained" sx={{margin: '0.6em', borderRadius: '25px'}} 
