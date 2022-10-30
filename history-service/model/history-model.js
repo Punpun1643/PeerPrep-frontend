@@ -9,11 +9,8 @@ const HistoryModelSchema = new Schema({
     },
     records: {
         type: [{ 
-            questionTitle: {
-                type: String,
-                unique: true,
-            },
-            questionDifficulty: String
+            questionTitle: String,
+            questionDifficulty: String,
          }],
         required: true,
     }

@@ -12,9 +12,11 @@ export async function ormStoreRecord(username, newQuestion) {
             return { status: 'created' };
         } else {
             // otherwise update existing records
-            if (!userRecord.records.some(r => r.questionTitle === newQuestion.questionTitle)) {
+            if (!userRecord.records.some(r => r.questionTitle === newQuestion.questionTitle && r.questionDifficulty === newQuestion.questionDifficulty)) {
                 userRecord.records.push(newQuestion);
                 userRecord.save();
+            } else {
+                console.log('Question Title already exists!');
             }
 
             return { status: 'updated'};
@@ -29,6 +31,7 @@ export async function ormStoreRecord(username, newQuestion) {
 export async function ormGetRecords(username) {
     try {
         const userRecord = await findRecord(username);
+        
         return userRecord;
     } catch (err) {
         console.log('ERROR: Could not get record');
