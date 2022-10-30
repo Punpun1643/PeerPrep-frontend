@@ -64,7 +64,14 @@ function LoginPage() {
     return (
         <React.Fragment>
             <div className="loginPage">
-                <Login />
+                <div className="loginWrap">
+                    <div className="welcomeTagWrapper">
+                        <p className="">Good to see you again! 👋</p>
+                    </div>
+                    <div className="loginContainer">
+                        <Login />
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     );

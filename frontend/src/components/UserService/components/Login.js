@@ -90,7 +90,7 @@ function Login() {
                         />
                     </div>
                     <div className="button">
-                        <Box display={"flex"} flexDirection={"row"}>
+                        <Box display={"flex"} flexDirection={"column"}>
                             <Button 
                                 style={{backgroundColor: "#3370FF"}}
                                 variant={"contained"} 
