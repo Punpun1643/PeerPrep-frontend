@@ -6,6 +6,7 @@ import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../../../constants";
 import { URL_USER_SVC } from "../../../configs";
 import { useNavigate } from "react-router-dom";
 import Link from '@mui/material/Link';
+import MuiAlert from '@mui/material/Alert';
 import './Login.css';
 
 function Login() {
@@ -59,6 +60,10 @@ function Login() {
         </Fragment>
     );
 
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
+
     return (
         <React.Fragment>
             {/* <Box display={"flex"} flexDirection={"column"} width={"30%"} padding={"4rem"}> */}
@@ -103,14 +108,33 @@ function Login() {
                     <Box className="signupLink">
                         <Link href="/signup">Don't have an account? Sign up here</Link>
                     </Box>
-                    <Snackbar
+                    {/* <Snackbar
                         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                         open={open}
                         autoHideDuration={6000}
                         onClose={handleCloseSnackbar}
                         action={action}
                         message={errorMsg}
-                    />
+                    /> */}
+                    <Snackbar 
+                        open={open}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                        autoHideDuration={6000}
+                        onClose={handleCloseSnackbar}
+                        action={action}
+                        sx={{ width: '400px' }} 
+                    >
+                        <Alert 
+                            onClose={handleCloseSnackbar} 
+                            severity="success" 
+                            sx={{ width: '100%' }} 
+                            style={
+                                { backgroundColor: "#FED7D8", 
+                                color: "red" }
+                            }>
+                            {errorMsg}
+                        </Alert>
+                    </Snackbar>
                 {/* </Box> */}
                 </div>
             </div>

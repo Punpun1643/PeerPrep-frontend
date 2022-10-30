@@ -7,7 +7,10 @@
     align-items: center;
 }
 
-
+.brandTag {
+    color: white;
+    font-size: 36px;
+}
 
 .loginWrap {
     display: flex;
@@ -16,10 +19,11 @@
     align-items: center;
     width: 100%;
 }
-
 .welcomeTagWrapper {
-    color: white;
-    font-size: 48px;
+    margin-top: -60px;
 }
 
-
+.welcomeTag {
+    color: white;
+    font-size: 44px;
+}

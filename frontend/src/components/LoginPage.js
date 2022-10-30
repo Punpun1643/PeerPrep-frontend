@@ -65,8 +65,11 @@ function LoginPage() {
         <React.Fragment>
             <div className="loginPage">
                 <div className="loginWrap">
+                    <div className="brandTagWrapper">
+                        <p className="brandTag">PeerPrep</p>
+                    </div>
                     <div className="welcomeTagWrapper">
-                        <p className="">Good to see you again! 👋</p>
+                        <p className="welcomeTag">Good to see you again! 👋</p>
                     </div>
                     <div className="loginContainer">
                         <Login />
