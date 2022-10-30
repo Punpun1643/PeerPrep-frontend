@@ -41,11 +41,11 @@ export async function ormUpdateQuestion(Question, changes) {
     }
 }
 
-export async function ormFindQuestionRandomly(difficulty, title) {
+export async function ormFindQuestionRandomly(difficulty, title = null) {
     try {
         const params = {};
         if (title) {
-            params['QuestionTitle'] = title;
+            params['QuestionTitle'] = { $ne: title };
         }
 
         if (difficulty) {
