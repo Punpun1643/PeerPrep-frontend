@@ -2,101 +2,121 @@
     {
         "QuestionTitle": "Minimum Window Substring",
         "QuestionBody": "Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string \"\".\n\nThe testcases will be generated such that the answer is unique.\n\nA substring is a contiguous sequence of characters within the string.\n\nExamples:\n\nInput: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"\n\nInput: s = \"a\", t = \"a\"\nOutput: \"a\"\n\nInput: s = \"a\", t = \"aa\"\nOutput: \"\"\n\nConstraints:\n\n* m == s.length\n* n == t.length\n* 1 <= m, n <= 105\n* s and t consist of uppercase and lowercase English letters.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Median of Two Sorted Arrays",
         "QuestionBody": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.\n\nThe overall run time complexity should be O(log (m+n)).\n\nExamples:\n\nInput: nums1 = [1,3], nums2 = [2]\nOutput: 2.00000\n\nInput: nums1 = [1,2], nums2 = [3,4]\nOutput: 2.50000\n \nConstraints:\n* nums1.length == m\n* nums2.length == n\n* 0 <= m <= 1000\n* 0 <= n <= 1000\n* 1 <= m + n <= 2000\n* -106 <= nums1[i], nums2[i] <= 106",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Merge k Sorted Lists",
         "QuestionBody": "You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.\n\nMerge all the linked-lists into one sorted linked-list and return it.\n \nExamples:\n\nInput: lists = [[1,4,5],[1,3,4],[2,6]]\nOutput: [1,1,2,3,4,4,5,6]\n\nInput: lists = []\nOutput: []\n\nInput: lists = [[]]\nOutput: []\n \nConstraints:\n* k == lists.length\n* 0 <= k <= 104\n* 0 <= lists[i].length <= 500\n* -104 <= lists[i][j] <= 104\n* lists[i] is sorted in ascending order.\n* The sum of lists[i].length will not exceed 104.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Reverse Nodes in k-Group",
         "QuestionBody": "Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.\n\nk is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.\n\nYou may not alter the values in the list's nodes, only nodes themselves may be changed.\n\nExamples:\n\nInput: head = [1,2,3,4,5], k = 2\nOutput: [2,1,4,3,5]\n\nInput: head = [1,2,3,4,5], k = 3\nOutput: [3,2,1,4,5]\n\nConstraints:\n* The number of nodes in the list is n.\n* 1 <= k <= n <= 5000\n* 0 <= Node.val <= 1000",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Longest Valid Parentheses",
         "QuestionBody": "Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.\n\nExamples:\n\nInput: s = \"(()\"\nOutput: 2\n\nInput: s = \")()())\"\nOutput: 4\n\nInput: s = \"\"\nOutput: 0\n\nConstraints:\n* 0 <= s.length <= 3 * 104\n* s[i] is '(', or ')'.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "First Missing Positive",
         "QuestionBody": "Given an unsorted integer array nums, return the smallest missing positive integer.\n\nYou must implement an algorithm that runs in O(n) time and uses constant extra space.\n\nExamples:\n\nInput: nums = [1,2,0]\nOutput: 3\n\nInput: nums = [3,4,-1,1]\nOutput: 2\n\nInput: nums = [7,8,9,11,12]\nOutput: 1\n \nConstraints:\n* 1 <= nums.length <= 105\n* -231 <= nums[i] <= 231 - 1",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Trapping Rain Water",
         "QuestionBody": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.\n\nExamples:\n\nInput: height = [0,1,0,2,1,0,1,3,2,1,2,1]\nOutput: 6\n\nInput: height = [4,2,0,3,2,5]\nOutput: 9\n \nConstraints:\n* n == height.length\n* 1 <= n <= 2 * 104\n* 0 <= height[i] <= 105",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "N-Queens",
         "QuestionBody": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.\n\nGiven an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.\n\nEach solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.\n\nExample 1:\n\nInput: n = 4\nOutput: [[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]\n\nInput: n = 1\nOutput: [[\"Q\"]]\n \nConstraints:\n* 1 <= n <= 9",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Edit Distance",
         "QuestionBody": "Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.\n\nYou have the following three operations permitted on a word:\n\nInsert a character\nDelete a character\nReplace a character\n \nExamples:\n\nInput: word1 = \"horse\", word2 = \"ros\"\nOutput: 3\n\nInput: word1 = \"intention\", word2 = \"execution\"\nOutput: 5\n \nConstraints:\n* 0 <= word1.length, word2.length <= 500\n* word1 and word2 consist of lowercase English letters.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Largest Rectangle in Histogram",
         "QuestionBody": "Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.\n\nExamples:\n\nInput: heights = [2,1,5,6,2,3]\nOutput: 10\n\nInput: heights = [2,4]\nOutput: 4\n \nConstraints:\n* 1 <= heights.length <= 105\n* 0 <= heights[i] <= 104",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Binary Tree Maximum Path Sum",
         "QuestionBody": "A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.\n\nThe path sum of a path is the sum of the node's values in the path.\n\nGiven the root of a binary tree, return the maximum path sum of any non-empty path.\n\nExamples:\n\nInput: root = [1,2,3]\nOutput: 6\n\nInput: root = [-10,9,20,null,null,15,7]\nOutput: 42\n\nConstraints:\n* The number of nodes in the tree is in the range [1, 3 * 104].\n* -1000 <= Node.val <= 1000",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Sliding Window Maximum",
         "QuestionBody": "You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.\n\nReturn the max sliding window.\n\nExamples:\n\nInput: nums = [1,3,-1,-3,5,3,6,7], k = 3\nOutput: [3,3,5,5,6,7]\n\nInput: nums = [1], k = 1\nOutput: [1]\n \nConstraints:\n* 1 <= nums.length <= 105\n* -104 <= nums[i] <= 104\n* 1 <= k <= nums.length",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Find Median from Data Stream",
         "QuestionBody": "The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value and the median is the mean of the two middle values.\n\nFor example, for arr = [2,3,4], the median is 3.\nFor example, for arr = [2,3], the median is (2 + 3) \/ 2 = 2.5.\nImplement the MedianFinder class:\n\nMedianFinder() initializes the MedianFinder object.\nvoid addNum(int num) adds the integer num from the data stream to the data structure.\ndouble findMedian() returns the median of all elements so far. Answers within 10-5 of the actual answer will be accepted.\n \nExamples:\n\nInput\n[\"MedianFinder\", \"addNum\", \"addNum\", \"findMedian\", \"addNum\", \"findMedian\"]\n[[], [1], [2], [], [3], []]\nOutput\n[null, null, null, 1.5, null, 2.0]\n \nConstraints:\n* -105 <= num <= 105\n* There will be at least one element in the data structure before calling findMedian.\n* At most 5 * 104 calls will be made to addNum and findMedian.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Regular Expression Matching",
         "QuestionBody": "Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:\n\n'.' Matches any single character.\u200B\u200B\u200B\u200B\n'*' Matches zero or more of the preceding element.\nThe matching should cover the entire input string (not partial).\n\nExamples:\n\nInput: s = \"aa\", p = \"a\"\nOutput: false\n\nInput: s = \"aa\", p = \"a*\"\nOutput: true\n\nInput: s = \"ab\", p = \".*\"\nOutput: true\n\nConstraints:\n* 1 <= s.length <= 20\n* 1 <= p.length <= 30\n* s contains only lowercase English letters.\n* p contains only lowercase English letters, '.', and '*'.\n* It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Substring with Concatenation of All Words",
         "QuestionBody": "You are given a string s and an array of strings words. All the strings of words are of the same length.\n\nA concatenated substring in s is a substring that contains all the strings of any permutation of words concatenated.\n\nFor example, if words = [\"ab\",\"cd\",\"ef\"], then \"abcdef\", \"abefcd\", \"cdabef\", \"cdefab\", \"efabcd\", and \"efcdab\" are all concatenated strings. \"acdbef\" is not a concatenated substring because it is not the concatenation of any permutation of words.\nReturn the starting indices of all the concatenated substrings in s. You can return the answer in any order.\n\nExamples:\n\nInput: s = \"barfoothefoobarman\", words = [\"foo\",\"bar\"]\nOutput: [0,9]\n\nInput: s = \"wordgoodgoodgoodbestword\", words = [\"word\",\"good\",\"best\",\"word\"]\nOutput: []\n\nInput: s = \"barfoofoobarthefoobarman\", words = [\"bar\",\"foo\",\"the\"]\nOutput: [6,9,12]\n\nConstraints:\n* 1 <= s.length <= 104\n* 1 <= words.length <= 5000\n* 1 <= words[i].length <= 30\n* s and words[i] consist of lowercase English letters.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Sudoku Solver",
         "QuestionBody": "Write a program to solve a Sudoku puzzle by filling the empty cells.\n\nA sudoku solution must satisfy all of the following rules:\n\nEach of the digits 1-9 must occur exactly once in each row.\nEach of the digits 1-9 must occur exactly once in each column.\nEach of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.\nThe '.' character indicates empty cells.\n\nExamples:\n\nInput: board = [[\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],[\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],[\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],[\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],[\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],[\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],[\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],[\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],[\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]]\nOutput: [[\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"],[\"6\",\"7\",\"2\",\"1\",\"9\",\"5\",\"3\",\"4\",\"8\"],[\"1\",\"9\",\"8\",\"3\",\"4\",\"2\",\"5\",\"6\",\"7\"],[\"8\",\"5\",\"9\",\"7\",\"6\",\"1\",\"4\",\"2\",\"3\"],[\"4\",\"2\",\"6\",\"8\",\"5\",\"3\",\"7\",\"9\",\"1\"],[\"7\",\"1\",\"3\",\"9\",\"2\",\"4\",\"8\",\"5\",\"6\"],[\"9\",\"6\",\"1\",\"5\",\"3\",\"7\",\"2\",\"8\",\"4\"],[\"2\",\"8\",\"7\",\"4\",\"1\",\"9\",\"6\",\"3\",\"5\"],[\"3\",\"4\",\"5\",\"2\",\"8\",\"6\",\"1\",\"7\",\"9\"]]\n\nConstraints:\n* board.length == 9\n* board[i].length == 9\n* board[i][j] is a digit or '.'.\n* It is guaranteed that the input board has only one solution.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Wildcard Matching",
         "QuestionBody": "Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for '?' and '*' where:\n\n'?' Matches any single character.\n'*' Matches any sequence of characters (including the empty sequence).\nThe matching should cover the entire input string (not partial).\n\nExamples:\n\nInput: s = \"aa\", p = \"a\"\nOutput: false\n\nInput: s = \"aa\", p = \"*\"\nOutput: true\n\nInput: s = \"cb\", p = \"?a\"\nOutput: false\n \nConstraints:\n* 0 <= s.length, p.length <= 2000\n* s contains only lowercase English letters.\n* p contains only lowercase English letters, '?' or '*'.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Permutation Sequence",
         "QuestionBody": "The set [1, 2, 3, ..., n] contains a total of n! unique permutations.\n\nBy listing and labeling all of the permutations in order, we get the following sequence for n = 3:\n\n\"123\"\n\"132\"\n\"213\"\n\"231\"\n\"312\"\n\"321\"\nGiven n and k, return the kth permutation sequence.\n\nExamples:\n\nInput: n = 3, k = 3\nOutput: \"213\"\n\nInput: n = 4, k = 9\nOutput: \"2314\"\n\nInput: n = 3, k = 1\nOutput: \"123\"\n \nConstraints:\n* 1 <= n <= 9\n* 1 <= k <= n!",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Valid Number",
         "QuestionBody": "A valid number can be split up into these components (in order):\n\nA decimal number or an integer.\n(Optional) An 'e' or 'E', followed by an integer.\nA decimal number can be split up into these components (in order):\n\n(Optional) A sign character (either '+' or '-').\nOne of the following formats:\nOne or more digits, followed by a dot '.'.\nOne or more digits, followed by a dot '.', followed by one or more digits.\nA dot '.', followed by one or more digits.\nAn integer can be split up into these components (in order):\n\n(Optional) A sign character (either '+' or '-').\nOne or more digits.\nFor example, all the following are valid numbers: [\"2\", \"0089\", \"-0.1\", \"+3.14\", \"4.\", \"-.9\", \"2e10\", \"-90E3\", \"3e+7\", \"+6e-1\", \"53.5e93\", \"-123.456e789\"], while the following are not valid numbers: [\"abc\", \"1a\", \"1e\", \"e3\", \"99e2.5\", \"--6\", \"-+3\", \"95a54e53\"].\n\nGiven a string s, return true if s is a valid number.\n\nExamples:\n\nInput: s = \"0\"\nOutput: true\n\nInput: s = \"e\"\nOutput: false\n\nInput: s = \".\"\nOutput: false\n \nConstraints:\n* 1 <= s.length <= 20\n* s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+', minus '-', or dot '.'.",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     },
     {
         "QuestionTitle": "Text Justification",
         "QuestionBody": "Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.\n\nYou should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.\n\nExtra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.\n\nFor the last line of text, it should be left-justified, and no extra space is inserted between words.\n\nNote:\n\nA word is defined as a character sequence consisting of non-space characters only.\nEach word's length is guaranteed to be greater than 0 and not exceed maxWidth.\nThe input array words contains at least one word.\n \nExamples:\n\nInput: words = [\"This\", \"is\", \"an\", \"example\", \"of\", \"text\", \"justification.\"], maxWidth = 16\nOutput:\n[\n   \"This    is    an\",\n   \"example  of text\",\n   \"justification.  \"\n]\n\nInput: words = [\"What\",\"must\",\"be\",\"acknowledgment\",\"shall\",\"be\"], maxWidth = 16\nOutput:\n[\n  \"What   must   be\",\n  \"acknowledgment  \",\n  \"shall be        \"\n]\n\nInput: words = [\"Science\",\"is\",\"what\",\"we\",\"understand\",\"well\",\"enough\",\"to\",\"explain\",\"to\",\"a\",\"computer.\",\"Art\",\"is\",\"everything\",\"else\",\"we\",\"do\"], maxWidth = 20\nOutput:\n[\n  \"Science  is  what we\",\n  \"understand      well\",\n  \"enough to explain to\",\n  \"a  computer.  Art is\",\n  \"everything  else  we\",\n  \"do                  \"\n]\n \nConstraints:\n* 1 <= words.length <= 300\n* 1 <= words[i].length <= 20\n* words[i] consists of only English letters and symbols.\n* 1 <= maxWidth <= 100\n* words[i].length <= maxWidth",
-        "QuestionDifficulty": "hard"
+        "QuestionDifficulty": "hard",
+        "QuestionImage": ""
     }
 ]
