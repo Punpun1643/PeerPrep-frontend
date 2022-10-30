@@ -8,6 +8,7 @@ import {
     logout,
     authenticateCookieToken,
     changePassword,
+    sendAuthSuccess,
 } from './controller/user-controller.js';
 
 const app = express();
@@ -23,10 +24,11 @@ const router = express.Router();
 // Controller will contain all the User-defined Routes
 // router.get('/', (_, res) => res.send('Hello World from user-service'));
 router.post('/', createUser);
-router.delete('/', authenticateCookieToken, deleteUser, logout);
+router.post('/deleteAccount', authenticateCookieToken, deleteUser, logout);
 router.post('/changePassword', authenticateCookieToken, changePassword);
 router.post('/login', loginUser);
 router.post('/logout', authenticateCookieToken, logout);
+router.get('/auth', authenticateCookieToken, sendAuthSuccess);
 
 app.use('/api/user', router).all((_, res) => {
     res.setHeader('content-type', 'application/json');
