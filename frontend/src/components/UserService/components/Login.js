@@ -66,7 +66,6 @@ function Login() {
 
     return (
         <React.Fragment>
-            {/* <Box display={"flex"} flexDirection={"column"} width={"30%"} padding={"4rem"}> */}
             <div className="login">
                 <div className="loginWrapper">
                     <Typography className="loginHeader" variant={"h3"} marginBottom={"2rem"}>Login</Typography>
@@ -108,14 +107,6 @@ function Login() {
                     <Box className="signupLink">
                         <Link href="/signup">Don't have an account? Sign up here</Link>
                     </Box>
-                    {/* <Snackbar
-                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                        open={open}
-                        autoHideDuration={6000}
-                        onClose={handleCloseSnackbar}
-                        action={action}
-                        message={errorMsg}
-                    /> */}
                     <Snackbar 
                         open={open}
                         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -130,12 +121,11 @@ function Login() {
                             sx={{ width: '100%' }} 
                             style={
                                 { backgroundColor: "#FED7D8", 
-                                color: "red" }
+                                color: "#FF3152" }
                             }>
                             {errorMsg}
                         </Alert>
                     </Snackbar>
-                {/* </Box> */}
                 </div>
             </div>
         </React.Fragment>

@@ -54,7 +54,6 @@ function Signup() {
 
     return (
         <React.Fragment>
-            {/* <Box className="signup" display={"flex"} flexDirection={"column"} width={"100hw"} padding={"4rem"}> */}
             <div className="signup">
                 <div className="signupWrapper">
                     <Typography className="signupHeader" variant={"h3"} marginBottom={"2rem"}>Sign Up</Typography>
@@ -107,7 +106,6 @@ function Signup() {
                         dialogMsg={dialogMsg}
                         isSignupSuccess={isSignupSuccess}
                     />
-            {/* </Box> */}
                 </div>
             </div>
         </React.Fragment>
