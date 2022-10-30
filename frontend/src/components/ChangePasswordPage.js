@@ -63,7 +63,6 @@ function ChangePasswordPage() {
     }
 
     const pwRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/
-    
     const validatePasswordStrength = (e) => {
         setPasswordStrengthMsg('')
         // client side password validation
