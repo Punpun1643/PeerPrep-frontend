@@ -52,6 +52,11 @@ function Signup() {
         setDialogMsg(msg)
     }
 
+    const verifyPassword = (password) => {
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+        return password.match(pwRegex) !== null;
+    }
+
     return (
         <React.Fragment>
             <div className="signup">
@@ -71,7 +76,7 @@ function Signup() {
                         />
                         <TextField
                             className="userInput"
-                            error={!(password === '' || password.length >= 8)}
+                            error={!verifyPassword(password)}
                             required
                             label="Password"
                             variant="outlined"
@@ -79,9 +84,9 @@ function Signup() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            helperText={!(password === '' || password.length >= 8) 
-                                ? "Password should contain at least 8 characters and is alphanumeric" 
-                                : ''}
+                            helperText={ !verifyPassword(password)
+                                ? "Password should contain at least one number and one alphabet, and must be at least 8 characters" 
+                                : ""}
                             sx={{marginBottom: "2rem"}}
                         />
                     </div>
