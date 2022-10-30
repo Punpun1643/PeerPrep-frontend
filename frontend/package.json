@@ -19,6 +19,7 @@
     "@uiw/codemirror-theme-dracula": "^4.12.4",
     "@uiw/react-codemirror": "^4.12.4",
     "axios": "^0.27.2",
+    "js-cookie": "^3.0.1",
     "codemirror": "^5.65.9",
     "ityped": "^1.0.3",
     "js-cookie": "^3.0.1",

@@ -3,10 +3,10 @@ import React, { useEffect, useRef } from 'react';
 import Signup from "./UserService/components/Signup";
 import { init } from 'ityped';
 
-import './SignupPage.css';
-
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+
+import './SignupPage.css';
 
 function SignupPage() {
 
