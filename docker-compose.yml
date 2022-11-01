@@ -23,8 +23,6 @@ services:
     restart: always
     ports:
       - "8002:8002"
-    depends_on: 
-      - matching-service
 
   chat-service:
     build: ./chat-service
@@ -39,5 +37,7 @@ services:
     build: ./matching-service
     ports:
       - "8001:8001"
+    depends_on:
+      - question-service
     
   

@@ -28,7 +28,7 @@ const CodeEditor = (props) => {
       let provider = null;
       
       try {
-        provider = new WebrtcProvider(roomId, ydoc, { signalling: ['ws://localhost:3000'] });
+        provider = new WebrtcProvider(roomId, ydoc, { signalling: ['wss://localhost:3000'] });
 
         const yText = ydoc.getText("codemirror");
         
