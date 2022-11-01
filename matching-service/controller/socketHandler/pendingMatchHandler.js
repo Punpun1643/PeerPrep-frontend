@@ -18,6 +18,7 @@ const pendingMatchHandler = (io) => {
                 let question; 
 
                 //retrive easy question by sending a GET API to question-service
+                //NOTE: use this url instead if running locally without docker: 'http://localhost:8002/api/questions/?level=easy'
                 axios.get('http://question-service:8002/api/questions/?level=easy')
                     .then(response => {
                         question = response.data;
@@ -51,6 +52,7 @@ const pendingMatchHandler = (io) => {
                 let question;
 
                 //retrive medium question by sending a GET API to question-service
+                //NOTE: use this url instead if running locally without docker: 'http://localhost:8002/api/questions/?level=medium'
                 axios.get('http://question-service:8002/api/questions/?level=medium')
                     .then(response => {
                         question = response.data;
@@ -76,6 +78,7 @@ const pendingMatchHandler = (io) => {
                 let question;
 
                 //retrive hard question by sending a GET API to question-service
+                //NOTE: use this url instead if running locally without docker: 'http://localhost:8002/api/questions/?level=hard'
                 axios.get('http://question-service:8002/api/questions/?level=hard')
                     .then(response => {
                         question = response.data;
