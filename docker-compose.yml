@@ -1,0 +1,43 @@
+version: "3.8"
+services: 
+  frontend:
+    build: 
+      context: ./frontend
+    restart: always
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - user-service
+      - matching-service
+      - question-service
+      - chat-service
+
+  user-service:
+    build: ./user-service
+    restart: always
+    ports:
+      - "8000:8000"
+
+  question-service:
+    build: ./question-service
+    restart: always
+    ports:
+      - "8002:8002"
+    depends_on: 
+      - matching-service
+
+  chat-service:
+    build: ./chat-service
+    restart: always
+    ports: 
+      - "8003:8003"
+    depends_on:
+      - matching-service
+
+  matching-service:
+    restart: always
+    build: ./matching-service
+    ports:
+      - "8001:8001"
+    
+  
