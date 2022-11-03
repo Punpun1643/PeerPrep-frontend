@@ -39,9 +39,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "start-server-and-test start http://localhost:3000 cy:run",
     "lint": "npx eslint .",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +65,7 @@
   "devDependencies": {
     "cypress": "^10.11.0",
     "eslint": "^8.21.0",
-    "eslint-plugin-react": "^7.30.1"
+    "eslint-plugin-react": "^7.30.1",
+    "start-server-and-test": "^1.14.0"
   }
 }
