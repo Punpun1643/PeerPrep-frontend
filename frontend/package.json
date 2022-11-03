@@ -37,7 +37,7 @@
     "yjs": "^13.5.41"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "CI=false react-scripts start",
     "build": "react-scripts build",
     "test": "start-server-and-test start http://localhost:3000 cy:run",
     "lint": "npx eslint .",
