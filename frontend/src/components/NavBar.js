@@ -10,6 +10,8 @@ import DeleteAccountAlert from "./DeleteAccountAlert";
 import Button from '@mui/material/Button';
 import Cookies from 'js-cookie';
 
+import './NavBar.css';
+
 function NavBar() {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
@@ -98,7 +100,7 @@ function NavBar() {
                             {/* <IconButton onClick={handleLogout}>
                                 <LogoutIcon />
                             </IconButton> */}
-                            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                            <Button className="logoutButton" color="inherit" onClick={handleLogout}>Logout</Button>
                     </Box>
                 </Toolbar>
             </AppBar>
