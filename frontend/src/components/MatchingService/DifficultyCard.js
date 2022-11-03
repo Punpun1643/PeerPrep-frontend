@@ -41,7 +41,7 @@ export default function DifficultyCard(props) {
                               }
 
   return (
-    <Card sx={{backgroundColor: "RGBA(51,112,255,0.6)",
+    <Card sx={{backgroundColor: "#3370FF",
               '&:hover': {
                 backgroundColor: '#F7CF1C !important', 
                }, 
