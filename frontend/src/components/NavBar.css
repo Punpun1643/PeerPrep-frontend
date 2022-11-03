@@ -6,4 +6,9 @@
 
 .navbarOption {
     margin: 4px;
+    border-radius: 20px;
+}
+
+.logo {
+    cursor: pointer;
 }

@@ -50,13 +50,20 @@ function NavBar() {
         navigate("/home");
     }
 
+    const handleFindMatch = (e) => {
+        navigate("/selectquestiondifficulty");
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="sticky" style={{ backgroundColor: "#3370FF" }}>
                 <Toolbar>
                     <Typography variant="h6" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }} style={{ fontWeight: "bold" }}>
-                        PeerPrep
+                    
+                        <p className="logo" onClick={handleHome}>PeerPrep</p>
+                     
                     </Typography>
+               
                     <Box sx={{ flexGrow: 0 }}>
                         {/* <Tooltip title="Open User Settings">
                             <IconButton onClick={handleOpenUserSettings}>
@@ -64,6 +71,8 @@ function NavBar() {
                             </IconButton>
                         </Tooltip> */}
                         <Button className="navbarOption" color="inherit" onClick={handleHome}>Home</Button>
+
+                        <Button className="navbarOption" color="inherit" onClick={handleFindMatch}>Find match</Button>
                
                         <Button className="navbarOption" color="inherit" onClick={handleOpenUserSettings}>Settings</Button>
  
