@@ -67,7 +67,6 @@ export default function DifficultyCard(props) {
           <Typography color="#ffffff" variant="caption" sx={{textAlign: 'center'}}>
             {difficultyTextMap[props.difficulty]}
           </Typography>
-
         </CardContent>
       </CardActionArea>
     </Card>

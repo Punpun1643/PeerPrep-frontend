@@ -5,6 +5,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 
+import './CountdownView.css';
 
 function CountdownView(props) {
 
@@ -12,7 +13,6 @@ function CountdownView(props) {
 
     let socket = getSocket();
     
-
     const modal = {
         position: 'fixed',
         left: '0',
@@ -30,7 +30,7 @@ function CountdownView(props) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '50vh',
+        height: '60vh',
         width: '50vw',
         fontSize: '20px',
         backgroundColor: 'RGBA(19,36,57,0.8)',
@@ -64,7 +64,6 @@ function CountdownView(props) {
                 questionData: questionData }} );
             }
         );
-
     }, []);
 
     if (!props.show) {
@@ -82,29 +81,29 @@ function CountdownView(props) {
 
     return (
         <div style={modal}>
-            <div style={center}>
-                <CountdownCircleTimer 
-                    size={240}
-                    isPlaying
-                    duration={30}
-                    colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                    colorsTime={[30, 20, 10, 0]}
-                    strokeWidth={12}
-                    onComplete= {() => {
-                        setMatchingStatus('match-fail')
-                        socket.emit('no-match-found');
-                        console.log('failed');
-                    }}
-                >
-                    {insideCircle}
-                </CountdownCircleTimer> 
-
+            <div style={center} className="countdownContainer">
+                <div className="countdownWrapper">
+                    <CountdownCircleTimer 
+                        size={240}
+                        isPlaying
+                        duration={30}
+                        colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                        colorsTime={[30, 20, 10, 0]}
+                        strokeWidth={12}
+                        onComplete= {() => {
+                            setMatchingStatus('match-fail')
+                            socket.emit('no-match-found');
+                            console.log('failed');
+                        }}
+                    >
+                        {insideCircle}
+                    </CountdownCircleTimer>
+                </div> 
                 <Typography sx={{margin: '1.2em'}}>
                     {matchingStatus === 'match-fail' && "Try again later!"}
                     {matchingStatus !== 'match-fail' && remainingTime > 20 && messages.finding}
                     {remainingTime <= 20 && matchingStatus !== 'match-fail' && messages.stillFinding}
                 </Typography> 
-              
                 <Button variant="contained" sx={{margin: '0.6em', borderRadius: '25px'}}  style={{ backgroundColor: "#FF3152", color: "white"}}
                     onClick={() => {
                         if (matchingStatus === 'match-finding') {
