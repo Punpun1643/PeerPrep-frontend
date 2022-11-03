@@ -16,3 +16,4 @@ jobs:
           working-directory: ./frontend
           build: npm run build --if-present
           test: npm run test
+          wait-on: 'http://localhost:3000'
