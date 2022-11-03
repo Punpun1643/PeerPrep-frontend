@@ -1,4 +1,9 @@
 .logoutButton {
     border-radius: 20px;
     outline: 1px solid white;
+    margin: 4px;
+}
+
+.navbarOption {
+    margin: 4px;
 }

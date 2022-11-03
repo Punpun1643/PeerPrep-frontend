@@ -63,9 +63,9 @@ function NavBar() {
                                 <SettingsIcon />
                             </IconButton>
                         </Tooltip> */}
-                        <Button color="inherit" onClick={handleHome}>Home</Button>
+                        <Button className="navbarOption" color="inherit" onClick={handleHome}>Home</Button>
                
-                        <Button color="inherit" onClick={handleOpenUserSettings}>Settings</Button>
+                        <Button className="navbarOption" color="inherit" onClick={handleOpenUserSettings}>Settings</Button>
  
                         <Menu
                             sx={{ mt: '45px' }}
