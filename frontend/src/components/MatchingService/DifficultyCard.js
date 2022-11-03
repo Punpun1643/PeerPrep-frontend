@@ -32,8 +32,8 @@ export default function DifficultyCard(props) {
   }
 
   const difficultyImageMap = { "easy" : sapling, "medium" : youngtree, "hard" : tree}
-  const difficultyTextMap = { "easy" : "Beginner-friendly",
-                              "medium" : "Intermediate level", 
+  const difficultyTextMap = { "easy" : "Beginner Friendly",
+                              "medium" : "Intermediate Level", 
                               "hard" : "Advanced Concepts"}
   const difficultyColorMap = { "easy": "#4caf50",
                                "medium": "#ffca28",
