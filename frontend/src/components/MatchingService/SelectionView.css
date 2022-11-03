@@ -10,10 +10,12 @@
     font-size: 36px;
     font-weight: bold;
     color: white;
+    text-align: center;
 }
 
 .matchDescription {
     color: white;
+    text-align: center;
 }
 
 .matchWrapper {

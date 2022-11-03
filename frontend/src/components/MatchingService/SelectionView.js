@@ -38,7 +38,7 @@ export default function SelectionView() {
           <div className="matchContainer">
             <div className="matchTextWrapper">
               <p className="matchTitle">Choose a Difficulty Level</p>
-              <p className="matchDescription">Based on your chosen difficulty level, we find you a match with the same difficulty level.</p>
+              <p className="matchDescription">We will find you a match with the same difficulty level.</p>
               <p className="matchDescription">The next step involved waiting to be matched!</p>
             </div>
             <Grid className="matchCardWrapper" container spacing={2}>

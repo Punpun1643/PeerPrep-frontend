@@ -99,7 +99,7 @@ function CountdownView(props) {
                         {insideCircle}
                     </CountdownCircleTimer>
                 </div> 
-                <Typography sx={{margin: '1.2em'}}>
+                <Typography className="matchStatusText" sx={{margin: '1.2em'}}>
                     {matchingStatus === 'match-fail' && "Try again later!"}
                     {matchingStatus !== 'match-fail' && remainingTime > 20 && messages.finding}
                     {remainingTime <= 20 && matchingStatus !== 'match-fail' && messages.stillFinding}
