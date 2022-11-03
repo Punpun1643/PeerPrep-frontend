@@ -3,4 +3,3 @@ describe('Login page', () => {
         cy.visit('http://localhost:3000');
     });
 });
-
