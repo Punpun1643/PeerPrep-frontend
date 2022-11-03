@@ -32,7 +32,7 @@ export default function SelectionView() {
     }
 
     return (
-    <Box backgroundColor={"#132439"} height={"80vh"} display={"flex"} flexDirection={"column"} padding={"4rem"}>
+    <Box backgroundColor={"#132439"} height={"85vh"} display={"flex"} flexDirection={"column"} padding={"4rem"}>
       <Box className="matchWrapper" display={"flex"} flexDirection={"column"} sx={{alignItems: 'center', flexGrow: 1, margin: 'auto', maxWidth:'100%'}}>
           {/* <Typography margin="16px" variant="h4" color={"#ffffff"}> Choose a Difficulty Level </Typography> */}
           <div className="matchContainer">
