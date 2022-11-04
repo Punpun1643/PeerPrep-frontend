@@ -1,11 +1,13 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
-function QuestionDisplay({title, body}) {
+function QuestionDisplay({title, body, handleOpenRefreshModal, handleCloseRefreshModal}) {
 
 const refreshHandler = () => {
     console.log('refresh-button clicked');
+    handleOpenRefreshModal();
 }
+
     return (
         <Box sx={{whiteSpace: 'pre-line'}}>
             <Box sx={{ display: 'flex',

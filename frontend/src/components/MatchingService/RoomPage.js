@@ -18,7 +18,7 @@ import CodeEditor from '../CollaborationService/CodeEditor';
 
 export default function RoomPage() {
 
-    //styling for leave room modal
+    //styling for modal
     const modal = {
         position: 'fixed',
         left: '0',
@@ -54,8 +54,6 @@ export default function RoomPage() {
     useEffect( () => {
         ensureLoggedIn(navigate);
     });
-
-    console.log(location);
   
     const roomId = location.state  
                    ? location.state.roomId 
@@ -75,6 +73,7 @@ export default function RoomPage() {
     console.log("socketID " + socket.id);
 
     const [showLeaveModal, setShowLeaveModal] = useState(false);
+    const [showRefreshModal, setShowRefreshModal] = useState(false);
 
     useEffect( () => {
 
@@ -90,18 +89,31 @@ export default function RoomPage() {
 
     }, []);
 
-    const handleoOpenModal = (e) => {
+    const handleOpenModal = (e) => {
         setShowLeaveModal(true);
     }
 
     const handleCloseModal = (e) => {
         setShowLeaveModal(false);
     }
+
+    const handleOpenRefreshModal = (e) => {
+        setShowRefreshModal(true);
+    }
+
+    const handleCloseRefreshModal = (e) => {
+        setShowRefreshModal(false);
+    }
+
     
     const onLeaveHandler = (e) => {
         console.log("leaving " + socket.id);
         socket.emit("leave-room", roomId);
         navigate('/selectquestiondifficulty');
+    }
+
+    const refreshHandler = (e) => {
+        console.log("refreshing question");
     }
 
 
@@ -117,7 +129,19 @@ export default function RoomPage() {
                             </Box>
                         </div>
                     </div>
-                    : <></>} 
+                    : <></>}
+                { showRefreshModal ? 
+                     <div style={modal}>
+                     <div style={center}>
+                         <Typography variant="body1" sx={{padding: '20px'}}> Are you sure you want to change to another question? The change will be reflected to all users in the room. </Typography>
+                         <Box>
+                             <Button variant="outlined" onClick={refreshHandler} sx={{margin: '5px'}}> Yes </Button>
+                             <Button variant="outlined" onClick={handleCloseRefreshModal} sx={{margin: '5px', borderColor: 'red', color: 'red'}}> Cancel </Button>
+                         </Box>
+                     </div>
+                 </div>
+                 : <></>}
+                
                 {/* left panel */}
                 <Grid item xs={5} md={5}>
                     <Stack spacing={0.5}>
@@ -126,14 +150,14 @@ export default function RoomPage() {
                             {/* room number  */}
                             <Typography variant="body1" sx={{margin: 2}}> Room {roomId.slice(0,8)}  </Typography> 
                             {/* leave room button */}
-                            <Button variant="outlined" endIcon={<LogoutIcon />} size="small" sx={{fontSize: '15px', textTransform: 'none'}} onClick={handleoOpenModal}>
+                            <Button variant="outlined" endIcon={<LogoutIcon />} size="small" sx={{fontSize: '15px', textTransform: 'none'}} onClick={handleOpenModal}>
                               Leave  
                             </Button>    
                         </Box>
                         {/* question box */}
                         <Box sx={{height: "58vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4, overflow: "scroll"}}>
-                            <QuestionDisplay title={questionTitle} body={questionBody}/> 
+                            <QuestionDisplay title={questionTitle} body={questionBody} handleOpenRefreshModal={handleOpenRefreshModal} handleCloseRefreshModal={handleCloseRefreshModal}/> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', flexDirection: 'column'}}>
