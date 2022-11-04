@@ -10,7 +10,6 @@ describe('Login page', () => {
         cy.visit('http://localhost:3000');
     });
 
-    
     it('throw correct error when not connected to database', () => {
         cy.visit('http://localhost:3000/signup');
 
