@@ -10,6 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { ensureLoggedIn } from '../../Util';
 import { io } from "socket.io-client";
 import QuestionDisplay from '../QuestionService/QuestionDisplay';
+import ChatDisplay from '../ChatService/ChatDisplay';
 
 // collaboration service
 import CodeEditor from '../CollaborationService/CodeEditor';
@@ -106,7 +107,6 @@ export default function RoomPage() {
 
 
     return (
-          
             <Grid container spacing={0.5} sx={{backgroundColor:'white', width:'100vw', height:'100vh', margin: '0px'}}>
                 {showLeaveModal ? 
                     <div style={modal}>
@@ -137,9 +137,9 @@ export default function RoomPage() {
                             <QuestionDisplay title={questionTitle} body={questionBody} image={questionImage}/> 
                         </Box>
                         {/*chat box */}
-                        <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
-                                  backgroundColor: 'white', border: 1.5, borderColor: 'orange', borderRadius: 4}}>
-                            <Typography variant="body1" sx={{margin: 2}}> Placeholder chat box </Typography> 
+                        <Box sx={{height: "30vh", display:'flex', flexDirection: 'column'}}>
+                            {/* <Typography variant="body1" sx={{margin: 2}}> Placeholder chat box </Typography>  */}
+                            <ChatDisplay roomId={roomId} />
                         </Box>
                     </Stack>
                 </Grid>
