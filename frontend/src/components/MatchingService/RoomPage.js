@@ -8,7 +8,6 @@ import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { ensureLoggedIn } from '../../Util';
-import { io } from "socket.io-client";
 import QuestionDisplay from '../QuestionService/QuestionDisplay';
 import ChatDisplay from '../ChatService/ChatDisplay';
 
@@ -64,11 +63,8 @@ export default function RoomPage() {
                    : "";
     
     let isFirstQuestion = (window.sessionStorage.getItem("question") == null)
-    console.log("hi!" + isFirstQuestion);
-    console.log(window.sessionStorage.getItem("question"));
 
-
-    const [questionDifficulty, setQuestionDifficulty] = useState(location.state.questionData.question.QuestionDifficulty);    
+    const questionDifficulty = location.state.questionData.question.QuestionDifficulty;    
     const [questionTitle, setQuestionTitle] = useState(isFirstQuestion 
                                                         ? location.state.questionData.question.QuestionTitle
                                                         : JSON.parse(window.sessionStorage.getItem("question")).QuestionTitle);
@@ -89,12 +85,8 @@ export default function RoomPage() {
           });
         socket.emit("join-room", roomId);
 
-        socket.on("update-question", (question) => {
-            console.log("updating-question");
-            
+        socket.on("update-question", (question) => {            
             window.sessionStorage.setItem("question", JSON.stringify(question.question));
-            console.log(question.question);
-            console.log(JSON.parse(window.sessionStorage.getItem("question")));
             setQuestionTitle(question.question.QuestionTitle);
             setQuestionBody(question.question.QuestionBody);
         });
@@ -130,7 +122,6 @@ export default function RoomPage() {
     }
 
     const refreshHandler = (e) => {
-        console.log("refreshing question");
         socket.emit("refresh-question", roomId, questionDifficulty, questionTitle);
         setShowRefreshModal(false);
     }
