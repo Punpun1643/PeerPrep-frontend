@@ -62,13 +62,20 @@ export default function RoomPage() {
     const secondClientSocketId = location.state
                    ? location.state.secondClientSocketId
                    : "";
+    
+    let isFirstQuestion = (window.sessionStorage.getItem("question") == null)
+    console.log("hi!" + isFirstQuestion);
+    console.log(window.sessionStorage.getItem("question"));
 
-    //breaking question down
-    const [questionData, setQuestionData] = useState(location.state.questionData);
-    const [questionDifficulty, setQuestionDifficulty] = useState(questionData.question.QuestionDifficulty);
-    const [questionTitle, setQuestionTitle] = useState(questionData.question.QuestionTitle);
-    const [questionBody, setQuestionBody] = useState(questionData.question.QuestionBody);
 
+    const [questionDifficulty, setQuestionDifficulty] = useState(location.state.questionData.question.QuestionDifficulty);    
+    const [questionTitle, setQuestionTitle] = useState(isFirstQuestion 
+                                                        ? location.state.questionData.question.QuestionTitle
+                                                        : JSON.parse(window.sessionStorage.getItem("question")).QuestionTitle);
+    const [questionBody, setQuestionBody] = useState(isFirstQuestion
+                                                     ? location.state.questionData.question.QuestionBody
+                                                     : JSON.parse(window.sessionStorage.getItem("question")).QuestionBody);
+        
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
 
@@ -84,13 +91,17 @@ export default function RoomPage() {
 
         socket.on("update-question", (question) => {
             console.log("updating-question");
-            setQuestionData(question);
+            
+            window.sessionStorage.setItem("question", JSON.stringify(question.question));
+            console.log(question.question);
+            console.log(JSON.parse(window.sessionStorage.getItem("question")));
             setQuestionTitle(question.question.QuestionTitle);
             setQuestionBody(question.question.QuestionBody);
         });
 
         return () => {
             socket.disconnect();
+            window.sessionStorage.clear();
             socket.connect();
         } 
     }, []);
