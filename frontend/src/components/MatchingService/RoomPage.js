@@ -64,29 +64,35 @@ export default function RoomPage() {
                    : "";
 
     //breaking question down
-    let questionData = location.state.questionData;
-    let questionDifficulty = questionData.question.QuestionDifficulty;
-    let questionTitle = questionData.question.QuestionTitle;
-    let questionBody = questionData.question.QuestionBody;
+    const [questionData, setQuestionData] = useState(location.state.questionData);
+    const [questionDifficulty, setQuestionDifficulty] = useState(questionData.question.QuestionDifficulty);
+    const [questionTitle, setQuestionTitle] = useState(questionData.question.QuestionTitle);
+    const [questionBody, setQuestionBody] = useState(questionData.question.QuestionBody);
 
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
 
     const [showLeaveModal, setShowLeaveModal] = useState(false);
     const [showRefreshModal, setShowRefreshModal] = useState(false);
+    
 
     useEffect( () => {
-
         socket.on("connect", () => {
             console.log(socket.connected); // true
           });
         socket.emit("join-room", roomId);
 
+        socket.on("update-question", (question) => {
+            console.log("updating-question");
+            setQuestionData(question);
+            setQuestionTitle(question.question.QuestionTitle);
+            setQuestionBody(question.question.QuestionBody);
+        });
+
         return () => {
             socket.disconnect();
             socket.connect();
         } 
-
     }, []);
 
     const handleOpenModal = (e) => {
@@ -114,6 +120,8 @@ export default function RoomPage() {
 
     const refreshHandler = (e) => {
         console.log("refreshing question");
+        socket.emit("refresh-question", roomId, questionDifficulty, questionTitle);
+        setShowRefreshModal(false);
     }
 
 
