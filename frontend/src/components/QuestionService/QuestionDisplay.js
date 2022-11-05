@@ -17,7 +17,10 @@ const refreshHandler = () => {
                        padding: 2, 
                        gap: 1}}>           
                 <Typography variant="h6"> {title} </Typography> 
-                <IconButton onClick={refreshHandler} sx={{backgroundColor: '#F0F0F0'}}>
+                <IconButton onClick={refreshHandler} sx={{backgroundColor: '#F0F0F0',
+                                                          "&:hover": {
+                                                            backgroundColor: '#D0D0D0'
+                                                          }}}>
                     <AutorenewIcon></AutorenewIcon>
                 </IconButton>
             </Box>
