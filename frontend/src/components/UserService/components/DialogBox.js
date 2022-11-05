@@ -34,7 +34,7 @@ const DialogBox = (props) => {
                 <DialogContentText className="dialogContentText">{props.dialogMsg}</DialogContentText>
             </DialogContent>
             <DialogActions style={{ padding: "16px"}}>
-                <Button style={{ color: "white", fontWeight: "bold", backgroundColor: "#FF3152", borderRadius: "20px"}} onClick={props.closeDialog}>Close</Button>
+                <Button style={{ color: "white", backgroundColor: "#FF3152", borderRadius: "20px"}} onClick={props.closeDialog}>Close</Button>
             </DialogActions>
             </div>)}
         </Dialog>
