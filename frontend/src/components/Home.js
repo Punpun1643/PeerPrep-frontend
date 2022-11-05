@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button } from "@mui/material";
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { ensureLoggedIn } from '../Util';
 import CreateIcon from '@mui/icons-material/Create';
 import './Home.css';
-import { flexbox } from '@mui/system';
+import { URL_HISTORY_SVC } from "../configs";
+import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
+
+
 
 function Home(props) {
     const [username, setUsername] = useState(Cookies.get('username'));
@@ -14,7 +18,21 @@ function Home(props) {
 
     useEffect(() => {
         ensureLoggedIn(navigate);
+        getAttemptedQuestions();
     })
+
+    const getAttemptedQuestions = async () => {
+        const res = await axios.get(URL_HISTORY_SVC + '/' + username)
+            .catch((err) => {
+                console.log(err)
+                if (err.response.status === STATUS_CODE_UNAUTHORIZED) {
+                    console.err('Unable to get attempted questions!');
+                }
+            });
+        console.log('iguana', res.data);
+
+    }
+
 
     return (
         <>
