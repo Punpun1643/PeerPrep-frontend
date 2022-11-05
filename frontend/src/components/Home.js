@@ -7,32 +7,64 @@ import { ensureLoggedIn } from '../Util';
 import CreateIcon from '@mui/icons-material/Create';
 import './Home.css';
 import { URL_HISTORY_SVC } from "../configs";
-import { STATUS_CODE_OK, STATUS_CODE_UNAUTHORIZED } from "../constants";
-
-
 
 function Home(props) {
     const [username, setUsername] = useState(Cookies.get('username'));
+    const [questionRecords, setQuestionRecords] = useState([]);
+    const [easyQuestions, setEasyQuestions] = useState([]);
+    const [mediumQuestions, setMediumQuestions] = useState([]);
+    const [hardQuestions, setHardQuestions] = useState([]);
+
 
     let navigate = useNavigate();
 
     useEffect(() => {
         ensureLoggedIn(navigate);
-        getAttemptedQuestions();
+        //getAttemptedQuestions();
+        getEasyAttemptedQuestions();
+        getMediumAttemptedQuestions();
+        getHardAttemptedQuestions();
     })
 
     const getAttemptedQuestions = async () => {
-        const res = await axios.get(URL_HISTORY_SVC + '/' + username)
+        await axios.get(URL_HISTORY_SVC + '/' + username)
+            .then(response => {
+                setQuestionRecords(response.data.data.records);
+            })
             .catch((err) => {
                 console.log(err)
-                if (err.response.status === STATUS_CODE_UNAUTHORIZED) {
-                    console.err('Unable to get attempted questions!');
-                }
             });
-        console.log('iguana', res.data);
-
     }
 
+    const getEasyAttemptedQuestions = async () => {
+        await axios.get(URL_HISTORY_SVC + '/' + username + '?level=easy')
+            .then(response => {
+                setEasyQuestions(response.data.data.filteredRecords);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
+    const getMediumAttemptedQuestions = async () => {
+        await axios.get(URL_HISTORY_SVC + '/' + username + '?level=medium')
+            .then(response => {
+                setMediumQuestions(response.data.data.filteredRecords);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
+    const getHardAttemptedQuestions = async () => {
+        await axios.get(URL_HISTORY_SVC + '/' + username + '?level=hard')
+            .then(response => {
+                setHardQuestions(response.data.data.filteredRecords);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
 
     return (
         <>
@@ -46,6 +78,12 @@ function Home(props) {
                         color="warning"
                         endIcon={< CreateIcon />}
                         sx={{ marginTop: 2, alignSelf: 'center' }}>Start the Grind</Button>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-evenly',  }}>
+                    <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>{easyQuestions.length}</Typography>
+                    <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>{mediumQuestions.length}</Typography>
+                    <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>{hardQuestions.length}</Typography>
+
                 </Box>
             </Box>
         </>
