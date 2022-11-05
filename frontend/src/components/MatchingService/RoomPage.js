@@ -112,8 +112,8 @@ export default function RoomPage() {
                         <div style={center}>
                             <Typography variant="body1" sx={{padding: '20px'}}> Are you sure you want to leave the session? </Typography>
                             <Box>
-                                <Button variant="contained" onClick={onLeaveHandler} sx={{margin: '5px', borderRadius: '25px'}}> Yes </Button>
-                                <Button variant="contained" onClick={handleCloseModal} sx={{margin: '5px', borderRadius: '25px'}}> Cancel </Button>
+                                <Button variant="contained" onClick={onLeaveHandler} sx={{margin: '5px', borderRadius: '25px'}} style={{ backgroundColor:"#05CE91", width: "80px" }}> Yes </Button>
+                                <Button variant="contained" onClick={handleCloseModal} sx={{margin: '5px', borderRadius: '25px'}} style={{ backgroundColor:"#FF3152", width: "80px" }}> Cancel </Button>
                             </Box>
                         </div>
                     </div>
@@ -124,9 +124,9 @@ export default function RoomPage() {
                         {/* room number and leave room button */}
                         <Box sx={{height: "9.5vh", display:'flex', justifyContent:'flex-start', alignItems:'center'}}>
                             {/* room number  */}
-                            <Typography variant="body1" sx={{margin: 2}}> Room {roomId.slice(0,8)}  </Typography> 
+                            <Typography variant="body1" sx={{margin: 2}}> Room ID: {roomId.slice(0,8)}  </Typography> 
                             {/* leave room button */}
-                            <Button variant="contained" endIcon={<LogoutIcon />} size="small" sx={{fontSize: '15px', textTransform: 'none', borderRadius: '25px'}} onClick={handleoOpenModal}>
+                            <Button variant="contained" endIcon={<LogoutIcon />} size="small" sx={{fontSize: '15px', textTransform: 'none', borderRadius: '25px'}} style={{ backgroundColor:"#FF3152", width:"88px" }} onClick={handleoOpenModal}>
                               Leave  
                             </Button>    
                         </Box>
