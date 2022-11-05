@@ -6,6 +6,7 @@ import axios from "axios";
 import { ensureLoggedIn } from '../Util';
 import CreateIcon from '@mui/icons-material/Create';
 import './Home.css';
+import AttemptedCard from './HistoryService/AttemptedCard';
 import { URL_HISTORY_SVC } from "../configs";
 
 function Home(props) {
@@ -79,11 +80,11 @@ function Home(props) {
                         endIcon={< CreateIcon />}
                         sx={{ marginTop: 2, alignSelf: 'center' }}>Start the Grind</Button>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-evenly',  }}>
-                    <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>{easyQuestions.length}</Typography>
-                    <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>{mediumQuestions.length}</Typography>
-                    <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>{hardQuestions.length}</Typography>
-
+                <Typography variant={"h5"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>So far, you have completed:</Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-evenly', marginTop: 5 }}>
+                    <AttemptedCard difficulty={'easy'} numberOfAttempted={easyQuestions.length} />
+                    <AttemptedCard difficulty={'medium'} numberOfAttempted={mediumQuestions.length} />
+                    <AttemptedCard difficulty={'hard'} numberOfAttempted={hardQuestions.length} />
                 </Box>
             </Box>
         </>
