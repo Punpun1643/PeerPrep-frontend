@@ -71,6 +71,9 @@ export default function RoomPage() {
     const [questionBody, setQuestionBody] = useState(isFirstQuestion
                                                      ? location.state.questionData.question.QuestionBody
                                                      : JSON.parse(window.sessionStorage.getItem("question")).QuestionBody);
+    const [questionImage, setQuestionImage] = useState(isFirstQuestion
+                                                       ? location.state.questionData.question.QuestionImage
+                                                       : JSON.parse(window.sessionStorage.getItem("question")).QuestionImage);
         
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
@@ -89,6 +92,8 @@ export default function RoomPage() {
             window.sessionStorage.setItem("question", JSON.stringify(question.question));
             setQuestionTitle(question.question.QuestionTitle);
             setQuestionBody(question.question.QuestionBody);
+            setQuestionImage(question.question.QuestionImage);
+            console.log(question.question);
         });
 
         return () => {
@@ -167,7 +172,7 @@ export default function RoomPage() {
                         {/* question box */}
                         <Box sx={{height: "58vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
                                   backgroundColor: 'white', border: 1.5, borderColor: 'green', borderRadius: 4, overflow: "scroll"}}>
-                            <QuestionDisplay title={questionTitle} body={questionBody} handleOpenRefreshModal={handleOpenRefreshModal} handleCloseRefreshModal={handleCloseRefreshModal}/> 
+                            <QuestionDisplay title={questionTitle} body={questionBody} image={questionImage} handleOpenRefreshModal={handleOpenRefreshModal} handleCloseRefreshModal={handleCloseRefreshModal}/> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', flexDirection: 'column'}}>
