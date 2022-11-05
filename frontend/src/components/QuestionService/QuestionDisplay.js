@@ -22,7 +22,7 @@ const refreshHandler = () => {
                 </IconButton>
             </Box>
                 {image !== "" &&
-                    <Grid2 xs={12}>
+                    <Grid2 xs={12} padding={2}>
                         <img src={image} alt={title} style={{ width: "100%", height: "100%", objectFit: 'contain' }} />
                     </Grid2>
                 }
