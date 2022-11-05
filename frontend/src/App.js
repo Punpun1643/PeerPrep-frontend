@@ -41,7 +41,6 @@ function App() {
                         <Route path="findingmatch" element={<CountdownView />}></Route>
                         <Route path="roompage" element={<RoomPage />}></Route>
                     </Route>
-
                 </Routes>
             </Router>
             {/* </Box> */}
