@@ -93,7 +93,7 @@ function NavBar() {
                             </MenuItem>
 
                         </Menu>
-                            <Button className="logoutButton" color="inherit" onClick={handleLogout} style={{ borderRadius: "20px", outline: "1px solid white"}}>Logout</Button>
+                            <Button className="logoutButton" color="inherit" onClick={handleLogout} style={{ borderRadius: "20px", outline: "1px solid white", margin: "4px" }}>Logout</Button>
                     </Box>
                 </Toolbar>
             </AppBar>
