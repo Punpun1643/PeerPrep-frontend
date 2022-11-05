@@ -53,7 +53,7 @@ export default function AlertDialogSlide() {
 
     return (
         <div>
-            <Button variant="text" onClick={handleClickOpen}>
+            <Button variant="text" onClick={handleClickOpen} style={{ color: "#3370FF" }}>
                 Delete Account
             </Button>
             <Dialog

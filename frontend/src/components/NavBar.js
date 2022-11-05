@@ -63,17 +63,10 @@ function NavBar() {
                     </Typography>
                
                     <Box sx={{ flexGrow: 0 }}>
-                        {/* <Tooltip title="Open User Settings">
-                            <IconButton onClick={handleOpenUserSettings}>
-                                <SettingsIcon />
-                            </IconButton>
-                        </Tooltip> */}
                         <Button className="navbarOption" color="inherit" onClick={handleHome} style={{ borderRadius: "20px", margin: "4px"}}>Home</Button>
-
                         <Button className="navbarOption" color="inherit" onClick={handleFindMatch} style={{ borderRadius: "20px", margin: "4px"}}>Find match</Button>
-               
                         <Button className="navbarOption" color="inherit" onClick={handleOpenUserSettings} style={{ borderRadius: "20px", margin: "4px"}}>Settings</Button>
- 
+
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
@@ -91,8 +84,8 @@ function NavBar() {
                             onClose={handleCloseUserSettings}
                         >
                             <MenuItem onClick={handleCloseUserSettings}>
-                                <Button variant="text" style={{ textAlign: "center" }} color="primary">
-                                    <Link to="/changePassword" style={{ textDecoration: "none" }}>Change Password</Link>
+                                <Button style={{ textAlign: "center" }}>
+                                    <Link to="/changePassword" style={{ textDecoration: "none", color:"#3370FF"}}>Change Password</Link>
                                 </Button>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserSettings}>
