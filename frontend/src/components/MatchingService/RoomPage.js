@@ -106,7 +106,7 @@ export default function RoomPage() {
     }
 
     return (
-            <Grid container spacing={0.5} sx={{backgroundColor:'#132439', color: '#ffffff', width:'100vw', height:'92.5vh', margin: '0px'}}>
+            <Grid container spacing={0.5} sx={{ backgroundColor:'#132439', color: '#ffffff', width:'100vw', height:'92.5vh', margin: '0px' }}>
                 {showLeaveModal ? 
                     <div style={modal}>
                         <div style={center}>

@@ -1,6 +1,4 @@
 import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -98,18 +96,11 @@ function NavBar() {
                                 </Button>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserSettings}>
-                                {/* <Typography variant="text" textAlign="center" color="primary">
-                                    Delete Account
-                                </Typography> */}
                                 <DeleteAccountAlert />
                             </MenuItem>
 
                         </Menu>
-                      
-                            {/* <IconButton onClick={handleLogout}>
-                                <LogoutIcon />
-                            </IconButton> */}
-                            <Button className="logoutButton" color="inherit" onClick={handleLogout} style={{ borderRadius: "20px"}}>Logout</Button>
+                            <Button className="logoutButton" color="inherit" onClick={handleLogout} style={{ borderRadius: "20px", outline: "1px solid white"}}>Logout</Button>
                     </Box>
                 </Toolbar>
             </AppBar>

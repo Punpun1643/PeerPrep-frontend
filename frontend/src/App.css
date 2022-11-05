@@ -1,0 +1,9 @@
+.peerPrepNavbar {
+    top: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.contentContainer {
+    margin-top: 50px; 
+}
