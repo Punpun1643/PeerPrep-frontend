@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { ensureLoggedIn } from '../../Util';
 import QuestionDisplay from '../QuestionService/QuestionDisplay';
+import ChatDisplay from '../ChatService/ChatDisplay';
 
 // collaboration service
 import CodeEditor from '../CollaborationService/CodeEditor';
@@ -105,7 +106,6 @@ export default function RoomPage() {
     }
 
     return (
-          
             <Grid container spacing={0.5} sx={{backgroundColor:'#132439', color: '#ffffff', width:'100vw', height:'92.5vh', margin: '0px'}}>
                 {showLeaveModal ? 
                     <div style={modal}>
