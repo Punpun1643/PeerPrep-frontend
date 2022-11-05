@@ -68,11 +68,11 @@ function NavBar() {
                                 <SettingsIcon />
                             </IconButton>
                         </Tooltip> */}
-                        <Button className="navbarOption" color="inherit" onClick={handleHome} style={{ borderRadius: "20px"}}>Home</Button>
+                        <Button className="navbarOption" color="inherit" onClick={handleHome} style={{ borderRadius: "20px", margin: "4px"}}>Home</Button>
 
-                        <Button className="navbarOption" color="inherit" onClick={handleFindMatch} style={{ borderRadius: "20px"}}>Find match</Button>
+                        <Button className="navbarOption" color="inherit" onClick={handleFindMatch} style={{ borderRadius: "20px", margin: "4px"}}>Find match</Button>
                
-                        <Button className="navbarOption" color="inherit" onClick={handleOpenUserSettings} style={{ borderRadius: "20px"}}>Settings</Button>
+                        <Button className="navbarOption" color="inherit" onClick={handleOpenUserSettings} style={{ borderRadius: "20px", margin: "4px"}}>Settings</Button>
  
                         <Menu
                             sx={{ mt: '45px' }}
