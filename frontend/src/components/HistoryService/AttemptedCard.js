@@ -7,6 +7,7 @@ import sapling from '../../images/sapling.png';
 import youngtree from '../../images/youngtree.png'
 import tree from '../../images/tree.png';
 import CircularStatic from './CircularStaticWithLabel';
+import { Box } from "@mui/material";
 
 function AttemptedCard(props) {
     const difficultyImageMap = { "easy": sapling, "medium": youngtree, "hard": tree }
@@ -43,7 +44,9 @@ function AttemptedCard(props) {
                 <Typography variant="body2" color="white" sx={{ marginBottom: 2 }}>
                     {difficultyTextMap[props.difficulty]}
                 </Typography>
-                <CircularStatic progress={props.numberOfAttempted / 60 * 100} />
+                <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                    <CircularStatic progress={props.numberOfAttempted / 60 * 100} />
+                </Box>
             </CardContent>
         </Card >
     );
