@@ -27,6 +27,10 @@ function Home(props) {
         getHardAttemptedQuestions();
     })
 
+    const handleStartGrind = (e) => {
+        navigate("/selectquestiondifficulty");
+    }
+
     const getAttemptedQuestions = async () => {
         await axios.get(URL_HISTORY_SVC + '/' + username)
             .then(response => {
@@ -73,7 +77,7 @@ function Home(props) {
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
                     <Typography variant={"h4"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>Welcome back, {username}!</Typography>
                     <Button
-                        href="/selectquestiondifficulty"
+                        onClick={handleStartGrind}
                         size="large"
                         variant="contained"
                         color="warning"
