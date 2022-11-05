@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import sapling from '../../images/sapling.png';
 import youngtree from '../../images/youngtree.png'
 import tree from '../../images/tree.png';
+import CircularStatic from './CircularStaticWithLabel';
 
 function AttemptedCard(props) {
     const difficultyImageMap = { "easy": sapling, "medium": youngtree, "hard": tree }
@@ -26,10 +27,7 @@ function AttemptedCard(props) {
 
     return (
         <Card sx={{
-            width: 345, backgroundColor: "#3370FF",
-            '&:hover': {
-                backgroundColor: '#F7CF1C !important',
-            }
+            width: 345, backgroundColor: "#3370FF"
         }}>
             <CardMedia
                 component="img"
@@ -42,10 +40,11 @@ function AttemptedCard(props) {
                 <Typography gutterBottom variant="h5" component="div" color="white">
                     {capitalizeFirst(props.difficulty)} x {props.numberOfAttempted}
                 </Typography>
-                <Typography variant="body2" color="white">
-                {difficultyTextMap[props.difficulty]}
-            </Typography>
-        </CardContent>
+                <Typography variant="body2" color="white" sx={{ marginBottom: 2 }}>
+                    {difficultyTextMap[props.difficulty]}
+                </Typography>
+                <CircularStatic progress={props.numberOfAttempted / 60 * 100} />
+            </CardContent>
         </Card >
     );
 }
