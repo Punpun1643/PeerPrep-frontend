@@ -136,9 +136,8 @@ export default function RoomPage() {
                             <QuestionDisplay title={questionTitle} body={questionBody}/> 
                         </Box>
                         {/*chat box */}
-                        <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
-                                  border: 1.5, borderColor: 'white', borderRadius: 4}}>
-                            <Typography variant="body1" sx={{margin: 2}}> Placeholder chat box </Typography> 
+                        <Box sx={{height: "30vh", display:'flex', flexDirection: 'column'}}>
+                            <ChatDisplay roomId={roomId} />
                         </Box>
                     </Stack>
                 </Grid>
