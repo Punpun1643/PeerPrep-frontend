@@ -14,10 +14,10 @@ import './App.css';
 
 function WithNavBar() {
     return (
-        <>
+        <div className="appContainer">
             <NavBar className="peerPrepNavbar" />
             <Outlet className="contentContainer"/>
-        </>
+        </div>
     )
 
 }

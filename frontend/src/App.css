@@ -6,4 +6,10 @@
 
 .contentContainer {
     margin-top: 50px; 
+    overflow-y: auto; 
+
+}
+
+.appContainer {
+    height: 100%;
 }
