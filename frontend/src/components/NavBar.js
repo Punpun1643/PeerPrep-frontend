@@ -10,6 +10,8 @@ import Cookies from 'js-cookie';
 
 import './NavBar.css';
 
+import logo from '../assets/peerPrepLogo.png';
+
 function NavBar() {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
@@ -56,8 +58,9 @@ function NavBar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar className="peerPrepNavbar" position="sticky" style={{ backgroundColor: "#3370FF" }}>
                 <Toolbar>
+                    <img className="peerPrepLogo" src={logo} alt="Logo" />
                     <Typography variant="h6" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }} style={{ fontWeight: "bold" }}>
-                    
+                        
                         <p className="logo" onClick={handleHome}>PeerPrep</p>
                      
                     </Typography>

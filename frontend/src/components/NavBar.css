@@ -12,3 +12,8 @@
 .logo {
     cursor: pointer;
 }
+
+.peerPrepLogo {
+    height: 40px;
+    padding: 4px;
+}
