@@ -28,7 +28,7 @@ function AttemptedCard(props) {
 
     return (
         <Card sx={{
-            width: 345, backgroundColor: "#3370FF"
+            width: 345, backgroundColor: "#3370FF", borderRadius: "20px"
         }}>
             <CardMedia
                 component="img"
@@ -38,14 +38,17 @@ function AttemptedCard(props) {
                 sx={{ objectFit: "contain", backgroundColor: 'white' }}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div" color="white">
+                <Typography gutterBottom variant="h5" component="div" color="white" style={{ fontWeight: "bold" }}>
                     {capitalizeFirst(props.difficulty)} x {props.numberOfAttempted}
                 </Typography>
                 <Typography variant="body2" color="white" sx={{ marginBottom: 2 }}>
                     {difficultyTextMap[props.difficulty]}
                 </Typography>
                 <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <CircularStatic progress={props.numberOfAttempted / 60 * 100} />
+                    {props.difficulty === 'easy' &&  <CircularStatic style={{ backgroundColor: "#05CE91"}} progress={props.numberOfAttempted / 60 * 100} />}
+                    {props.difficulty === 'medium' &&  <CircularStatic style={{ backgroundColor: "#F6C15C"}} progress={props.numberOfAttempted / 60 * 100} />}
+                    {props.difficulty === 'hard' &&  <CircularStatic style={{ backgroundColor: "#C7254E"}} progress={props.numberOfAttempted / 60 * 100} />}
+                    {/* <CircularStatic progress={props.numberOfAttempted / 60 * 100} /> */}
                 </Box>
             </CardContent>
         </Card >

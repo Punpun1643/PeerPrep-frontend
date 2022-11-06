@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { style } from '@mui/system';
 
 function CircularProgressWithLabel(props) {
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" sx={{color: 'white'}} {...props} />
+      <CircularProgress variant="determinate" sx={{color: 'white', size:"4rem"}} {...props} />
       <Box
         sx={{
           top: 0,
@@ -38,5 +39,5 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircularStatic(props) {
-  return <CircularProgressWithLabel value={props.progress} />;
+  return <CircularProgressWithLabel style={{ color: props.style.backgroundColor}} value={props.progress} />;
 }
