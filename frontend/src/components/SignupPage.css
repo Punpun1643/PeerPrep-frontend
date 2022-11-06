@@ -33,6 +33,8 @@
     justify-content: space-evenly;
     width: 80%;
     overflow-wrap: break-word;
+    align-content: flex-start;
+  
 }
 
 .header {
@@ -46,3 +48,13 @@
     margin-top: -10px;
 }
 
+.peerPrepBrandWrapper {
+    display: flex;
+
+    align-items: center;
+}
+
+.peerPrepLogo {
+    /* background-color: purple; */
+    height: 150px;
+}
