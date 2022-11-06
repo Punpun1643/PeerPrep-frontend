@@ -159,8 +159,8 @@ export default function RoomPage() {
                         <div style={center}>
                             <Typography variant="body1" sx={{padding: '20px'}}> Are you sure you want to change to another question? The change will be reflected to all users in the room. </Typography>
                             <Box>
-                                <Button variant="contained" onClick={refreshHandler} sx={{margin: '5px', borderRadius: '25px'}}> Yes </Button>
-                                <Button variant="contained" onClick={handleCloseRefreshModal} sx={{margin: '5px', borderRadius: '25px'}}> Cancel </Button>
+                                <Button variant="contained" onClick={refreshHandler} sx={{margin: '5px', borderRadius: '20px', backgroundColor: '#05CE91', width: "80px"}}> Yes </Button>
+                                <Button variant="contained" onClick={handleCloseRefreshModal} sx={{margin: '5px', borderRadius: '20px', backgroundColor: '#FF3152', width: "80px"}}> Cancel </Button>
                             </Box>
                         </div>
                     </div>
