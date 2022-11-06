@@ -17,7 +17,7 @@ import CodeEditor from '../CollaborationService/CodeEditor';
 
 export default function RoomPage() {
 
-    //styling for leave room modal
+    //styling for modal
     const modal = {
         position: 'fixed',
         left: '0',
@@ -55,8 +55,6 @@ export default function RoomPage() {
     useEffect( () => {
         ensureLoggedIn(navigate);
     });
-
-    console.log(location);
   
     const roomId = location.state  
                    ? location.state.roomId 
@@ -65,45 +63,74 @@ export default function RoomPage() {
     const secondClientSocketId = location.state
                    ? location.state.secondClientSocketId
                    : "";
+    
+    let isFirstQuestion = (window.sessionStorage.getItem("question") == null)
 
-    //breaking question down
-    let questionData = location.state.questionData;
-    let questionDifficulty = questionData.question.QuestionDifficulty;
-    let questionTitle = questionData.question.QuestionTitle;
-    let questionBody = questionData.question.QuestionBody;
-    let questionImage = questionData.question.QuestionImage;
-
+    const questionDifficulty = location.state.questionData.question.QuestionDifficulty;    
+    const [questionTitle, setQuestionTitle] = useState(isFirstQuestion 
+                                                        ? location.state.questionData.question.QuestionTitle
+                                                        : JSON.parse(window.sessionStorage.getItem("question")).QuestionTitle);
+    const [questionBody, setQuestionBody] = useState(isFirstQuestion
+                                                     ? location.state.questionData.question.QuestionBody
+                                                     : JSON.parse(window.sessionStorage.getItem("question")).QuestionBody);
+    const [questionImage, setQuestionImage] = useState(isFirstQuestion
+                                                       ? location.state.questionData.question.QuestionImage
+                                                       : JSON.parse(window.sessionStorage.getItem("question")).QuestionImage);
+        
     console.log("roomId" + roomId);
     console.log("socketID " + socket.id);
 
     const [showLeaveModal, setShowLeaveModal] = useState(false);
+    const [showRefreshModal, setShowRefreshModal] = useState(false);
+    
 
     useEffect( () => {
-
         socket.on("connect", () => {
             console.log(socket.connected); // true
           });
         socket.emit("join-room", roomId);
 
+        socket.on("update-question", (question) => {            
+            window.sessionStorage.setItem("question", JSON.stringify(question.question));
+            setQuestionTitle(question.question.QuestionTitle);
+            setQuestionBody(question.question.QuestionBody);
+            setQuestionImage(question.question.QuestionImage);
+            console.log(question.question);
+        });
+
         return () => {
             socket.disconnect();
+            window.sessionStorage.clear();
             socket.connect();
         } 
-
     }, []);
 
-    const handleoOpenModal = (e) => {
+    const handleOpenModal = (e) => {
         setShowLeaveModal(true);
     }
 
     const handleCloseModal = (e) => {
         setShowLeaveModal(false);
     }
+
+    const handleOpenRefreshModal = (e) => {
+        setShowRefreshModal(true);
+    }
+
+    const handleCloseRefreshModal = (e) => {
+        setShowRefreshModal(false);
+    }
+
     
     const onLeaveHandler = (e) => {
         console.log("leaving " + socket.id);
         socket.emit("leave-room", roomId);
         navigate('/selectquestiondifficulty');
+    }
+
+    const refreshHandler = (e) => {
+        socket.emit("refresh-question", roomId, questionDifficulty, questionTitle);
+        setShowRefreshModal(false);
     }
 
     return (
@@ -118,7 +145,19 @@ export default function RoomPage() {
                             </Box>
                         </div>
                     </div>
-                    : <></>} 
+                    : <></>}
+                { showRefreshModal ? 
+                     <div style={modal}>
+                     <div style={center}>
+                         <Typography variant="body1" sx={{padding: '20px'}}> Are you sure you want to change to another question? The change will be reflected to all users in the room. </Typography>
+                         <Box>
+                             <Button variant="contained" onClick={refreshHandler} sx={{margin: '5px', borderRadius: '25px'}}> Yes </Button>
+                             <Button variant="contained" onClick={handleCloseRefreshModal} sx={{margin: '5px', borderRadius: '25px'}}> Cancel </Button>
+                         </Box>
+                     </div>
+                 </div>
+                 : <></>}
+                
                 {/* left panel */}
                 <Grid item xs={5} md={5}>
                     <Stack spacing={0.5}>
@@ -127,14 +166,14 @@ export default function RoomPage() {
                             {/* room number  */}
                             <Typography variant="body1" sx={{margin: 2}}> Room {roomId.slice(0,8)}  </Typography> 
                             {/* leave room button */}
-                            <Button variant="contained" endIcon={<LogoutIcon />} size="small" sx={{fontSize: '15px', textTransform: 'none', borderRadius: '25px'}} onClick={handleoOpenModal}>
+                            <Button variant="contained" endIcon={<LogoutIcon />} size="small" sx={{fontSize: '15px', textTransform: 'none', borderRadius: '25px'}} onClick={handleOpenModal}>
                               Leave  
                             </Button>    
                         </Box>
                         {/* question box */}
                         <Box sx={{height: "50vh", display:'flex', flexDirection: 'column', justifyContent:'flex-start', alignItems:'center', 
                                   border: 1.5, borderColor: 'white', borderRadius: 4, overflow: "scroll"}}>
-                            <QuestionDisplay title={questionTitle} body={questionBody}/> 
+                            <QuestionDisplay title={questionTitle} body={questionBody} image={questionImage} handleOpenRefreshModal={handleOpenRefreshModal} handleCloseRefreshModal={handleCloseRefreshModal}/> 
                         </Box>
                         {/*chat box */}
                         <Box sx={{height: "30vh", display:'flex', justifyContent:'flex-start', alignItems:'center', 
