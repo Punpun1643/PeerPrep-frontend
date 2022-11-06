@@ -33,7 +33,7 @@ function SignupPage() {
                         
                         <div className="taglineWrapper">
                             <div className="peerPrepBrandWrapper">
-                                <img className="peerPrepLogo" src={logo} alt="Logo" />
+                                <img className="peerPrepLogoSignup" src={logo} alt="Logo" />
                                 <h1 className="header">PeerPrep</h1>
                             </div>
                             <p className="subHeader" ref={textRef}></p>
