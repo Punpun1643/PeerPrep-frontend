@@ -80,9 +80,7 @@ function Home(props) {
                         onClick={handleStartGrind}
                         size="large"
                         variant="contained"
-                        color="warning"
-                        endIcon={< CreateIcon />}
-                        sx={{ marginTop: 2, alignSelf: 'center' }}>Start the Grind</Button>
+                        sx={{ marginTop: 2, alignSelf: 'center', backgroundColor: "#F7C71C", borderRadius: "20px" }}>Start the Grind 🔥</Button>
                 </Box>
                 <Typography variant={"h5"} color="white" sx={{ textAlign: 'center', marginTop: 3 }}>So far, you have completed:</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-evenly', marginTop: 5 }}>
