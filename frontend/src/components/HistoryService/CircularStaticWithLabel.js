@@ -39,5 +39,5 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircularStatic(props) {
-  return <CircularProgressWithLabel style={{ color: props.style.backgroundColor}} value={props.progress} />;
+  return <CircularProgressWithLabel thickness="5" size="60px" style={{ color: props.style.backgroundColor}} value={props.progress} />;
 }
