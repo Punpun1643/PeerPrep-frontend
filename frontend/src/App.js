@@ -10,21 +10,24 @@ import CountdownView from './components/MatchingService/CountdownView';
 import RoomPage from './components/MatchingService/RoomPage'
 import NavBar from "./components/NavBar";
 
+import './App.css';
+
 function WithNavBar() {
     return (
-        <>
-            <NavBar />
-            <Outlet />
-        </>
+        <div className="appContainer">
+            <NavBar className="peerPrepNavbar" />
+            <Outlet className="contentContainer"/>
+        </div>
     )
 
 }
 
-
 function App() {
 
     return (
-        <div className="App">
+        <div className="App" style={{ top: '0',
+            width: '100%',
+            position: 'fixed' }}>
             {/* <Box display={"flex"} flexDirection={"column"} padding={"4rem"}> */}
             <Router>
                 <Routes>
