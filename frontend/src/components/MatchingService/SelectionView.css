@@ -22,7 +22,7 @@
     justify-content: space-around;
     align-items: center; 
     height: 50vh;
-    /* background-color: blue; */
+    /* background-color: greenyellow; */
     display: flex;
     flex-direction: column;
 }
@@ -35,6 +35,12 @@
 .matchContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; 
+    justify-content: center;
+    align-items: center; 
     /* background-color: blue; */
+    margin-top: -160px;
+}
+
+.selectionView {
+    height: 100%;
 }
