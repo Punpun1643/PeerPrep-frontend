@@ -10,10 +10,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { ensureLoggedIn } from '../../Util';
 import QuestionDisplay from '../QuestionService/QuestionDisplay';
 import ChatDisplay from '../ChatService/ChatDisplay';
+import Split from 'react-split-grid'
 
 // collaboration service
 import CodeEditor from '../CollaborationService/CodeEditor';
-
+import './RoomPage.css';
 
 export default function RoomPage() {
 
@@ -105,8 +106,12 @@ export default function RoomPage() {
         navigate('/selectquestiondifficulty');
     }
 
+    
+
+
     return (
-            <Grid container spacing={0.5} sx={{ backgroundColor:'#132439', color: '#ffffff', width:'100vw', height:'92.5vh', margin: '0px' }}>
+        <>
+        <Grid container spacing={0.5} sx={{ backgroundColor:'#132439', color: '#ffffff', width:'100vw', height:'92.5vh', margin: '0px' }}>
                 {showLeaveModal ? 
                     <div style={modal}>
                         <div style={center}>
@@ -118,8 +123,12 @@ export default function RoomPage() {
                         </div>
                     </div>
                     : <></>} 
-                {/* left panel */}
-                <Grid item xs={5} md={5}>
+        <Split
+            render={({
+                getGridProps,
+                getGutterProps,
+            }) => (
+                <div className="grid" {...getGridProps()}>
                     <Stack spacing={0.5}>
                         {/* room number and leave room button */}
                         <Box sx={{height: "9.5vh", display:'flex', justifyContent:'flex-start', alignItems:'center'}}>
@@ -140,15 +149,15 @@ export default function RoomPage() {
                             <ChatDisplay roomId={roomId} />
                         </Box>
                     </Stack>
-                </Grid>
-                
-                {/* right panel */}
-                <Grid item xs={6.98} md={6.98}>
-                    <Stack spacing={0}>
+                    <div className="gutter-col gutter-col-1" {...getGutterProps('column', 1)} />
+                    {/* <Stack spacing={0}> */}
                         {/* code box */}
                         <CodeEditor roomId={roomId} socketIds={[roomId, secondClientSocketId]}/>
-                    </Stack>
-                </Grid>
-            </Grid>
+                    {/* </Stack> */}
+                </div>
+            )}
+        />
+        </Grid>
+        </>
     )
 }
