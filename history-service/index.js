@@ -5,6 +5,7 @@ import { getRecord, storeRecord } from './controller/history-controller.js';
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({ origin: true, credentials: true }));
 app.options('*', cors());
 
 const router = express.Router();
@@ -17,4 +18,4 @@ app.use('/api/history', router).all((_, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
 });
 
-app.listen(8003, () => console.log('history-service listening on port 8003'));
+app.listen(8004, () => console.log('history-service listening on port 8004'));
